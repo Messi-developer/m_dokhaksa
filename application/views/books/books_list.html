@@ -1,0 +1,216 @@
+<div id="books_container">
+	<div id="container">
+		<div class="best_store_area">
+			<h4>BEST 교재 추천</h4>
+			<div class="books_best_store">
+				<ul class="swiper-wrapper">
+					<? foreach($best_books_list as $book_key => $book_item) { ?>
+						<li class="swiper-slide">
+							<span class="best_icon"><?=$book_item['level']?>단계</span>
+							<a href="/books/books_view?book_id=<?=$book_item['book_id']?>" class="best_img">
+								<? if (!empty($book_item['book_img'])) { ?>
+									<img src="https://www.haksa2080.com/zfiles/book_img/<?=$book_item['book_img']?>" alt="">
+								<? } else { ?>
+									-
+								<? } ?>
+							</a>
+							<dl>
+								<dt>
+									<a href="/books/books_view?book_id=<?=$book_item['book_id']?>"><?=(!empty($book_item['book_name'])) ? str_replace('<br>', '', $book_item['book_name']) : '-' ?></a>
+								</dt>
+								<dd>
+									<strong><?=number_format($book_item['pamount'])?>원</strong>
+									<span><?=$book_item['books_point']?>P</span>
+								</dd>
+							</dl>
+							<div class="best_btn">
+								<? if (!empty($book_item['books_preview'])) { ?>
+									<a href="/books/books_view?preview=<?=$book_item['book_id']?>" class="btn_gray">미리보기</a>
+								<? } else { ?>
+									<a href="/books/books_view?book_id=<?=$book_item['book_id']?>" class="btn_gray">자세히보기</a>
+								<? } ?>
+								
+								<? if ($this->session->userdata('member_id') != '') { ?>
+									<? if ($book_item['level'] != 1 && $book_item['store_link'] != 'Y') { ?>
+										<a href="#;" onclick="paymentBook('<?=$book_item['payment_book_code']?>');" class="btn_green">바로구매</a>
+									<? } else { ?>
+										<a href="<?=$book_item['store_link']?>" target="_blank" class="btn_green">구매하기</a>
+									<? } ?>
+								<? } else { ?>
+									<? if ($book_item['level'] != 1 && $book_item['store_link'] != 'Y') { ?>
+										<a href="#;" onclick="alimLayer('alimLogin')" class="btn_green">바로구매</a>
+									<? } else { ?>
+										<a href="#;" onclick="alimLayer('alimLogin')" class="btn_green">구매하기</a>
+									<? } ?>
+								<? } ?>
+							</div>
+						</li>
+					<? } ?>
+				</ul>
+			</div>
+		</div>
+		
+		<!-- search panel -->
+		<div class="search_panel">
+			<strong>검색결과 <span><?=count($book_list_cnt)?></span>건</strong>
+			<div class="search_right">
+				<button type="button" class="btnSearch" onclick="btnClickClass('btnSearchView');">상세검색</button>
+			</div>
+			<!-- 상세검색 뷰 -->
+			<div class="btnSearchView" style="display:none;">
+				<form name="contentSearchForm" id="contentSearchForm" method="POST" action="/books/main" >
+					<input type="hidden" name="lectureList_cnt" id="lectureList_cnt">
+					<ul>
+						<li>
+							<span>학과명</span>
+							<select name="category_seq_num" id="category_seq_num" class="contentsSearch">
+								<option value="">전체</option>
+								<option value="1" <?=($_POST['category_seq_num'] == '1') ? 'selected' : '' ?>>교양공통</option>
+								<option value="3" <?=($_POST['category_seq_num'] == '3') ? 'selected' : '' ?>>간호학과</option>
+								<option value="2" <?=($_POST['category_seq_num'] == '2') ? 'selected' : '' ?>>경영학과</option>
+								<option value="21" <?=($_POST['category_seq_num'] == '21') ? 'selected' : '' ?>>영어영문학과</option>
+							</select>
+						</li>
+						<li>
+							<span>단계명</span>
+							<select name="lec_level" id="lec_level" class="contentsSearch">
+								<option value="">전체</option>
+								<option value="1" <?=($_POST['lec_level'] == '1') ? 'selected' : '' ?>>1단계</option>
+								<option value="2" <?=($_POST['lec_level'] == '2') ? 'selected' : '' ?>>2단계</option>
+								<option value="3" <?=($_POST['lec_level'] == '3') ? 'selected' : '' ?>>3단계</option>
+								<option value="4" <?=($_POST['lec_level'] == '4') ? 'selected' : '' ?>>4단계</option>
+							</select>
+						</li>
+						<li>
+							<span>저자명</span>
+							<select name="author_name" id="author_name" class="contentsSearch" value="<?=(!empty($_POST['teacher_list_name'])) ? $_POST['teacher_list_name'] : '' ?>">
+								<option value="">전체</option>
+								<? foreach($author_list as $author_key => $author_item) { ?>
+									<option value="<?=$author_item['author']?>"><?=$author_item['author']?></option>
+								<? } ?>
+							</select>
+						</li>
+					</ul>
+				</form>
+				<div class="button_area">
+					<button type="button" onclick="searchReNew('contentsSearch');">초기화</button>
+					<button type="button" onclick="contentSearch();">검색</button>
+				</div>
+			</div>
+		</div>
+		
+		<!-- search panel -->
+		<div class="books_store_list">
+			<ul id="bookStoreList">
+				<? if (!empty($books_list)) { ?>
+					<? foreach($books_list as $book_key => $book_item) { ?>
+						<li>
+							<div class="books_store_box">
+								<div class="books_icon">
+									<span class="cl_type" style="<?=($book_item['recommand_type'] == '1') ? 'display:inline-block' : 'display:none' ?>">BEST</span>
+									<span><?=$book_item['level']?>단계</span>
+								</div>
+								<div class="books_name">
+									<dl>
+										<dt><a href="/books/books_view?book_id=<?=$book_item['book_id']?>"><?=$book_item['book_name']?></a></dt>
+										<dd class="num_day"><?=$book_item['books_author']->author?></dd>
+										<dd class="line_txt"></dd>
+										<dd class="num_point"><?=$book_item['books_point']?>P</dd>
+									</dl>
+									<span class="img_upload">
+										<a href="/books/books_view?book_id=<?=$book_item['book_id']?>">
+											<? if (!empty($book_item['book_img'])) { ?>
+												<img src="https://www.haksa2080.com/zfiles/book_img/<?=$book_item['book_img']?>" alt="">
+											<? } else { ?>
+												-
+											<? } ?>
+										</a>
+									</span>
+								</div>
+								
+								<div class="books_amt">
+									<dl>
+										<dt>금액</dt>
+										<dd>
+											<strong><?=number_format($book_item['pamount'])?>원</strong>
+										</dd>
+									</dl>
+								</div>
+							</div>
+							
+							<div class="books_btn">
+								<? if ($this->session->userdata('member_id') != '') { ?>
+									<? if ($book_item['level'] != 1 && $book_item['store_link'] != 'Y') { ?>
+										<span class="first"><button type="button" class="black_btn" onclick="paymentApply('<?=$book_item['payment_book_code']?>');">바로구매</button></span>
+									<? } else { ?>
+										<span class="first"><button type="button" class="black_btn" onclick="location.href='<?=$book_item['store_link']?>'">구매하러가기</button></span>
+									<? } ?>
+								<? } else { ?>
+									<? if ($book_item['level'] != 1 && $book_item['store_link'] != 'Y') { ?>
+										<span class="first"><button type="button" class="black_btn" onclick="alimLayer('alimLogin')">바로구매</button></span>
+									<? } else { ?>
+										<span class="first"><button type="button" class="black_btn" onclick="alimLayer('alimLogin')">구매하러가기</button></span>
+									<? } ?>
+								<? } ?>
+								
+								<ul class="col2">
+									<? if ($this->session->userdata('member_id') != '') { // member_id ?>
+										
+										<? if (!empty($book_item['books_preview'])) { ?>
+											<li><button type="button" class="white_btn" onclick="location.href='/books/books_view?preview=<?=$book_item['book_id']?>'">미리보기</button></li>
+											<? if ($book_item['level'] != 1 && $book_item['store_link'] != 'Y') { ?>
+												<li><button type="button" class="white_btn" onclick="alimLayer('alimBasket', '<?=$book_item['payment_book_code']?>', '/payment/payment_basket')">장바구니</button></li>
+											<? } else { ?>
+												<li><button type="button" class="white_btn" onclick="location.href='/books/books_view?book_id=<?=$book_item['book_id']?>'">자세히보기</button></li>
+											<? } ?>
+										<? } else { ?>
+											<? if ($book_item['level'] != 1 && $book_item['store_link'] != 'Y') { ?>
+												<li><button type="button" class="white_btn" onclick="location.href='/books/books_view?book_id=<?=$book_item['book_id']?>'">자세히보기</button></li>
+												<li><button type="button" class="white_btn" onclick="alimLayer('alimBasket', '<?=$book_item['payment_book_code']?>', '/payment/payment_basket')">장바구니</button></li>
+											<? } else { ?>
+												<li style="width:100%"><button type="button" class="white_btn" onclick="location.href='/books/books_view?book_id=<?=$book_item['book_id']?>'">자세히보기</button></li>
+											<? } ?>
+										<? } ?>
+										
+									<? } else { // end member_id ?>
+										<? if (!empty($book_item['books_preview'])) { ?>
+											<li><button type="button" class="white_btn" onclick="location.href='/books/books_view?preview=<?=$book_item['book_id']?>'">미리보기</button></li>
+											<? if ($book_item['level'] != 1 && $book_item['store_link'] != 'Y') { ?>
+												<li><button type="button" class="white_btn" onclick="alimLayer('alimLogin')">장바구니</button></li>
+											<? } else { ?>
+												<li><button type="button" class="white_btn" onclick="location.href='/books/books_view?book_id=<?=$book_item['book_id']?>'">자세히보기</button></li>
+											<? } ?>
+											
+										<? } else { ?>
+											<? if ($book_item['level'] != 1 && $book_item['store_link'] != 'Y') { ?>
+												<li><button type="button" class="white_btn" onclick="location.href='/books/books_view?book_id=<?=$book_item['book_id']?>'">자세히보기</button></li>
+												<li><button type="button" class="white_btn" onclick="alimLayer('alimLogin')">장바구니</button></li>
+											<? } else { ?>
+												<li style="width:100%"><button type="button" class="white_btn" onclick="location.href='/books/books_view?book_id=<?=$book_item['book_id']?>'">자세히보기</button></li>
+											<? } ?>
+										<? } ?>
+										
+									<? } ?>
+									
+								</ul>
+							</div>
+						</li>
+					<? } ?>
+				<? } else { ?>
+					<li class="books_nolist on"><!-- class="on" 추가 활성 -->
+						<img src="<?=$images?>/icon/no_list.png" alt="검색결과가 없습니다." >
+						검색 결과가 없습니다.<br />
+						재확인 후 조회해주세요.
+					</li>
+				<? } ?>
+			</ul>
+			
+			<!-- 더보기 버튼 -->
+			<div class="books_list_more">
+				<button type="button" class="txt_btn" onclick="listGetPageBook('<?=count($book_list_cnt)?>');">10개 더보기(<span id="lectureTotal_cnt"></span>/<?=count($book_list_cnt)?>)</button>
+			</div>
+			
+		</div>
+	</div>
+	<!--// container -->
+</div>

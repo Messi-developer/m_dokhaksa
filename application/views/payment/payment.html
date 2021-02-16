@@ -1,0 +1,349 @@
+<?
+$lecNoSort = $lecNo;
+sort($lecNoSort); // $this->input->get('lec_no') => 내림차순으로 변경
+$all_point = !empty($user_point) ? number_format($user_point) : '0';
+?>
+
+<div id="payment_container">
+    <div class="payment_top" id="snb">
+        <h2>주문/결제</h2>
+        <span class="snb_prev">
+			<a href="javascript:void(0);" class="his_back"><img src="<?=$images?>/common/btn_prev.png" alt="이전"/></a>
+		</span>
+    </div>
+
+    <div id="container">
+        <div class="payment">
+            <div class="order_info">
+                <p class="order_info_tit">※ 주문/결제 페이지의 상품금액은 할인이 적용된 금액이며, 쿠폰 또는 포인트로 추가 할인 받으실 수 있습니다.</p>
+
+                <form method="POST" name="paymentApplySend" id="paymentApplySend" action="payment/main/paymentInertCheck">
+                    <!--<input type="hidden" name="pay_type" id="pay_type">-->
+                    <input type="hidden" name="lec_no" id="lec_no">
+                    <input type="hidden" name="order_num" id="order_num">
+                    <input type="hidden" name="pay_method" id="pay_method">
+
+                    <div class="payment_section order">
+                        <h2 class="payment_icon"><img src="<?=$images?>/payment/order.jpg" alt="주문내역" ><span>주문내역</span></h2>
+                        <div class="lec_area">
+                            <? foreach($paymentList as $payment_key => $payment_item) {
+	
+								$besong_state = ($lecNoSort[$payment_key] > 50000) ? '' : 'only_lec' ;
+                            	
+                                if ($lecNo[$payment_key] > 50000) {
+                                    $lec_price = number_format($payment_item->pamount);
+                                } else {
+                                    $lec_price = ((int)$payment_item->lec_price != (int)$payment_item->lec_real_price) ? number_format($payment_item->lec_real_price) : number_format($payment_item->lec_price);
+                                }
+                                ?>
+                                <!--강의-->
+                                <div class="lecture <?=($lecNo[$payment_key] > 50000) ? 'type2' : '' ?>" data-lec-no="<?=$lecNo[$payment_key]?>">
+                                    <!-- 쿠폰/적립금 -->
+                                    <div class="tit_price_wrap">
+                                        <input type="hidden" name="payment_lecture_list[]" value="<?=$lecNo[$payment_key]?>">
+                                        <span class="sort">[<?=($lecNo[$payment_key] > 50000) ? '교재' : '강의' ?>]</span> <?=($lecNo[$payment_key] > 50000) ? $payment_item->book_name : str_replace('<br>', '', $payment_item->lec_name) ?>
+                                        <p class="teacher">
+                                            <?=($lecNo[$payment_key] > 50000) ? $payment_item->author . ' 교수님' : $payment_item->teacher_name . ' 교수님' ?>
+                                        </p>
+                                        <div class="discount_input discount">
+                                            <input class="set_coupon" name="payment_coupon_number[]" type="hidden" value=""/>
+                                            <div class="input_area">
+                                                <label>· 쿠폰할인</label>
+                                                <div class="left_txt_area">
+                                                    <input class="coupon" type="text" value="0" name="used_coupon[]" readonly/>
+                                                    <span class="unit">원</span>
+                                                </div>
+                                                <button class="right_btn" type="button" onclick="coupon_pop(this,'<?=$lec_price?>')">사용하기</button>
+                                            </div>
+                                            <div class="input_area">
+                                                <label class="mypoint">· 보유적립금
+                                                    <span><?=$all_point?>P</span>
+                                                </label>
+                                                <div class="left_txt_area">
+                                                    <input class="point" type="text" value="0" name="used_point[]" onkeyup="point_chk2(this)"/>
+                                                    <span>P</span>
+                                                </div>
+                                                <button class="right_btn" type="button" onclick="point_chk(this,'<?=$all_point?>','<?=$lec_price?>')">적용</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- //쿠폰/적립금 -->
+                                    <!-- 금액 -->
+                                    <div class="lec_price_wrap">
+                                        <p class="clear save_point">적립포인트<span><b>0</b>P</span></p>
+                                        <p class="price clear"><b>금액</b>
+                                            <span><?=$lec_price?>원</span>
+                                        </p>
+                                    </div>
+                                    <!-- //금액 -->
+                                </div>
+                            <? } ?>
+                        </div>
+                    </div>
+					
+					
+                    <!--배송내역-->
+                    <div class="payment_section shipment <?=$besong_state?>">
+                        <h2 class="payment_icon"><img src="<?=$images?>/payment/shipment.jpg" alt="주문내역" ><span>배송내역</span></h2>
+                        <div class="content">
+                            <ul class="tab_button clear">
+                                <li class="on">주문자와 동일</li>
+                                <li onclick="basketPop('reset')">새로입력</li>
+                            </ul>
+                            <div class="shipment_info">
+                                <div class="input_area">
+                                    <label class="required">배송지명</label>
+                                    <input type="hidden" id="user_id" name="user_id" value="<?=$user_info->user_id?>">
+                                    <input id="user_name" name="user_name" type="text" value="" class="paymentContent" placeholder="최대 20자까지 입력 가능합니다."/>
+                                </div>
+                                <div class="input_area">
+                                    <label class="required">주소</label>
+                                    <input id="uno_new" name="uno_new" class="left_txt paymentContent" type="text" value="<?=($user_info->uno_new != '') ? $user_info->uno_new : $user_info->uno ?>" readonly/><button class="right_btn" type="button" onclick="daumPostcode();">우편번호 검색</button>
+                                    <input id="home_address" name="home_address" class="paymentContent" value="<?=$user_info->home_address?>" type="text" readonly/>
+                                    <input id="tail_address" name="tail_address" class="paymentContent" value="<?=$user_info->hobby?>" type="text" placeholder="상세 주소를 입력해주세요."/>
+                                </div>
+                                <div class="input_area">
+                                    <label class="required">연락처</label>
+                                    <input name="phone_mobi" id="phone_mobi" type="phone_mobi" value="<?=$user_info->handphone_index?>" class="paymentContent" placeholder="연락처를 입력해주세요"/>
+                                </div>
+                                <div class="input_area">
+                                    <label>배송메모</label>
+                                    <textarea name="kita" id="kita" class="paymentContent"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="payment_section all_price">
+                    <div class="price_area">
+                        <div class="price_info">
+                            <p class="clear">총 상품금액<span class="price"><b>0</b>원</span></p>
+                            <p class="clear">총 배송비<span class="delivery"><b>0</b>원</span></p>
+                            <p class="clear">쿠폰할인<span class="coupon_dis"><b>없음</b></span></p>
+                            <p class="clear">적립금사용<span class="point_use"><b>사용안함</b></span></p>
+                        </div>
+                        <div class="price_result">
+                            <p class="clear">총 결제금액<span class="final_price"><b>0</b>원</span></p>
+                            <p class="clear">예상적립포인트<span class="final_save_point"><b>0</b>P</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!--결제타입 선택-->
+                <div class="payment_section payment_way">
+                    <h2 class="payment_icon"><img src="<?=$images?>/payment/payment.jpg" alt="주문내역" ><span>결제</span></h2>
+                    <div class="content clear">
+                        <input type="radio" name="pay_type_method" id="card" value="1"/>
+                        <label for="card" class="tab_btn">
+                            <img src="<?=$images?>/payment/card.png" alt="신용카드" >
+                            <p>신용카드</p>
+                        </label>
+                        <input type="radio" name="pay_type_method" id="deposit" value="2"/>
+                        <label for="deposit" class="tab_btn">
+                            <img src="<?=$images?>/payment/deposit.png" alt="무통장입금" >
+                            <p>무통장입금</p>
+                        </label>
+                    </div>
+                </div>
+
+                <!--약관동의-->
+                <div class="payment_section agreement" >
+                    <div class="agree_btn">
+                        <label class="click_area" for="agree_all">
+                            <input type="checkbox" class="icon_v" id="agree_all"><label for="agree_all"></label>
+                            <p>약관 전체 동의하기</p>
+                        </label>
+                    </div>
+                    <div class="agree_btn">
+                        <label class="click_area" for="agree1">
+                            <input type="checkbox" class="icon_v" id="agree1"><label for="agree1"></label>
+                            <p>개인정보 수집 동의하기 <span>(필수)</span></p>
+                        </label>
+                        <span class="txt_show" onclick="packageToggleHeader($(this))">〉</span>
+                        <p class="agree_txt">
+                            (1) 개인정보 수집이용 목적 : 구매자의 접속PC의 제한<br/>
+                            (2) 수집하는 개인정보의 항목 : MAC Address, CPU Serial, 모바일 기기 정보<br/>
+                            (3) 개인정보의 보유/이용 기간 : 수강기간 종료 또는 이용자의 해지나 개인정보 삭제 요청 시 까지<br/>
+                            (4) 개인정보 수집을 거부할 권리가 있으며, 거부 시 상품 구매에 제한을 받을 수 있습니다.
+                        </p>
+                    </div>
+                    <div class="agree_btn">
+                        <label class="click_area" for="agree2">
+                            <input type="checkbox" class="icon_v" id="agree2"><label for="agree2"></label>
+                            <p>개인정보 위탁동의 <span>(필수)</span></p>
+                        </label>
+                        <span class="txt_show" onclick="packageToggleHeader($(this))">〉</span>
+                        <p class="agree_txt">
+                            본 상품의 요금 결제 및 배송 처리를 위하여 결제 및 배송 관련 개인정보의 위탁 처리가 필요합니다.<br/>
+                            개인정보 위탁에 대하여 거부할 권리가 있으며, 거부 시 상품 구매 및 배송에 제한을 받을 수 있습니다.<br/>
+                            ○ 배송 관련 (배송 필요 상품에 한해서 위탁됨)<br/>
+                            - 위탁대상 : ㈜날개물류<br/>
+                            - 위탁내용 : 물품주문, 배송, 교환, AS<br/>
+                            ○ 요금결제 관련<br/>
+                            - 개인정보를 제공받는 자 : ㈜엘지유플러스<br/>
+                            - 제공정보의 이용목적 : 상품 또는 서비스의 구매 및 요금 결제<br/>
+                            - 제공하는 개인정보 항목 : 신용카드종류, 카드번호, 유효기간, 비밀번호, 할부기간, 전화번호<br/>
+                            - 제공 정보의 보유 및 이용기간 : 서비스 제공기간동안 위탁업무의 내용이나 수탁자가 변경될 경우에는 지체없이 본 개인정보처리방침을 통하여 공개하도록 하겠습니다.
+                        </p>
+                    </div>
+                    <div class="agree_btn">
+                        <label class="click_area" for="agree3">
+                            <input type="checkbox" class="icon_v" id="agree3"><label for="agree3"></label>
+                            <p>취소 / 환불 안내 내용 동의 <span>(필수)</span></p>
+                        </label>
+                        <span class="txt_show" onclick="packageToggleHeader($(this))">〉</span>
+                        <p class="agree_txt">
+                            * 환불규정<br/>
+                            ▶ 강의 환불 기준<br/>
+                            ⓐ 결제일로부터 7일 이내 수강한 과목이 없는 경우 : [결제금액 100% ]<br/>
+                            ⓑ 결제일로부터 7일 이내 1강 이상 수강 : [결제금액 - 학습수수료] 환불<br/>
+                            ⓒ 결제일로부터 7일 경과 후 : 결제금액 - 학습수수료 - 위약금 (결제금액의 10%) = 환불금액<br/>
+                            ※ 학습수수료는 실제 수강한 강의의 단과강의 판매 가격을 기준으로 계산합니다. 공제액은 수강한 강좌의 전체강좌 수 대비 수강한 수에 비례하여 산정한 금액으로 계산합니다.<br/>
+                            ▶ 환불 금액 지급 기한<br/>
+                            ⓐ 신용카드 결제 혹은 PG사(LGU+)를 통해 결제하신 경우 : 환불 신청 시/반품 상품 수령 시 지체없이 카드사 혹은 PG사(LGU+)에 결제 취소 요청하고, 이후 카드사 혹은 PG사(LGU+)에서 결제에 대해 취소 혹은 부분 취소 처리 합니다.<br/>
+                            ⓑ 에스크로 결제 혹은 해커스계좌로 직접 입금하신 경우 : 환불 신청일/반품 상품 수령일로부터 3영업일 이내에 입력하신 계좌로 환불 금액 입금됩니다. 단, 환불 신청자가 계좌 번호를 잘못 기재 혹은 계좌 번호 입력을 늦게 하여 환불 금액 지급이 지체되는 경우에 대해서 해커스 독학사가 책임지지 않습니다.<br/>
+                            ▶ 환불 절차<br/>
+                            ※ 환불을 원하시는 경우 해커스 독학사 고객센터 ( 1599-3081 )으로 전화하시면, 환불 문의 및 신청이 가능합니다.<br/>
+                            - 고객센터 운영시간 : 평일 08:30~ 19:00 /토·일·공휴일 휴무<br/>
+                            ※ 전액환불의 경우 환불 문의 후 전액 환불이 가능하다는 검토 내용에 동의하지 않으셔도 자동 환불 처리 됩니다.<br/>
+                            ※ 부분환불의 경우 검토 드린 환불 금액에 동의하시면 그때 환불 신청이 되고, 환불 처리 됩니다.<br/>
+                            ※ 환불 문의 시 배송을 통해 수령하신 ‘무료 혜택 등’의 반품 여부 선택이 가능합니다. 배송을 통해 수령하신 ‘무료 혜택 등’의 반품을 선택한 경우 환불 금액 검토 완료된 후 ‘무료 혜택 등’의 반품에 동의하시면 반품 기사님 방문하셔서 ‘무료 혜택 등’ 등을 수령해갑니다.<br/>
+                            ※ 전액환불의 경우 환불 문의 후 전액 환불이 가능하다는 검토 내용에 동의하지 않으셔도 자동 환불 처리 됩니다.<br/>
+                            ※ 부분환불의 경우 환불문의하시면 1~7일 내 환불 금액을 검토해드립니다. 검토드린 환불 금액에 동의하시면 그때 환불 신청이 되고, 환불 처리 됩니다.<br/>
+                            ※ 환불 금액 검토해드린 날로부터 7일 내 아무런 답변이 없으시면 환불 처리는 자동 취소됩니다.<br/>
+                            ※ 환불 문의 시 배송을 통해 수령하신 ‘무료 혜택 등’의 반품 여부 선택이 가능합니다. 배송을 통해 수령하신 ‘무료 혜택 등’의 반품을 선택한 경우 환불 금액 검토 완료된 후 ‘무료 혜택 등’의 반품에 동의하시면 반품 기사님 방문하셔서 ‘무료 혜택 등’을 수령해갑니다.<br/>
+                            ▶ 기타 환불 정책과 관련한 유의사항<br/>
+                            ※ 미성년자와 거래에 대한 계약 시, 법정대리인이 그 계약에 동의하지 아니하면 미성년자 본인 또는 법정대리인이 그 계약을 취소시킬 수 있습니다.<br/>
+                            ※ 상품에 결함이 있거나 상품이 표시광고의 내용과 다르거나 계약내용과 다를 경우 그 상품 등을 공급받은 날부터 3개월 이내, 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내에 환불 가능합니다.<br/>
+                            ※ 연장기간은 무료 혜택으로 지급되는 기간이므로 연장된 기간 동안에는 환불이 불가합니다.<br/>
+                            ※ 환불 금액은 반품 신청한 ‘무료 혜택 등’의 반송 및 미사용 확인 후 결제 수단에 따라 현금 부분환불 또는 카드 부분 취소로 처리됩니다.<br/>
+                            ※ 주소 미기재 및 불명확한 주소 입력으로 상품 등을 수령하지 못하였을 시에는 해커스에서 책임지지 않습니다.<br/>
+                            ※ 혜택으로 쿠폰이나 포인트 등을 받으신 경우 쿠폰은 사용불가 처리, 지급된 포인트는 차감 됩니다.
+                        </p>
+                    </div>
+                    <div class="agree_btn">
+                        <label class="click_area" for="agree4">
+                            <input type="checkbox" class="icon_v" id="agree4"><label for="agree4"></label>
+                            <p>상품유의사항 안내 내용 동의 <span>(필수)</span></p>
+                        </label>
+                        <span class="txt_show" onclick="packageToggleHeader($(this))">〉</span>
+                        <p class="agree_txt">
+                            1. 상품 유의사항 항목에 관련하여 문의사항이 있을 경우 해커스독학사 고객센터 1599-3081로 문의 주시면 됩니다.<br/>
+                            - 고객센터 운영시간 : 월 ~ 금 / 08:30 ~ 19:00<br/>
+                            2. 수업은 PC 뿐만 아니라 모바일을 통해서도 수강 가능합니다.<br/>
+                            3. 수업은 PC의 경우 익스/크롬/엣지 에서 수강 가능합니다.<br/>
+                            4. 수업은 모바일의 경우 사파리/안드로이드 에서 수강 가능합니다.<br/>
+                            5. 모바일 수강 경우에는 LTE /3G 환경이라면 데이터 소모량이 많아 WIFI환경에서 수강하시는 걸 추천합니다.<br/>
+                            6. 무이자할부 관련 사항은 월별로 공지사항 상단에서 확인 가능합니다. 해커스독학사 공지사항 메뉴 참고<br/>
+                            7. 미성년자와 거래에 대한 계약 시, 법정대리인이 그 계약에 동의하지 아니하면 미성년자 본인 또는 법정대리인이 그 계약을 취소시킬 수 있습니다.<br/>
+                            8. 구매 전 해당 상품 페이지에서 기타환불 정책과 관련한 유의사항 숙지 후 구매를 지향합니다. 추후 유의사항을 숙지하지 못해 발생하는 불이익에 대해서는 해커스독학사가 책임지지 않습니다.
+                        </p>
+                    </div>
+                    <div class="agree_btn">
+                        <label class="click_area" for="agree5">
+                            <input type="checkbox" class="icon_v" id="agree5"><label for="agree5"></label>
+                            <p>주문/결제 내용 확인 및 진행 동의 <span>(필수)</span></p>
+                        </label>
+                        <!--<span class="txt_show">〉</span>
+                        <p class="agree_txt">
+                            1. 상품 유의사항 항목에 관련하여 문의사항이 있을 경우 해커스독학사 고객센터 1599-3081로 문의 주시면 됩니다.<br/>
+                            - 고객센터 운영시간 : 월 ~ 금 / 08:30 ~ 19:00<br/>
+                            2. 수업은 PC 뿐만 아니라 모바일을 통해서도 수강 가능합니다.<br/>
+                            3. 수업은 PC의 경우 익스/크롬/엣지 에서 수강 가능합니다.<br/>
+                            4. 수업은 모바일의 경우 사파리/안드로이드 에서 수강 가능합니다.<br/>
+                            5. 모바일 수강 경우에는 LTE /3G 환경이라면 데이터 소모량이 많아 WIFI환경에서 수강하시는 걸 추천합니다.<br/>
+                            6. 무이자할부 관련 사항은 월별로 공지사항 상단에서 확인 가능합니다. 해커스독학사 공지사항 메뉴 참고<br/>
+                            7. 미성년자와 거래에 대한 계약 시, 법정대리인이 그 계약에 동의하지 아니하면 미성년자 본인 또는 법정대리인이 그 계약을 취소시킬 수 있습니다.<br/>
+                            8. 구매 전 해당 상품 페이지에서 기타환불 정책과 관련한 유의사항 숙지 후 구매를 지향합니다. 추후 유의사항을 숙지하지 못해 발생하는 불이익에 대해서는 해커스독학사가 책임지지 않습니다.
+                        </p>-->
+                    </div>
+                </div>
+
+
+                <div class="payment_section button_area">
+                    <div class="content clear">
+                        <button class="check_btn cancel" onclick="basketPop('cancel')">취소</button>
+                        <button class="check_btn" onclick="goPayment('<?=$besong_state?>', '<?=$_GET['lec_no']?>', '<?=$_GET['orderNum']?>')">결제</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="lec_pop">
+                <div class="bg"></div>
+                <div class="cont">
+                    <a href="javascript:void(0);" class="close">
+                        <span></span>
+                        <span></span>
+                    </a>
+                    <span class="icon_i"></span>
+                    <p class="txt">입력한 정보를 모두 초기화 하시겠습니까?</p>
+                    <a class="btn onebox" href="javascript:void(0);">확인</a>
+                    <div class="btn2 clear">
+                        <a class="btn" href="javascript:void(0);">창닫기</a>
+                        <a class="btn remove" href="javascript:void(0);">삭제하기</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="coupon_pop">
+                <div class="payment_top" id="snb">
+                    <h2>쿠폰검색</h2>
+                    <a href="javascript:void(0);" class="close" onclick="coupon_close()">
+                        <span></span>
+                        <span></span>
+                    </a>
+                </div>
+
+                <div class="content">
+                    <? if (!empty($lectureUseCoupon)) { ?>
+                        <? foreach($lectureUseCoupon as $useCoupon_key => $useCoupon_item) {
+                            if ($useCoupon_item != '') { ?>
+                                <label class="evt_coupon">
+                                    <input type="radio" name="coupon_pop" class="checked_coupon" value="<?=$useCoupon_item['cupone_number']?>">
+                                    <img src="<?=$images?>/payment/coupon_off.png" alt="쿠폰 이미지" >
+                                    <span class="name"><?=$useCoupon_item['cupone_name']?></span>
+                                    <span class="discount_price"><?=($useCoupon_item['lucky_percent'] != 0) ? $useCoupon_item['lucky_percent'].'%' : number_format($useCoupon_item['lucky_price']) . '원' ?></span>
+                                    <span class="exp_date">유효기간 : <?=str_replace(':', '-', $useCoupon_item['start_date'])?> ~ <?=str_replace(':', '-', $useCoupon_item['end_date'])?></span>
+                                    <span class="discount_txt">
+									<? if ($useCoupon_item['lucky_price'] != 0) { ?>
+                                        <?=number_format($useCoupon_item['lucky_price'])?>원 할인
+                                    <? } else { ?>
+                                        <?=$useCoupon_item['lucky_percent']?>% 할인
+                                    <? } ?>
+								</span>
+                                </label>
+                            <? } ?>
+                        <? } ?>
+
+                        <p class="coupon_info">
+                            구매 시 사용한 쿠폰은 결제 취소 후 재사용 불가합니다.<br/>
+                            하나의 결제 건에 대해  쿠폰 여러장을 동시에 사용하실 수 없습니다.<br/>
+                            쿠폰과 포인트를 동시에 사용할 수 없습니다.<br/>
+                            유효기간이 있는 쿠폰의 경우, 해당 기간 외에는 사용 불가합니다.
+                        </p>
+                        <div class="payment_section button_area">
+                            <div class="content clear">
+                                <button class="check_btn cancel" onclick="coupon_close()">취소</button>
+                                <button class="check_btn">적용</button>
+                            </div>
+                        </div>
+
+                    <? } else { ?>
+                        <div class="evt_coupon no_coupon">
+                            <img src="<?=$images?>/icon/no_list.png" alt="검색결과가 없습니다." >
+                            적용 가능한 쿠폰이 없습니다.<br />
+                            확인부탁드립니다.
+                        </div>
+                    <? } ?>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--// container -->
+
+
+</div>

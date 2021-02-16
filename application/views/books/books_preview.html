@@ -1,0 +1,100 @@
+<div class="view_books_area">
+	<div id="snb" class="snb_bg">
+		<h2>교재 미리보기</h2>
+		<span class="snb_prev">
+			<a href="#;" class="his_back"><img src="<?=$images?>/common/btn_prev.png" alt="이전"/></a>
+		</span>
+	</div>
+	
+	<? if (!empty($book_preview)) { ?>
+		<p class="books_title"><?=($book_view->book_name != '') ? str_replace('<br>', '', $book_view->book_name) : '-' ?></p>
+	<? } ?>
+	
+	<!-- 책 정보 -->
+	<? if (!empty($book_preview)) { ?>
+		<div class="view_books_list">
+			<ul class="swiper-wrapper">
+				<? foreach($book_preview as $book_key => $book_item) { ?>
+					<li class="swiper-slide"><img src="https://www.haksa2080.com/<?=$book_item['preview_img']?>" /></li>
+				<? } ?>
+			</ul>
+		</div>
+		
+		<!-- 버튼 -->
+		<div class="view_books_btn">
+			<div class="swiper-prev-first"></div>
+			<div class="swiper-prev"></div>
+			<div class="swiper-pagination"></div>
+			<div class="swiper-next"></div>
+			<div class="swiper-next-last"></div>
+		</div>
+		
+		<!-- 구매하기 버튼 -->
+		<div class="fixed_buy">
+			<ul class="fixed_buy_btn">
+			<? if ($book_preview_buy->level != 1) { ?>
+				<li style="width:100%;"><a href="#;" class="btn_green" onclick="buyFixedOpen();">구매하기</a></li>
+			<? } else { ?>
+				<li style="width:100%;"><a href="<?=$book_preview_buy->store_link?>" target="_blank" class="btn_green">구매하기</a></li>
+			<? } ?>
+			</ul>
+		</div>
+		
+		<!-- 구매하기 선택 -->
+		<div class="fixed_buy_dim"></div>
+		<div class="fixed_buy_view" style="padding-bottom:60px;">
+			<a class="buy_fixed_close" onclick="buyFixedClose();"><img src="<?=$images?>/books/btn_buy_view.png" alt="닫기"></a>
+			
+			<div class="select-area">
+				<!-- 상품 2 -->
+				<div class="select-item-area">
+					<button type="button" data-target="option-item_list_01" class="default-item" data-scroll="true"><!-- option-selected, option-disabled -->
+						<?=str_replace('<br>', '', $book_preview_buy->book_name)?>
+					</button>
+					<div class="option-group" id="option-item_list_01">
+						<ul>
+							<li>
+								<input type="radio" id="product_4" value="<?=(int)$book_preview_buy->book_id + 50000?>" name="product">
+								<label for="product_4">
+									<span class="product_title"><?=str_replace('<br>', '', $book_preview_buy->book_name)?></span>
+									<span class="product_price"><span class="num"><?=number_format($book_preview_buy->pamount)?></span>원</span>
+								</label>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- 선택 목록 -->
+				<div class="option-select-group">
+					<ul>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="fixed_buy_btn">
+				<!-- 상품 가격  -->
+				<ul class="select-total">
+					<li><span>예상 적립포인트</span> <em id="amt_point">0</em>p</li>
+					<li class="last_total"><span>총상품금액</span><em class="alltotal_amt">0</em>원</li>
+				</ul>
+				
+				<!-- 상품 구매 -->
+				<ul class="select-btn">
+					<? if (!empty($_SESSION['member_id'])) { ?>
+						<li><button type="button" class="btn_black" onclick="alimLayer('alimBasket')">장바구니</button></li>
+						<li><button type="button" class="btn_green">바로구매</button></li>
+					<? } else { ?>
+						<li><button type="button" class="btn_black" onclick="alimLayer('alimLogin')">장바구니</button></li>
+						<li><button type="button" class="btn_green" onclick="alimLayer('alimLogin')">바로구매</button></li>
+					<? } ?>
+				
+				</ul>
+			</div>
+		</div>
+	<? } else { ?>
+		<div class="list_none bg-gray">
+			교재 미리보기 이미지가 없습니다. <br> 관리자에 문의해주세요.
+		</div>
+	<? } ?>
+	
+	
+</div>

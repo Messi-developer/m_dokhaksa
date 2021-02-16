@@ -1,0 +1,54 @@
+<div id="container">
+	<div id="snb">
+		<h2>고객센터</h2>
+		<span class="snb_prev">
+			<a href="#;" class="his_back"><img src="<?=$images?>/common/btn_prev.png" alt="이전"/></a>
+		</span>
+	</div>
+	
+	<div id="notice_container">
+		<!-- 상단 공통 리스트 -->
+		<div class="ul_list">
+			<ul class="cler">
+				<li class="t1"><a href="/notice/main?customerType=consulting">1:1 무료상담</a></li>
+				<li class="t2 on"><a href="/notice/main?customerType=faq">FAQ</a></li>
+				<li class="t3"><a href="/notice/main?customerType=notice">공지사항</a></li>
+				<li class="t4"><a href="/notice/main?customerType=support_write">해커스에 바란다</a></li>
+			</ul>
+		</div>
+		
+		<!-- //상단 공통 리스트 -->
+		<!-- 내용-->
+		<div class="customer_wrap">
+			<div class="qna_wrap">
+				<ul class="cler">
+					<li class="<?=($this->input->get('tab') != '2') ? 'on' : ''?>"><a href="#;" onclick="noticeBoard('강의수강');">· 강의/교재</a></li>
+					<li class="<?=($this->input->get('tab') == '2') ? 'on' : ''?>"><a href="#;" onclick="noticeBoard('회원정보');">· 회원정보</a></li>
+					<li><a href="#;" onclick="noticeBoard('결제문의');">· 결제문의</a></li>
+					<li><a href="#;" onclick="noticeBoard('동영상/사이트오류');">· 이용오류</a></li>
+					<li><a href="#;" onclick="noticeBoard('독학사제도');">· 독학사안내</a></li>
+				</ul>
+				<!--강의교재 -->
+				<div class="qna_tab_box on">
+					<ul id="notice_list_content">
+						<? foreach($faq_list as $faq_key => $faq_item) { ?>
+							<li>
+								<dl>
+									<dt><?=$faq_item['question']?> <span class="ico_down" onclick="packageToggleNotice($(this))">〉</span></dt>
+									<dd><?=$faq_item['answer']?></dd>
+								</dl>
+							</li>
+						<? } ?>
+					</ul>
+				</div>
+				<!--//강의교재 -->
+				
+				
+			</div>
+		</div>
+		<!-- //내용-->
+	</div>
+	<!--// container -->
+
+</div>
+

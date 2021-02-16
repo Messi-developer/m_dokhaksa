@@ -1,0 +1,21 @@
+User-agent: *
+
+Sitemap: https://m.hackers.com/job_sitemap_m.xml
+Sitemap: https://mpublic.hackers.com/public_sitemap_m.xml
+
+Disallow: /_Admin
+Disallow: /RAD
+Disallow: /jobadmin
+Disallow: /_cron
+Disallow: /rankup_module
+Disallow: /mypage
+Disallow: /_classes
+Disallow: /_config
+Disallow: /ADmin
+Disallow: /conf
+Disallow: /PEG
+Disallow: /modules
+Disallow: /core
+Disallow: /order
+User-agent: Yeti
+Allow: /

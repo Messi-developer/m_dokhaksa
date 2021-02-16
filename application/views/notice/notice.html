@@ -1,0 +1,55 @@
+<div id="container">
+	<div id="snb">
+		<h2>고객센터</h2>
+		<span class="snb_prev">
+			<a href="#;" class="his_back"><img src="<?=$images?>/common/btn_prev.png" alt="이전"/></a>
+		</span>
+	</div>
+	
+	<div id="notice_container">
+		<!-- 상단 공통 리스트 -->
+		<div class="ul_list">
+			<ul class="cler">
+				<li class="t1"><a href="/notice/main?customerType=consulting">1:1 무료상담</a></li>
+				<li class="t2"><a href="/notice/main?customerType=faq">FAQ</a></li>
+				<li class="t3 on"><a href="/notice/main?customerType=notice">공지사항</a></li>
+				<li class="t4"><a href="/notice/main?customerType=support_write">해커스에 바란다</a></li>
+			</ul>
+		</div>
+		<!-- //상단 공통 리스트 -->
+		<!-- 내용-->
+		<div class="customer_wrap">
+			<div class="notice_list">
+				<ul id="noticePluseContent">
+					<!-- 메인공지 -->
+					<? foreach($noticeBestList as $bestNotice_key => $bestNotice_item) { ?>
+						<li class="noti">
+							<a href="/notice/view?viewType=notice&notice_no=<?=$bestNotice_item['no']?>" >
+								[<?=($bestNotice_item['division'] == '4') ? '공지' : '이벤트' ?>]&nbsp;&nbsp;<?=$bestNotice_item['subject']?>
+							</a>
+						</li>
+					<? } ?>
+					
+					<!-- 이후게시글 노출 -->
+					<? foreach($noticeList as $notice_key => $notice_item) { ?>
+						<li class="notice_item_list">
+							<a href="/notice/view?viewType=notice&notice_no=<?=$notice_item['no']?>">
+								<span class="num"><?=sprintf('%02d',($noticeListCnt->cnt - $notice_key) - 1)?></span>
+								<span class="color t1" style="color:<?=($notice_item['division'] == '4') ? '#0097a3' : '#8f69b2' ?>">[<?=($notice_item['division'] == '4') ? '공지' : '이벤트'?>]&nbsp;&nbsp;</span>
+								<?=$notice_item['subject']?>
+							</a>
+						</li>
+					<? } ?>
+				</ul>
+				
+				
+				<div class="more_view_btn" id="notice_pluse">
+					<a href="#;" onclick="noticePluse('<?=$noticeListCnt->cnt?>')">더보기 <span>〉</span></a>
+				</div>
+			</div>
+		</div>
+		<!-- //내용-->
+
+	</div>
+	
+</div>

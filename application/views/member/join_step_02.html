@@ -1,0 +1,314 @@
+<div id="container">
+	<div id="snb">
+		<h2>회원가입</h2>
+		<span class="snb_prev">
+			<a href="#;" class="his_back"><img src="<?=$images?>/common/btn_prev.png" alt="이전"/></a>
+		</span>
+	</div>
+	
+	<div id="join_container">
+		<div class="member-wrap bg-gray">
+			<div class="content_con">
+				<ul class="step_box">
+					<li class="step1"><span>1</span>약관 동의</li>
+					<li class="step2 on"><span>2</span>회원정보</li>
+					<li class="step3"><span>3</span>가입완료</li>
+				</ul>
+				<div class="content_box">
+					<form name="joinStep_02" id="joinStep_02" method="POST" action="member/main/memberJoinFinsh">
+						<input type="hidden" name="agree" id="agree" value="<?=$_POST['agree']?>"><!-- 이용약관동의 -->
+						<input type="hidden" name="private_agree" id="private_agree" value="<?=$_POST['private_agree']?>"><!-- 개인정보 수집동의 -->
+						<input type="hidden" name="evt_agree" id="evt_agree" value="<?=$_POST['evt_agree']?>"><!-- 이벤트 수집동의 -->
+						
+						<ul class="member_info">
+						<li>
+							<sup>*</sup> 이름
+							<input type="text" name="name" id="name" data-check-length="2" value="<?=(!empty($ut_session)) ? $ut_session['ut_name'] : '' ?>" placeholder="한글 또는 영문으로 2글자 이상 입력해주세요.">
+							<em class="ipt-feedback" id="name_feedback">한글 또는 영문으로 2글자 이상 입력해주세요.</em>
+						</li>
+						<li>
+							<sup>*</sup> 생년월일
+							<input type="text" name="birth" id="birth" value="<?=(!empty($ut_session)) ? $ut_session['ut_birth'] : '' ?>" placeholder="8자리로 입력해주세요. (예 : 20191230)" maxlength="8">
+							<em class="ipt-feedback" id="birth_feedback">생년월일 혹은 휴대폰 번호를 정확히 입력해주세요.</em>
+						</li>
+						<li class="jender">
+							<sup>*</sup> 성별
+							<p class="join_jender">
+								<input type="radio" id="men" name="sex" value="M" <?=(!empty($ut_session) && $ut_session['ut_sex'] == 'M') ? 'checked' : 'checked' ?>>
+								<label for="men"><span>남자</span></label>
+								<input type="radio" id="woman" name="sex" value="F" <?=(!empty($ut_session) && $ut_session['ut_sex'] == 'F') ? 'checked' : '' ?>>
+								<label for="woman"><span>여자</span></label>
+							</p>
+						</li>
+						<li>
+							<sup>*</sup> 아이디
+							<p class="input_txt">
+								<input type="hidden" id="useridCheck">
+								<input type="text" name="user_id" id="user_id" placeholder="4~12자 영문, 숫자로 입력해주세요.">
+								<a href="#;" class="btn gray" onclick="memberIdCheck();">중복확인</a>
+							</p>
+							<em class="ipt-feedback" id="user_id_feedback">아이디를 입력하세요.</em>
+						</li>
+						<li>
+							<sup>*</sup> 비밀번호
+							<input type="password" name="password_new" id="password_new" placeholder="영문, 숫자 2종류 이상 / 최소 10자리">
+						</li>
+						<li>
+							<sup>*</sup> 비밀번호 확인
+							<input type="password" name="password" id="password" placeholder="비밀번호와 동일하게 입력해주세요.">
+							<em class="ipt-feedback" id="password_new_feedback">비밀번호를 입력해주세요.</em>
+						</li>
+						<li>
+							<sup>*</sup> 이메일 주소<br/>
+							<div class="email_box">
+								<input type="text" name="email" id="email" value="<?=(!empty($ut_session)) ? $ut_session['ut_email'] : '' ?>" placeholder="이메일 입력해주세요.">
+								<span>@</span>
+								<input type="text" name="join_email" id="join_email" value="<?=(!empty($ut_session)) ? $ut_session['ut_email'] : '' ?>" placeholder="naver.com">
+								<!--<select id="join_email">
+									<option value="네이버" selected="selected">naver.com</option>
+									<option value="구글">gmail.com</option>
+									<option value="다음">daum.net</option>
+									<option value="네이트">nate.com</option>
+									<option value="직접입력">직접입력</option>
+								</select>
+								<input class="email_input" type="text"  value="" placeholder="예 :  hackers@hackers.com">-->
+							</div>
+							<em class="ipt-feedback" id="email_feedback">이메일을 입력해주세요.</em>
+						</li>
+						<li>
+							<sup>*</sup> 휴대폰 번호
+							<p class="input_txt">
+								<input type="hidden" id="joinSmsCheck">
+								<input type="text" name="handphone_index" id="handphone_index" value="<?=(!empty($ut_session)) ? str_replace('-', '', $ut_session['ut_handphone']) : '' ?>" placeholder="(-)없이 번호만 입력해주세요." maxlength="11">
+								<a href="#;" class="btn gray" id="joinSmsBtn" onclick="joinSms();">인증</a>
+							</p>
+							<em class="ipt-feedback" id="handphone_feedback">휴대폰번호를 입력해주세요.</em>
+						</li>
+						<li id="member_num_check" style="display:none;">
+							<sup>*</sup> 인증번호
+							<p class="input_txt">
+								<input type="hidden" name="certification_id" id="certification_id">
+								<input type="text" name="send_code" id="send_code" maxlength="6">
+								<input type="hidden" name="certification_state" id="certification_state" value="">
+								<a href="#;" class="btn gray" onclick="joinSms_certification();">확인</a>
+							</p>
+							<em class="ipt-feedback">입력하신 인증번호가 일치하지 않습니다.<br>인증번호 재발송 후 다시 시도해주세요.</em>
+						</li>
+						<li>
+							<sup>*</sup> 주소
+							<p class="input_txt">
+								<input type="text" name="uno_new" id="uno_new" value="<?=(!empty($ut_session)) ? $ut_session['ut_uno'] : '' ?>" readonly>
+								<!--<a href="#;" onclick="$('#find_address_pop').fadeIn();" class="btn gray">우편번호 검색</a>-->
+								<a href="#;" onclick="daumPostcode();" class="btn gray">우편번호 검색</a>
+							</p>
+							<input type="text" name="home_address" id="home_address" value="<?=(!empty($ut_session)) ? $ut_session['ut_home_address'] : '' ?>" readonly>
+							<input type="text" name="tail_address" id="tail_address" value="<?=(!empty($ut_session)) ? $ut_session['ut_home_address2'] : '' ?>" placeholder="상세주소를 입력해주세요.">
+							
+							<em class="ipt-feedback" id="uno_new_feedback">주소를 입력해주세요.</em>
+						</li>
+						<li>
+							희망학과
+							<div class="join_form col2" id="hope_majer">
+								<div class="depth2_wrap"><!--depth2 있을 때-->
+									
+									<input type="radio" id="hope_1" name="hope_majer" class="chk_depth2" value="2">
+									<label for="hope_1"><span><i class="icon-chk-s"></i>영문학과</span></label>
+									<div class="depth2_box">
+										<ul>
+											<li><a href="#;"><input type="hidden" value="2" name="hope_majer_sub">2단계</a></li>
+											<li><a href="#;"><input type="hidden" value="3" name="hope_majer_sub">3단계</a></li>
+											<li><a href="#;"><input type="hidden" value="4" name="hope_majer_sub">4단계</a></li>
+										</ul>
+									</div>
+									<input type="radio" id="hope_2" name="hope_majer" class="chk_depth2" value="1">
+									<label for="hope_2"><span><i class="icon-chk-s"></i>경영학과</span></label>
+									<div class="depth2_box">
+										<ul class="right">
+											<li><a href="#;"><input type="hidden" value="2" name="hope_majer_sub">2단계</a></li>
+											<li><a href="#;"><input type="hidden" value="3" name="hope_majer_sub">3단계</a></li>
+											<li><a href="#;"><input type="hidden" value="4" name="hope_majer_sub">4단계</a></li>
+										</ul>
+									</div>
+								</div>
+								<input type="radio" id="hope_3" name="hope_majer" value="6" class="chk_depth2">
+								<label for="hope_3"><span><i class="icon-chk-s"></i>교양공통</span></label>
+								<input type="radio" id="hope_4" name="hope_majer" value="5" class="chk_depth2">
+								<label for="hope_4"><span><i class="icon-chk-s"></i>간호학과</span></label>
+								<input type="radio" id="hope_5" name="hope_majer" value="7" class="chk_depth2">
+								<label for="hope_5"><span><i class="icon-chk-s"></i>기타</span></label>
+							</div>
+							<em class="ipt-feedback" id="hope_majer_feedback">희망학과를 선택해주세요.</em>
+						</li>
+						<li>
+							수강목적 (복수선택)
+							<div class="join_form col2" id="lec_object">
+								<input type="checkbox" id="pur_1" name="lec_object[]" value="2" class="lec_object">
+								<label for="pur_1"><span><i class="icon-chk-s"></i>학사편입</span></label>
+								<input type="checkbox" id="pur_2" name="lec_object[]" value="5" class="lec_object">
+								<label for="pur_2"><span><i class="icon-chk-s"></i>학점은행제 병행</span></label>
+								<input type="checkbox" id="pur_3" name="lec_object[]" value="3" class="lec_object">
+								<label for="pur_3"><span><i class="icon-chk-s"></i>대학원진학</span></label>
+								<input type="checkbox" id="pur_4" name="lec_object[]" value="4" class="lec_object">
+								<label for="pur_4"><span><i class="icon-chk-s"></i>기타</span></label>
+							</div>
+							<em class="ipt-feedback" id="lec_object_feedback">수강목적을 선택해주세요.</em>
+						</li>
+						<li>
+							가입경로 (복수선택)
+							<div class="join_form" id="join_route">
+								<input type="checkbox" id="route_1" name="join_route[]" value="1" class="join_route">
+								<label for="route_1"><span><i class="icon-chk-s"></i>네이버, 다음 등에서 검색</span></label>
+								<input type="checkbox" id="route_2" name="join_route[]" value="2" class="join_route">
+								<label for="route_2"><span><i class="icon-chk-s"></i>네이버, 다음 등의 카페/블로그</span></label>
+								<input type="checkbox" id="route_3" name="join_route[]" value="3" class="join_route">
+								<label for="route_3"><span><i class="icon-chk-s"></i>네이버 지식인</span></label>
+								<input type="checkbox" id="route_4" name="join_route[]" value="4" class="join_route">
+								<label for="route_4"><span><i class="icon-chk-s"></i>인터넷 배너광고</span></label>
+								<input type="checkbox" id="route_5" name="join_route[]" value="5" class="join_route">
+								<label for="route_5"><span><i class="icon-chk-s"></i>홍보물 및 팜플렛</span></label>
+								<input type="checkbox" id="route_6" name="join_route[]" value="6" class="join_route">
+								<label for="route_6"><span><i class="icon-chk-s"></i>지인소개</span></label>
+								<input type="checkbox" id="route_7" name="join_route[]" value="7" class="join_route">
+								<label for="route_7"><span><i class="icon-chk-s"></i>기타</span></label>
+							</div>
+							<em class="ipt-feedback" id="join_route_feedback">가입경로를 선택해주세요.</em>
+						</li>
+						<li>
+							최종학력 및 전공학과
+							<select name="level_edu" id="level_edu">
+								<option value="1">중학교 졸업</option>
+								<option value="2">고등학교 졸업</option>
+								<option value="3">대학교 재학</option>
+								<option value="4">대학교 중퇴</option>
+								<option value="5">대학교 졸업</option>
+								<option value="6">전문대 재학</option>
+								<option value="7">전문대 중퇴</option>
+								<option value="8">전문대 졸업</option>
+								<option value="9">석사과정재학</option>
+								<option value="10">석사과정수료</option>
+								<option value="11">석사과정졸업</option>
+								<option value="12">박사과정재학</option>
+								<option value="13">박사과정수료</option>
+								<option value="14">박사과정졸업</option>
+								<option value="15">기타</option>
+							</select>
+							
+							<!--기타 선택시에만 입력창 노출-->
+							<input type="text" name="level_edu_major" id="level_edu_major">
+							<!--//기타 선택시에만 입력창 노출-->
+						</li>
+						<li>
+							현재직업
+							<div class="join_form col3">
+								<input type="radio" id="job_1" name="user_job" value="1">
+								<label for="job_1"><span><i class="icon-chk-s"></i>학생</span></label>
+								<input type="radio" id="job_2" name="user_job" value="2">
+								<label for="job_2"><span><i class="icon-chk-s"></i>취업준비생</span></label>
+								<input type="radio" id="job_3" name="user_job" value="3">
+								<label for="job_3"><span><i class="icon-chk-s"></i>직장인</span></label>
+							</div>
+						</li>
+						<li>
+							학습목적
+							<input type="text" name="study_object" id="study_object">
+						</li>
+						<li>
+							문의사항
+							<textarea name="question" id="question" id="" cols="30" rows="10"></textarea>
+						</li>
+						<li>
+							추천인아이디
+							<p class="input_txt">
+								<input type="hidden" name="recommenderCheck" value="">
+								<input type="text" name="recommender" id="recommender" placeholder="4~12자 영문, 숫자로 입력해주세요.">
+								<a href="#;" class="btn gray" onclick="memberRecommender();">조회</a>
+							</p>
+							<em class="ipt-feedback" id="recommender_feedback">해당 ID가 존재하지 않습니다.</em>
+						</li>
+					</ul>
+					</form>
+				</div>
+				<strong class="bottom_txt">
+					회원가입을 완료하시면<br>
+					<span class="f_point">5,000 포인트를 즉시 지급해 드립니다.</span>
+				</strong>
+			</div>
+			<div class="btn_area">
+				<div class="tbl_row">
+					<div class="tbl_cell" style="width:50%;">
+						<a href="#;" onclick="$('#join_exit_pop').fadeIn();" class="btn gray">이전</a>
+					</div>
+					<div class="tbl_cell" style="width:50%;">
+						<a href="#;" class="btn" onclick="joinStepFinsh();">회원가입</a>
+					</div>
+				</div>
+			</div>
+			
+			<!--복수 선택 팝업-->
+			<div class="member-pop" id="join_route_pop" style="display:none;">
+				<div class="bg" onclick="$(this).parent().fadeOut();"></div>
+				<div class="contents">
+					<a href="#;" class="icon-cls" onclick="$(this).parent().parent().fadeOut();"></a>
+					<i class="icon-mark"></i>
+					최대 2개까지 복수 선택 가능합니다.
+					<div class="btn_area">
+						<a href="#;" onclick="$(this).parent().parent().parent().fadeOut();" class="btn gray">확인</a>
+					</div>
+				</div>
+			</div>
+			<!--//복수 선택 팝업-->
+			
+			<!--취소 팝업-->
+			<div class="member-pop" id="join_exit_pop" style="display:none;">
+				<div class="bg" onclick="$(this).parent().fadeOut();"></div>
+				<div class="contents">
+					<a href="#;" class="icon-cls" onclick="$(this).parent().parent().fadeOut();"></a>
+					<i class="icon-mark"></i>
+					정보입력을 멈추고<br>
+					이전단계로 돌아가시겠습니까?
+					<div class="btn_area">
+						<div class="tbl_row">
+							<div class="tbl_cell" style="width:50%;">
+								<a href="#;" onclick="$('#join_exit_pop').fadeOut();" class="btn line">창닫기</a>
+							</div>
+							<div class="tbl_cell" style="width:50%;">
+								<a href="/member/main?step=01" class="btn gray">돌아가기</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--//취소 팝업-->
+			
+			
+			<!--주소찾기 팝업-->
+			<div class="member-full-pop address_pop" id="find_address_pop" style="display:none;">
+				<h3>
+					주소찾기
+					<a href="#;" class="icon-cls" onclick="$(this).parent().parent().fadeOut();"></a>
+				</h3>
+				<div class="contents">
+					<form class="search-form">
+						<input type="search" placeholder="">
+						<button type="submit" class="icon-search"></button>
+					</form>
+					<ul class="address-list">
+						<li>
+							<a href="#">
+								<span class="num"><em class="f_point">06328</em> (135 - 993)</span>
+								<span class="road"><em class="ico-round">도로명</em>서울 서초구 강남대로 61길 23 현대 성우주상복합아파트</span>
+								<span class="road_de"><em class="ico-round">지번</em>서울 서초구 서초동 1316-15 현대성우빌딩 1층</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="btn_area">
+					<a href="#;" onclick="$('#find_address_pop').fadeOut();" class="btn">적용하기</a>
+				</div>
+			</div>
+			<!--//주소찾기 팝업-->
+		</div>
+	</div>
+	<!--// container -->
+	
+</div>

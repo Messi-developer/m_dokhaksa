@@ -1,0 +1,416 @@
+/*장바구니, 결제 공통*/
+.cler:After{clear:both;content:"";display:block;}
+.payment .clear:after{content:'';clear:both;display:block;}
+
+.payment .icon_x:after{content:'┼';display:inline-block;font-size:26px;color:#c0c0c0;width:50px;height:50px;line-height:45px;border-radius:50%;border:1px solid #c0c0c0;transform:rotate(45deg);text-align: center;}
+.payment .icon_i:after{content:'i';display:inline-block;width:40px;height:40px;line-height:40px;border:1px solid #c2c2c2;border-radius:50%;color:#c2c2c2;font-size:22px;text-align: center;transform: rotate(180deg);margin:0 auto;}
+.payment .icon_v + label:after{content:'Γ';display:inline-block;width:22px;height:22px;line-height:24px;border:1px solid #c2c2c2;border-radius:50%;color:#c2c2c2;text-align: center;font-size:16px;transform:rotate(225deg);}
+.payment .icon_v:checked + label:after{background:#0097a3;color:#fff;border-color:#0097a3;}
+
+
+.payment .check_btn{display:block;width:100%;height:45px;line-height:45px;background:#0097a3;border-radius:5px;color:#fff;font-size:16px;font-weight:bold;text-align: center;font-family:'noto', SDGothicNeoa,Malgun Gothic, Arial, Dotum, '돋움', sans-serif;}
+.payment .check_btn.cancel{background:#414141;}
+
+.payment .close{position:relative;float:right;display:block;width:20px;height:20px;}
+.payment .close span{position:absolute;top:50%;left:50%;width:20px;height:1px;background:#909090;}
+.payment .close span:first-of-type{transform:translate(-50%,-50%) rotate(45deg);}
+.payment .close span:last-of-type{transform:translate(-50%,-50%) rotate(-45deg);}
+
+#snb.payment_top h2{font-size:16px;background:#f3f4f6;}
+#snb.payment_top .snb_prev{top:18px;}
+
+.payment input[type=checkbox],.payment input[type=radio]{display:none;}
+.payment .lec_area{padding:25px 15px 0 15px;background:#f5f6f8;}
+.payment .lec_area:last-of-type{padding-bottom:25px;}
+.payment .lec_area .lecture{display:block;position:relative;background:#fff;text-align: left;border-radius:10px;border:2px solid #ccc;margin-bottom:15px;font-size:19px;font-weight:bold;}
+.payment .basket .lec_area .lecture {padding:35px 40px 40px 50px;}
+.payment .lec_area .lecture .close{position:absolute;top:15px;right:15px;z-index: 1;}
+.payment .lec_area .lecture:last-of-type{margin-bottom:0;}
+.payment .lec_area .lecture.active{border:2px solid #0097a3;}
+.payment .lec_area .lecture .icon_v + label{margin-left:-28px;}
+.payment .lec_area .lecture .sort{color:#0097a3;}
+.payment .lec_area .lecture .teacher{font-size:17px;color:#4f4f4f;margin-top:5px;padding-bottom:10px;border-bottom:1px solid #d3d3d3;}
+.payment .lec_area .lecture.type2 .teacher{border-bottom:none;padding-bottom:0;}
+.payment .lec_area .lecture.type2 .discount{display:none;}
+
+.payment .lec_area .lecture .save_point{color:#565656;font-size:15px;margin-top:10px;font-weight:normal;}
+.payment .lec_area .lecture .save_point span{float:right;font-weight: bold;}
+.payment .lec_area .lecture .price{color:#232323;font-weight:bold;}
+.payment .lec_area .lecture .price span{float:right;color:#ed244b;}
+.payment .price_info{background:#fff;padding:15px;color:#565656;font-size:15px;line-height:26px;}
+.payment .price_info p{line-height:2;}
+.payment .price_info p span{float:right;font-weight:bold;color:#232323;font-size:18px;}
+.payment .price_result{background:#eaf7f9;padding:15px;font-weight:bold;font-size:16px;line-height:26px;}
+.payment .price_result p{line-height:2;}
+.payment .price_result p:first-of-type{line-height: 33px;}
+.payment .price_result p span{float:right;color:#232323;font-size:18px;}
+.payment .price_result p span.final_price{color:#ed244b;font-size:26px;}
+
+.payment .finish_btn{padding:25px 15px;}
+
+.payment #lec_pop{display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index: 11;}
+.payment #lec_pop .bg{position: absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);}
+.payment #lec_pop .cont{position: absolute;top:50%;left:50%;transform: translate(-50%,-50%);width:90%;padding:20px;background:#fff;box-sizing: border-box;text-align: center;}
+.payment #lec_pop .cont .close{position:relative;float:right;display:block;width:30px;height:30px;}
+.payment #lec_pop .cont .close::after{content:"";clear:both;display:block;}
+.payment #lec_pop .cont .close span{position:absolute;top:50%;left:50%;width:30px;height:1px;background:#949494;}
+.payment #lec_pop .cont .close span:first-of-type{transform:translate(-50%,-50%) rotate(45deg);}
+.payment #lec_pop .cont .close span:last-of-type{transform:translate(-50%,-50%) rotate(-45deg);}
+.payment #lec_pop .cont .icon_i{display:block;clear:both;margin-bottom:10px;}
+.payment #lec_pop .cont .txt{color:#232323;font-size:16px;line-height:1.5;margin-bottom:25px;text-align: center;}
+.payment #lec_pop .cont .btn{display:block;width:100%;height:40px;line-height:40px;text-align: center;color:#fff;font-size:15px;font-weight:bold;border-radius:5px;background:#414141;}
+.payment #lec_pop .cont .btn2{display:none;}
+.payment #lec_pop .cont .btn2 a{float:left;width:49%;box-sizing: border-box;}
+.payment #lec_pop .cont .btn2 a:first-of-type{margin-right:2%;background:none;border:1px solid #a1a1a1;color:#7e7e7e;}
+/*e:장바구니, 결제 공통*/
+
+/*결제 결과 공통*/
+.payment .txt_show{position: absolute; top:18px; right:28px; width:30px;height:30px;line-height:30px;text-align:center;transform:rotate(90deg);font-size:26px;color:#aaa;z-index: 1;transition: 0.5s;}
+.payment .txt_show.on{transform:rotate(270deg);}
+/*e:결제 결과 공통*/
+
+/*타이틀*/
+.tit_wrap{padding:5% 5%;}
+.pt30{padding-top:30px;}
+.tit_wrap h4{display:block;padding-left:50px;font-size:22px;background:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_simple.png')no-repeat 7px 1px;background-size:contain;}
+.tit_wrap h4.cup{background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_cup.png');}
+.tit_wrap h4.qna{background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_qna.png');}
+.tit_wrap h4.pay{background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_cart.png');background-position:0px 1px;}
+.tit_wrap h4.money{padding-left:42px;background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_money.png');background-position:7px 0;}
+.tit_wrap h4.cupon{background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_cupon.png');background-size:38px 28px;background-position:0px 1px;}
+.tit_wrap h4.point{padding-left:42px;background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_point.png');background-position:7px 0;}
+.tit_wrap ul{margin-top:20px;}
+.tit_wrap ul li{position:relative;margin-top:5px;padding-left:20px;font-size:14px;color:#545454;}
+.tit_wrap ul li:first-child{margin-top:0;}
+.tit_wrap ul li:before{content: '';width: 4px;height: 4px;background-color: #717171;display: inline-block;position: absolute;left:10px;top:7px;border-radius:4px;}
+.tit_wrap ul li.none{padding-left:0;}
+.tit_wrap ul li.none:before{display:none;}
+.tit_wrap .t_wrap{padding:5% 0 0 0;}
+.tit_wrap .t_wrap table{border-color:#ddd;}
+.tit_wrap .t_wrap table td ul{margin-top:0;}
+.tit_wrap.t3{border-bottom: 3px solid #dddee0;}
+
+
+.lect_info_wrap{border-bottom:3px solid #dddee0;}
+.t_wrap{padding:29px 5%;}
+.t_wrap.t2{border-bottom:1px solid #ddd;}
+.t_wrap table{table-layout:fixed;border-collapse:collapse;width:100%;border-top:1px solid #232323;border-bottom:1px solid #232323;}
+.t_wrap table tbody th{padding:5%;border-top:1px solid #fff;background-color:#f0f1f5;}
+.t_wrap table tbody th span{display:block;padding-top:25px;background-size:20px 20px;background-repeat:no-repeat;background-position:center top;}
+.t_wrap table tbody th span.ico1{background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_calendar.png');}
+.t_wrap table tbody th span.ico2{background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_chk.png');}
+.t_wrap table tbody th span.ico3{background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_file.png');}
+.t_wrap table tbody th span.ico4{background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_question.png');}
+.t_wrap table tbody th span.ico5{background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_pen.png');}
+.t_wrap table tbody td{padding:5%;border-top:1px solid #ddd;}
+.t_wrap table tbody td > ul > li > strong > span{color:#0097a3;}
+.t_wrap table tbody td > ul > li.bar{margin-top:5px;}
+.t_wrap table tbody td a{display:black;padding-right:15%;background:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_href.png')no-repeat right center;background-size:contain;}
+.t_wrap table tbody tr:first-child th,
+.t_wrap table tbody tr:first-child td{border-top:0;}
+.t_wrap table tbody td > ol > li{position:relative;padding-left:15px;margin-top:3%;}
+.t_wrap table tbody td > ol > li:first-child{margin-top:0;}
+.t_wrap table tbody td > ol > li > span{display:inline-block;}
+.t_wrap table tbody td > ol > li > span.num{position:absolute;left:0;top:0;}
+
+.t_wrap table tbody td > ol > li > strong{display:block;}
+
+/*결제리스트*/
+.m_btn_wrap{padding:20px 0; text-align:center;}
+.m_btn_wrap.t2{padding:0;}
+.m_btn_wrap.t3{padding:20px 5% 0;}
+.m_btn_wrap.t4{padding:0 5%;}
+.m_btn_wrap.t5{padding:20px 0; text-align:center;}
+.m_btn_wrap a{display:inline-block;width:100%;line-height:40px;color:#fff;font-size:17px;border-radius:10px;background:#414141;}
+.m_btn_wrap a.btn_list{color:#fff;border-radius:0;background:#0092a3;}
+.m_btn_wrap button.more_btn{display: block;
+	text-align: center;
+	font-size: 14px;
+	color: #8a8a8a;
+	background: url(https://gscdn.hackers.co.kr/haksa2080/images/books/boos_sch_icon03.png) no-repeat 50% bottom;
+	background-size: 12px;
+	padding:0 0 10px 0;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.pay_bg{text-align:center;background:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/bg_paylist.jpg')no-repeat 0 0; background-size:cover;}
+.pay_bg strong{line-height:60px;font-size:20px;color:#fff;}
+.pay_bg strong span{color:#54fff9;}
+
+.mon_history > ul > li{padding:0 0 5%;border-bottom:5px solid #ddd;}
+.mon_history > ul > li:last-child{border-bottom:1px solid #ddd;}
+.mon_history > ul > li.none,
+.history_list li.none{
+	padding:110px 0 40px;
+	text-align:center;
+	font-size:20px;
+	font-weight:bold;
+	color:#c0c0c0;
+	border-bottom:0;
+	background:#f3f4f6 url('https://gscdn.hackers.co.kr/haksa2080/images/icon/no_list.png')no-repeat center 40px;
+	background-size:60px 60px;
+	border:0;
+}
+.mon_history > ul > li > p{padding:0 5%;font-size:12px;}
+.mon_history > ul > li > .tit{padding:3% 5%;background:#f5f6f8;}
+.mon_history > ul > li > .tit .date{display:inline-block;padding:3px 8px;border:1px solid red;color:red;border-radius:5px;font-size:12px;}
+.mon_history > ul > li > .tit .date.t1{border-color:#0097a3;color:#0097a3;}
+.mon_history > ul > li > .tit .date.t2{border-color:#848484;color:#848484;}
+.mon_history > ul > li > .tit p{display:inline-block;margin-left:10px;color:#565656;font-weight:bold;}
+.mon_history > ul > li > .tit p span{margin-right:10px;}
+.mon_history > ul > li > .txt{padding:3% 5%;}
+.mon_history > ul > li > .txt ul{padding:3% 2%;border-bottom:1px solid #ddd;}
+.mon_history > ul > li > .txt ul.t2{border-bottom:none;}
+.mon_history > ul > li > .txt ul.t3{padding:0 2%;border-bottom:0;}
+.mon_history > ul > li > .txt ul li{overflow:hidden;margin-top:2%;color:#232323;font-weight:bold;}
+.mon_history > ul > li > .txt ul li:first-child{margin-top:0;}
+.mon_history > ul > li > .txt ul li span{float:left;position:relative;width:30%;color:#707070;}
+.mon_history > ul > li > .txt ul li span:before{content:"";display:block;position:absolute;top:50%;right:15%;width:1px;height:8px;margin-top:-4px;background:#707070;}
+.mon_history > ul > li > .txt ul li.colr{color:#ed244b;}
+.mon_history > ul > li > .txt ul li.colr.t2{color:#0097a3;}
+.mon_history > ul > li > .txt ul li .btn_lookup{
+	display:block;
+	line-height:40px;
+	text-align:center;
+	border-radius:5px;
+	background:#e9eaee url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_more.png')no-repeat 38% center;
+	background-size:15px 15px;
+}
+
+.foot_ps_txt{padding:20px 5%;color:#545454;background:#e1e2e3;}
+.foot_ps_txt p span{display:inline-block;color:#0097a3;}
+.foot_ps_txt a{display:block; margin-top:5px;color:#545454; font-weight:bold;}
+
+/*쿠폰*/
+.pay_bg > .input_wrap{padding:0 5% 5%;}
+.pay_bg > .input_wrap input[type="text"]{display:inline-block;width:70%;height:35px;}
+.pay_bg > .input_wrap input[type="button"]{display:inline-block;width:25%;height:35px;line-height:35px;margin-left:4%;color:#fff;border:none;cursor:pointer;background:#414141;}
+
+/*쿠폰내역*/
+.cupon_wrap{padding:5% 5% 0 5%;}
+.tab_area.t2 > ul > li > a{border-bottom:3px solid #ddd; background:#fff;}
+.tab_area.t2 > ul > li.on > a{border:0;border-bottom:3px solid #0097a3;}
+.tab_area.t2 .tab_con{padding-bottom:5%; border-bottom:1px solid #ddd;}
+.cupon_list li{position:relative;margin-top:5%; }
+.cupon_list li span{display:block;width:100%;text-align:center;}
+.cupon_list li p {width:100%; padding:5% 0 2%; text-align:center; border:1px solid #ccc; border-bottom:none; border-top-right-radius:5px;}
+.cupon_list li p .name{font-size:18px;font-weight:bold;color:#000;width:68%;margin:0 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.cupon_list li .percent{position:absolute;top:9%;left:-2%;color:#fff;font-weight:bold;font-size:13px;width:17%;line-height:25px;text-align: center;border-radius:0 5px 5px 0;background:#0097a3}
+.cupon_list li .percent.t2{background:#818181;}
+.cupon_list li .exp_date{color:#383838;}
+.cupon_list li .discount_box {position:relative;}
+.cupon_list li .discount{position:absolute;top:30%;left:50%;transform:translateX(-50%);color:#0097a3;font-weight:bold;font-size:20px;}
+.cupon_list li .discount.t2{color:#818181;}
+
+@media screen and (min-width: 1024px) { 
+	.cupon_list li .discount{top:77%;}
+}
+
+
+/*증빙자료 제출방법*/
+.tab_area{}
+.tab_area .tab_tit li{float:left;width:50%;line-height:50px;font-size:20px;text-align:center;}
+.tab_area .tab_tit li a{display:block;border-bottom:1px solid #232323;color:#666;font-weight:bold;background-color:#f0f1f5;}
+.tab_area .tab_tit li.on a{border:1px solid #232323;border-bottom:0;color:#0097a3;background-color:#fff;}
+.tab_area .tab_con{display:none;}
+.tab_area .tab_con.on{display:block;}
+
+.list_none {
+	padding: 110px 0 40px !important;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	color: #c0c0c0;
+	border-bottom: 0 !important;
+	background: #fff url(https://gscdn.hackers.co.kr/haksa2080/images/icon/no_list.png)no-repeat center 40px;
+	background-size: 60px 60px;
+	border: 0;
+}
+
+
+/*장바구니*/
+.payment .no_basket{display:none;padding:125px 10%;background:#e7e8e9;text-align: center;}
+.payment .no_basket .text{font-size:25px;color:#a5a5a5;font-weight:bold;margin:10px auto 30px;line-height:32px;}
+.payment .no_basket .check_btn{margin-bottom:10px;}
+
+.payment .basket .edit_lec{text-align:left;padding:20px 15px;background:#fff;font-size:18px;color:#565656;border-bottom:10px solid #e4e5e6;}
+.payment .basket .edit_lec .btn_area{float:right;}
+.payment .basket .edit_lec .btn_area a{padding:8px 20px;border:1px solid #989898;border-radius:5px;color:#6c6c6c;font-size:14px;}
+/*e:장바구니*/
+
+
+/*결제*/
+.payment .order_info_tit{background:#e1e2e3;padding:15px;text-align: left;color:#545454;font-size:12px;}
+.payment .payment_section{border-top:5px solid #e4e5e6;}
+.payment .payment_section .payment_icon{padding:15px;border-bottom:1px solid #d7d7d7;color:#232323;font-size:20px;}
+.payment .payment_section .payment_icon img{width:25px;margin-right:10px;}
+.payment .payment_section .payment_icon span{vertical-align: -2px}
+.payment .payment_section .content{padding:20px 15px 30px;}
+
+.payment .shipment.only_lec{display:none;}
+.payment .shipment .tab_button{margin-bottom:25px;}
+.payment .shipment .tab_button li{float:left;cursor: pointer;width:50%;height:45px;line-height:45px;font-size:17px;color:#959596;border-bottom:3px solid #959596;text-align: center;font-weight:bold;}
+.payment .shipment .tab_button li.on{color:#0097a3;border-bottom:3px solid #0097a3;}
+
+.payment .input_area{margin:10px 0 20px;}
+.payment .input_area:last-of-type{margin-bottom:0;}
+.payment .input_area label{display:block;color:#565656;font-size:16px;margin-bottom:5px;font-weight:bold;}
+.payment .input_area label.required:before{content:'*';color:#0097a3;vertical-align: -3px;margin-right:3px;}
+.payment .input_area input{width:100%;height:40px;padding:0 10px;box-sizing: border-box;font-size:14px;color:#000;background:#f6f7f9;margin-top:7px;border:0;}
+.payment .input_area input[type=text]:first-of-type{margin-top:0;}
+.payment .input_area textarea{width:100%;height:100px;resize:none;overflow:auto;background:#f6f7f9;border:0;}
+.payment .input_area input[type=text].left_txt{width:65%;margin-right:2%;}
+.payment .input_area .right_btn{width:33%;height:40px;background:#6c6c6d;border:0;color:#fff;vertical-align: middle;border-radius:5px;font-size:14px;}
+.payment .input_area .myPoint{color:#0097a3;font-size:14px;margin-top:5px;}
+.payment .input_area .myPoint span{font-weight:bold;}
+
+.payment .discount .left_txt_area{position:relative;width:65%;margin-right:calc(2% - 4px);display:inline-block;}
+.payment .discount .left_txt_area span{position: absolute;top:10px;right:10px;}
+.payment .discount .left_txt_area input{width:100%;text-align: right;padding-right:24px;box-sizing: border-box;margin-top:0;}
+
+.payment .payment_way .payment_icon{border-bottom:0;}
+.payment .payment_way .tab_btn{display:block;float:left;text-align: center;width:49%;height:100px;margin-right:2%;border:1px solid #bababb;border-radius:10px;padding-top:20px;box-sizing: border-box;}
+.payment .payment_way .tab_btn:last-of-type{margin-right:0;}
+.payment .payment_way .tab_btn img{width:40px;filter:contrast(0)}
+.payment .payment_way .tab_btn:first-of-type img{width:33px;}
+.payment .payment_way .tab_btn p{font-size:20px;margin-top:5px;color:#767677;font-weight:bold;}
+.payment .payment_way input[type=radio]:checked + .tab_btn{background:#0097a3;border-color:#0097a3;}
+.payment .payment_way input[type=radio]:checked + .tab_btn img{filter:contrast(100)}
+.payment .payment_way input[type=radio]:checked + .tab_btn p{color:#fff;}
+
+.payment .agreement .agree_btn{position:relative;border-bottom:1px solid #dbdbdb;background:#eaf7f9;vertical-align: middle;}
+.payment .agreement .agree_btn .click_area{display:block;padding:20px 15px;}
+.payment .agreement .agree_btn:first-of-type{background:#fff;border-bottom:0;color:#232323;}
+.payment .agreement .agree_btn:first-of-type .click_area{font-size:19px;font-weight:bold;}
+.payment .agreement .agree_btn:first-of-type .icon_v + label:after{width:28px;height:28px;line-height:28px;font-size:20px;}
+.payment .agreement .agree_btn .click_area > label{vertical-align: middle;font-size:15px;}
+.payment .agreement .agree_btn .click_area > label{margin-right:5px;}
+.payment .agreement .agree_btn p{display:inline-block;vertical-align: middle;color:#565656;}
+.payment .agreement .agree_btn p span{color:#0097a3;}
+.payment .agreement .agree_btn .agree_txt{display:none;height:100px;overflow:auto;margin:0 15px 20px;background:#e1eef0;padding:20px;}
+
+.payment .button_area .check_btn{float:left;width:49%;margin-right:2%;}
+.payment .button_area .check_btn:last-of-type{margin-right:0;}
+
+.payment #coupon_pop{display:none;position: fixed;top:0;left:0;width:100%;height:100%;background:#f7f8f9;z-index: 10;overflow-y:auto;}
+.payment #coupon_pop .payment_top h2{background:#fff;}
+.payment #coupon_pop .payment_top .close{position:absolute;top:50%;transform:translateY(-50%);right:20px;width:30px;height:30px;}
+.payment #coupon_pop .payment_top .close span{width:30px;}
+.payment #coupon_pop .content{padding-top:30px;} /* padding:30px 20px 30px 18px; */
+.payment #coupon_pop .content .evt_coupon{display:block; position:relative; padding:0 30px 30px 30px;}
+.payment #coupon_pop .content .evt_coupon:last-of-type{margin-bottom:0;}
+.payment #coupon_pop .content .evt_coupon .name{position:absolute;top:12%;left:50%;transform:translateX(-50%);font-size:18px;font-weight:bold;color:#000;width:44%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align: center;}
+.payment #coupon_pop .content .evt_coupon .discount_price{position:absolute;top:7.5%;left:30px;color:#fff;font-weight:bold;font-size:3.5vw;width:14%;text-align: center;}
+.payment #coupon_pop .content .evt_coupon .exp_date{position:absolute;top:29%;left:50%;transform:translateX(-50%);color:#383838;width:70%;text-align: center;}
+.payment #coupon_pop .content .evt_coupon .discount_txt{position:absolute;top:53%;left:50%;transform:translateX(-50%);color:#0097a3;font-weight:bold;font-size:20px;}
+.payment #coupon_pop .coupon_info{background:#e1e2e3;color:#545454; padding:20px;}
+.payment #coupon_pop .button_area{background:#fff;border:0;}
+
+.no_coupon{font-size:25px;color:#c0c0c0;font-weight:bold;text-align:center;margin:0;padding:15% 0;}
+.no_coupon img {width: 50px;display: block; margin: 0 auto 10px auto;}
+/*e:결제*/
+
+/*결과*/
+.payment .result{padding:30px 15px;text-align: center;}
+.payment .result .icon_v + label:after{width:50px;height:50px;line-height:53px;font-size:30px;color:#0097a3;border:2px solid #0097a3;}
+.payment .result .result_msg{font-size:23px;font-weight:bold;color:#000;line-height:1.3;margin:15px 0;}
+.payment .result .result_msg span:first-of-type{color:#0097a3;}
+.payment .result .result_chk{border:1px solid #0097a3;border-radius:5px;padding:10px;box-sizing: border-box;}
+.payment .result .result_chk table tr td{font-size:15px;color:#232323;padding:5px 0;text-align: left;}
+.payment .result .result_chk table tr td:first-of-type{color:#707070;text-align: right;}
+.payment .result .result_chk table tr td:nth-of-type(2){color:#707070;text-align: center;}
+.payment .result .result_chk table tr.vtc_top td{vertical-align: top}
+.payment .result .result_chk table tr td span{color:#0097a3}
+.payment .result .result_chk table tr td p{color:#818181;}
+.payment .result .result_chk.deposit_info{display:none;}
+.payment .result.deposit .result_chk.deposit_info{display:block;}
+.payment .result.deposit .result_chk.card_info{display:none;}
+.payment .result .result_chk.deposit_info table tr:last-of-type td{text-align: left;padding:0 10px;}
+.payment .result .result_chk.deposit_info table tr:last-of-type td p{font-size:12px;border-top:1px solid #e4e5e6;padding:15px 0 10px;margin-top:10px;}
+
+
+.payment .order_history .payment_icon{position:relative;}
+.payment .order_history .lec_area .lecture{border:0;border-bottom:1px solid #ccc;padding:0;background:none;border-radius:0;padding-bottom:15px;}
+.payment .order_history .lec_area .lecture:last-of-type{border-bottom:0;padding-bottom:0;margin-bottom:0;}
+.payment .order_history .lec_area .lecture .teacher{border:0;}
+
+
+.payment_result_list{padding:5% 5%; background:#f5f6f8;}
+.payment_result_list .lecture{display:block; position:relative; padding:24px 30px; background:#fff;text-align: left;border-radius:10px;border:2px solid #ccc;margin-bottom:15px;font-size:19px;font-weight:bold;}
+.payment_result_list .lecture .close{position:absolute;top:15px;right:15px;z-index: 1;}
+.payment_result_list .lecture:last-of-type{margin-bottom:0;}
+.payment_result_list .lecture.active{border:2px solid #0097a3;}
+.payment_result_list .lecture .icon_v + label{margin-left:-28px;}
+.payment_result_list .lecture .sort{color:#0097a3;}
+.payment_result_list .lecture .teacher{font-size:17px;color:#4f4f4f;margin-top:5px;padding-bottom:10px;border-bottom:1px solid #d3d3d3;}
+.payment_result_list .lecture .point{color:#565656;font-size:15px;margin-top:10px;font-weight:normal;}
+.payment_result_list .lecture .point span{float:right;}
+.payment_result_list .lecture .price{color:#232323;font-weight:bold;}
+.payment_result_list .lecture .price span{float:right;color:#ed244b;}
+
+/*.payment .order_history .lec_area .lecture .point,
+.payment .order_history .lec_area .lecture .price b{display:none;}*/
+/*e:결과*/
+
+
+
+/* 강의리스트 */
+.lec_tit{position:relative;padding:15px 0 15px 30px; border-bottom:1px solid #ddd;}
+.lec_tit a{display:block; font-size:20px; font-weight:bold;color:#232323;}
+
+.lec_list > ul{padding:0 5% 5%;border-top:1px solid #ddd;background:#f3f4f6;}
+.lec_list > ul > li{padding-top:25px;}
+.lec_list > ul li .books_store_box{padding:5%;border:1px solid #cccccc;border-radius:6px;background:#fff;}
+.lec_list li.books_nolist{font-size:25px;color:#c0c0c0;font-weight:bold;text-align:center;margin:0;padding:15% 0;display:none;}
+.lec_list li.books_nolist.on{display:block;}
+.lec_list li.books_nolist img {width:50px;display:block;margin: 0 auto 10px auto;}
+
+.lec_list li .books_icon span{display:inline-block; border:1px solid #333333; color:#333333; font-size:12px; line-height:22px;height:22px;border-radius:25px;padding:0 10px;}
+.lec_list li .books_icon span.on{color:#fff;background:#0092a3;border-color:#0092a3;}
+.lec_list li .books_icon .cl_type{color:#0092a3;border:1px solid #0092a3;}
+
+.lec_list li .books_name{overflow:hidden;width:100%;}
+.lec_list li .books_name dl{padding-top:10px;float:left;width:74%;}
+.lec_list li .books_name dl:after{content:'';display:block;clear:both;}
+.lec_list li .books_name .img_upload{width:24%;float:right;}
+.lec_list li .books_name dt{float:left; width:100%; font-size:19px; color:#333333; font-weight:bold; margin-bottom:10px;}
+.lec_list li .books_name dd{float:left; font-size:14px; color:#565656;height:20px;padding-left:20px;line-height:20px;}
+.lec_list li .books_name dd.num_name {background:url(https://gscdn.hackers.co.kr/haksa2080/images/books/boos_sch_icon0102.png) no-repeat 0 50%; background-size:16px;}
+.lec_list li .books_name dd.num_point{background:url(https://gscdn.hackers.co.kr/haksa2080/images/books/boos_sch_icon02.png) no-repeat 0 50%;background-size:16px;}
+.lec_list li .books_name dd.num_day{margin-top:5px;background:url(https://gscdn.hackers.co.kr/haksa2080/images/books/boos_sch_icon01.png) no-repeat 0 50%;background-size:16px;}
+.lec_list li .books_name dd.num_pen{background:url(https://gscdn.hackers.co.kr/haksa2080/images/books/boos_sch_icon05.png) no-repeat 0 50%;background-size:16px;}
+.num_day_sub{float:none; display:block; clear:both; margin-top:10px;}
+
+.lec_list li .books_name dd.line_txt{background:#a9a9a9;margin:0 8px;padding:0;width:1px;height:16px;position:relative;top:2px;}
+.lec_list li .books_name dd.line_txt.t2{display:none;}
+
+.lec_list li .books_amt{}
+.lec_list li .books_amt dl{border-top:1px solid #cccccc;padding:5% 0;position:relative;}
+.lec_list li .books_amt dl dt{position:absolute;top:36%;left:0;font-size:17px;color:#565656;}
+.lec_list li .books_amt dl dd{padding-left:100px;text-align:right;color:#565656;font-size:15px;}
+.lec_list li .books_amt dl dd strong{color:#eb0032;font-size:22px;display:inline-block;line-height:26px;vertical-align:middle;}
+
+.books_list_more{border-top:1px solid #9f9fa0;margin-top:5%;}
+.books_list_more .txt_btn{display:block;text-align:center;font-size:14px;color:#8a8a8a;background:url(https://gscdn.hackers.co.kr/haksa2080/images/books/boos_sch_icon03.png) no-repeat 50% bottom;background-size:12px;padding:15px 0 10px 0;width:100%;box-sizing: border-box;}
+
+.basket_subject span{display:inline-block; margin-bottom:10px; border:1px solid #333333; color:#333333; font-size:12px; line-height:22px;height:22px;border-radius:25px;padding:0 10px; font-weight:normal;}
+.basket_subject span.on{color:#fff;background:#0092a3;border-color:#0092a3;}
+
+/* 배송조회 버튼 */
+.m_btn_wrap a.more_view{color:#000;background:#e9eaee url(https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_more.png)no-repeat 35% center;background-size:15px 15px;}
+
+
+/*결제단 수정*/
+.payment .order .lec_area .lecture {padding:0;}
+.discount_input{}
+.discount_input .input_area label{color:#636364;font-size:15px;}
+.discount_input .input_area label span{color:#0097a3}
+.discount_input .input_area input{}
+.discount_input .input_area .left_txt_area{width:68%}
+.discount_input .input_area .left_txt_area span{font-weight:normal;font-size:15px;}
+.discount_input .input_area .right_btn{width:30%;}
+
+.tit_price_wrap{padding:20px;}
+.lec_price_wrap{padding:10px 20px 20px;border-radius:7px;background:#eaf7f9;}
+.save_point{font-size:17px !important;margin-bottom:5px;}

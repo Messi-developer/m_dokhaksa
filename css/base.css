@@ -1,0 +1,74 @@
+@charset "euc-kr";
+/* 20200520 hackers 웹개발5 Publisher  kmp */
+
+/*기본태그 정의*/
+html, body {padding:0;margin:0;height:100%;box-sizing:border-box;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;}
+body, td, select, textarea, input {font-size:14px;font-family:'noto', SDGothicNeoa,Malgun Gothic, Arial, Dotum, '돋움', sans-serif;color:#232323; word-break:break-all;letter-spacing:-1px}
+
+/* 마진과 패딩의 초기화 */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, p, th, td, span{margin:0;padding:0;box-sizing:border-box;}
+
+/* 헤더 폰트 사이즈 초기화 */
+h1, h2, h3, h4, h5, h6 {font-size:100%;}
+
+/* 리스트의 스타일 제거 */
+ol, ul {list-style:none;}
+
+/* 강조 구문 */
+em, i{font-style:normal;}
+
+/* 테이블 스타일 초기화 */
+table {border-collapse:collapse;border-spacing:0;table-layout:fixed;}
+
+/* 이미지 및 필드셋에서 보더 표시 초기화 */
+fieldset, img {border:0;}
+img{vertical-align:middle;max-width:100%;width:100%;}
+
+/* 캡션 텍스트 정렬 초기화 */
+caption {text-align:left;}
+
+/* 폼태그의 초기화 */
+select {font-size:14px; vertical-align:middle; color:#232323; background-color:#fff; height:40px; padding-left:5px; border:1px solid #dbdbdb;width:100%;border-radius:4px;}
+select:required:invalid {color:#a9a9a9}
+option[value=""][disabled] {display:none}
+option {color:#000}
+input[type="checkbox"], input[type="radio"] {vertical-align:middle;width:13px;height:13px;margin:3px 0 0 1px}
+input {font-size:14px;vertical-align:middle;color:#232323;height:40px;line-height:40px;border:1px solid #dbdbdb;padding:0 5px;width:100%;box-sizing:border-box;border-radius:4px;}
+input:disabled {background-color:#fff}
+textarea {font-size:14px;line-height:140%;color:#232323;border:1px solid #dbdbdb;padding:10px;width:100%;box-sizing:border-box;vertical-align: middle;border-radius:4px;}
+button {background-color:transparent;border:0;margin:0;padding:0;overflow:visible;white-space:nowrap;cursor:pointer}
+:focus {outline: 0;}
+
+a{cursor:pointer;}
+a:link    {color:#232323; text-decoration:none;}
+a:active    {color:#232323; text-decoration:none;}
+a:visited    {color:#232323; text-decoration:none;}
+a:hover    {color:#232323; text-decoration:none;}
+
+/* hidden 처리 */
+caption, .txt_hide{width:0;height:0;font-size:0;line-height:0;overflow:hidden;visibility:hidden;text-indent:-99999px}
+.hide{position:absolute;top:-9999px;width:0;height:0;font-size:0;line-height:0;overflow:hidden;visibility:hidden;}
+hr{border:none;border-top:1px solid #ccc;}
+
+/* bd none */
+.bd_none{border:0;}
+
+/* ..처리 */
+.txt_ellipsis{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+
+/* placeholder 처리 */
+.placeholder {color:#959596;font-size:13px;}
+:-ms-input-placeholder {color:#959596;font-size:13px;}		/* M$ */
+::-webkit-input-placeholder {color:#959596;font-size:13px;} /* webkit */
+::-moz-placeholder{color:#959596;font-size:13px;}				/* firefox */
+
+/* 단어별 글자 */
+.word_block{word-break:keep-all;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}
+
+/* font */
+.font_n{font-weight:normal !important;}
+
+/* align */
+.align_l{text-align:left !important;}
+.align_c{text-align:center !important;}
+.align_r{text-align:right !important;}

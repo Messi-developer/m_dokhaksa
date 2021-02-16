@@ -1,0 +1,18 @@
+<html>
+<head>
+	<script type="text/javascript">
+		function setLGDResult() {
+			document.getElementById('LGD_PAYINFO').submit();
+		}
+	</script>
+</head>
+<body onload="setLGDResult()">
+<form method="post" name="LGD_PAYINFO" id="LGD_PAYINFO" action="/payment/payment_lgu/payres">
+	<?php
+	foreach ($payReqMap as $key => $value) {
+		echo "<input type='hidden' name='$key' id='$key' value='$value'>";
+	}
+	?>
+</form>
+</body>
+</html>

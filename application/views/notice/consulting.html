@@ -1,0 +1,251 @@
+<div id="container">
+	<div id="snb">
+		<h2>고객센터</h2>
+		<span class="snb_prev">
+			<a href="#;" class="his_back"><img src="<?=$images?>/common/btn_prev.png" alt="이전"/></a>
+		</span>
+	</div>
+	
+	<div id="notice_container">
+		<!-- 상단 공통 리스트 -->
+		<div class="ul_list">
+			<ul class="cler">
+				<li class="t1 on"><a href="/notice/main?customerType=consulting">1:1 무료상담</a></li>
+				<li class="t2"><a href="/notice/main?customerType=faq">FAQ</a></li>
+				<li class="t3"><a href="/notice/main?customerType=notice">공지사항</a></li>
+				<li class="t4"><a href="/notice/main?customerType=support_write">해커스에 바란다</a></li>
+			</ul>
+		</div>
+		<!-- //상단 공통 리스트 -->
+		<!-- 내용 -->
+		<div class="customer_wrap">
+			<!-- 무료1:1상담 -->
+			<form name="consultingForm" id="consultingForm" method="POST" action="notice/main/consultingInsert">
+				<div class="customer_in">
+					<div class="tit">
+						<h4><span>무료</span> 1:1상담</h4>
+						<p>체계적인 학습설계로 최선의 학습설계를 제공해드리겠습니다 ! <br> 해커스독학사에 바라는 것이 있으시면 언제든지 이야기해주세요.</p>
+					</div>
+					<!-- 입력폼 -->
+					<div class="consult_in">
+				
+						<span class="ps_txt">*필수</span>
+						<ul>
+							<li>
+								<label for="name"><span>*</span>이름</label>
+								<input type="text" id="name" name="name" placeholder="한글 또는 영문으로 2자 이상 입력해주세요.">
+								<em class="ipt-feedback" id="name_feedback">한글 또는 영문으로 2글자 이상 입력해주세요.</em>
+							</li>
+							<li>
+								<label for="phone"><span>*</span>연락처</label>
+								<input type="text" id="phone" name="phone" placeholder="(-)없이 번호만 입력해주세요." maxlength="11">
+								<em class="ipt-feedback" id="phone_feedback">한글 또는 영문으로 2글자 이상 입력해주세요.</em>
+							</li>
+							<li>
+								<label for="email"><span>*</span>이메일</label>
+								<input type="text" id="email" name="email" placeholder="이메일주소를 입력해주세요." style="width:47%;">
+								<span>@</span>
+								<input type="text" name="join_email" id="join_email" placeholder="naver.com" style="width:47%;">
+								<em class="ipt-feedback" id="email_feedback">한글 또는 영문으로 2글자 이상 입력해주세요.</em>
+							</li>
+							<li>
+								<label for="subject"><span>*</span>제목</label>
+								<input type="text" id="subject" name="subject">
+								<em class="ipt-feedback" id="subject_feedback">한글 또는 영문으로 2글자 이상 입력해주세요.</em>
+							</li>
+							<li>
+								<label for="contents"><span>*</span>문의내용</label>
+								<textarea name="contents" id="contents" class="textarea"></textarea>
+								<em class="ipt-feedback" id="contents_feedback">한글 또는 영문으로 2글자 이상 입력해주세요.</em>
+							</li>
+						</ul>
+					
+					</div>
+					<!-- //입력폼 -->
+				</div>
+				<!-- //무료1:1상담 -->
+				<!-- 내용2 -->
+				<div class="customer_in">
+					<div class="tit v2">
+						<h5 class="bg_none">상담도움정보</h5>
+					</div>
+					
+					<!-- 문의독학사단계 -->
+					<div class="cs_box">
+						<h6>문의 독학사 단계</h6>
+						<div class="cs_list v1">
+							<ul class="cler">
+								<li class="on">
+									<label for="ask_01">
+										<input type="checkbox" id="ask_01" name="ask[]" value="1" checked>
+										<label for="ask_01">1단계</label>
+									</label>
+								</li>
+								<li>
+									<label for="ask_02">
+										<input type="checkbox" id="ask_02" name="ask[]" value="2">
+										<label for="ask_02">2단계</label>
+									</label>
+								</li>
+								<li>
+									<label for="ask_03">
+										<input type="checkbox" id="ask_03" name="ask[]" value="3">
+										<label for="ask_03">3단계</label>
+									</label>
+								</li>
+								<li>
+									<label for="ask_04">
+										<input type="checkbox" id="ask_04" name="ask[]" value="4">
+										<label for="ask_04">4단계</label>
+									</label>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- //문의독학사단계 -->
+					
+					<!-- 수강목적 -->
+					<div class="cs_box">
+						<h6>수강목적</h6>
+						<div class="cs_list v2">
+							<ul class="cler">
+								<li onclick="test()">
+									<label for="course_01">
+										<input type="checkbox" id="course_01" name="course[]" value="1">
+										<label for="course_01">학사학위취득</label>
+									</label>
+								</li>
+								<li>
+									<label for="course_02">
+										<input type="checkbox" id="course_02" name="course[]" value="2">
+										<label for="course_02">학사편입</label>
+									</label>
+								</li>
+								<li>
+									<label for="course_03">
+										<input type="checkbox" id="course_03" name="course[]" value="3">
+										<label for="course_03">대학원진학</label>
+									</label>
+								</li>
+								<li>
+									<label for="course_04">
+										<input type="checkbox" id="course_04" name="course[]" value="4">
+										<label for="course_04">사법고시준비</label>
+									</label>
+								</li>
+								<li>
+									<label for="course_05">
+										<input type="checkbox" id="course_05" name="course[]" value="5">
+										<label for="course_05">공인회계사 준비</label>
+									</label>
+								</li>
+								<li>
+									<label for="course_06">
+										<input type="checkbox" id="course_06" name="course[]" value="6">
+										<label for="course_06">기타목적</label>
+									</label>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- //수강목적 -->
+					
+					<!-- 희망전공 -->
+					<div class="cs_box">
+						<h6>희망전공</h6>
+						<div class="cs_list v2">
+							<ul class="cler">
+								<li class="on">
+									<label for="major_01">
+										<input type="checkbox" id="major_01" name="major[]" value="1">
+										<label for="major_01">교양공통</label>
+									</label>
+								</li>
+								<li>
+									<label for="major_02">
+										<input type="checkbox" id="major_02" name="major[]" value="2">
+										<label for="major_02">경영학과</label>
+									</label>
+								</li>
+								<li>
+									<label for="major_03">
+										<input type="checkbox" id="major_03" name="major[]" value="3">
+										<label for="major_03">가정학과</label>
+									</label>
+								</li>
+								<li>
+									<label for="major_04">
+										<input type="checkbox" id="major_04" name="major[]" value="4">
+										<label for="major_04">영어영문학과</label>
+									</label>
+								</li>
+								<li>
+									<label for="major_05">
+										<input type="checkbox" id="major_05" name="major[]" value="5">
+										<label for="major_05">유아교육학과</label>
+									</label>
+								</li>
+								<li>
+									<label for="major_06">
+										<input type="checkbox" id="major_06" name="major[]" value="6">
+										<label for="major_06">간호학과</label>
+									</label>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- //희망전공 -->
+					
+					<!-- 최종학력및 전공학과 -->
+					<div class="cs_box">
+						<h6>최종학력및 전공학과</h6>
+						<div class="input_box">
+							<select name="school" id="school">
+								<option value="">선택해주세요.</option>
+								<option value="1">고등학교 졸업</option>
+								<option value="2">고등학교 재학</option>
+								<option value="3">대학교 휴학</option>
+								<option value="4">대학교 중퇴</option>
+								<option value="5">대학교 졸업(2년제)</option>
+								<option value="6">대학교 졸업(4년제)</option>
+								<option value="7">기타 졸업</option>
+							</select>
+						</div>
+					</div>
+					<!-- //최종학력및 전공학과 -->
+				</div>
+				<!-- //내용2-->
+				<!-- 내용3-->
+				<div class="customer_in v2">
+					<!-- 개인정보 수집 및 이용에 관한 동의  -->
+					<div class="cs_box v2">
+						<label class="click_area cler" for="agree_all">
+							<input type="checkbox" class="icon_v" id="agree_all" name="agree_all" checked><label for="agree_all"></label>
+							<strong>개인정보 수집 및 이용에 관한 동의 (필수)</strong>
+							<span class="ico_down on">〉</span>
+						</label>
+						<div class="agree_box">
+							<p class="agree_txt">
+								1.개인정보 수집 항목 : 이름,이메일주소,연락처 <br>
+								2.개인정보 수집 목적 : 1:1 문의사항 접수, 응대, 민원해결 <br>
+								3.보유 및 이용기간 : 법령에서정하는 경우를 제외하고는 이용목적 <br>
+								달성시 또는 삭제 요청시까지 <br><br>
+								(*이용자는 개인정보 수집을 거부할 수 있습니다.단, 동의를 거부 <br>
+								하시는 경우 해커스 독학사에 바란다 문의 접수가 불가능합니다.) <br><br>
+							</p>
+						</div>
+					</div>
+					<!-- //개인정보 수집 및 이용에 관한 동의  -->
+				</div>
+			</form>
+			<!-- //내용3-->
+			<div class="btn_wrap">
+				<a href="#;" class="full" onclick="noticeSend()">무료 1:1 상담 신청</a>
+			</div>
+		</div>
+		<!-- //내용 -->
+	</div>
+	<!--// container -->
+</div>
+
+

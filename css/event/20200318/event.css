@@ -1,0 +1,28 @@
+.bx-wrapper .bx-pager.bx-default-pager a{background:#e1e1e1}
+.cont05{padding:0 3% 12%;background:#fcf8db;}
+.cont05 .bx-wrapper .bx-pager{bottom:-5%;}
+.cont05 .bx-wrapper .bx-pager .bx-pager-item .bx-pager-link.active{background: #1795f0;}
+.cont07{padding:0 3% 12%;background:#39cba1;}
+.cont07 .bx-wrapper .bx-pager{bottom:-7%;}
+.cont07 .bx-wrapper .bx-pager .bx-pager-item .bx-pager-link.active{background: #e6ff5b;}
+
+/*가격단*/
+.tab_box{background:#2a2a2a;padding:0 3%;}
+.tab_box .tab_tit:after{clear:both;content:"";display:block;}
+.tab_box .tab_tit li{float:left;width:50%;height:13vw;line-height:13vw;text-align:center;}
+.tab_box .tab_tit li a{display:block;font-size:4.5vw;color:#fff;border-radius:10px 10px 0 0;font-weight:bold;background:#a87b00;}
+.tab_box .tab_tit li.on a{color:#222;background:#ffd460}
+.tab_box .tab_con{display:none;position:relative;}
+.tab_box .tab_con.on{display:block;}
+
+.tab_box .tab_con > ul{position:absolute;top:87%;left:20%;}
+.tab_box .tab_con > ul.t2{top:88%;}
+.tab_box .tab_con > ul li{margin-top:14%;}
+.tab_box .tab_con > ul li:first-child{margin-top:0;}
+.tab_box .tab_con > ul li label{font-size:4vw;}
+.tab_box .tab_con > ul li label input[type="radio"]{width:4vw;height:4vw;}
+input[type="checkbox"], input[type="radio"]{vertical-align:middle;margin:0 15px;}
+
+.result_price{position:relative;}
+.result_price span.price{display:block;position:absolute;top:16%;left:37%;font-size:6vw;color:#8a8a8a;}
+.result_price span.price:before{content:"";clear:both;display:block;position:absolute;top:50%;margin-top:-1vw;width:120%;height:6vw; background:url(https://gscdn.hackers.co.kr/haksa2080/images/event/200831/bul_line.png)no-repeat 0 0; background-size:contain;}

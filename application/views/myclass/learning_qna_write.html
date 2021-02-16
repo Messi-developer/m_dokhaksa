@@ -1,0 +1,59 @@
+<div class="learning_qna">
+	<!-- 타이틀 -->
+	<div class="tit_wrap t3">
+		<h4 class="qna">학습질문/답변</h4>
+		<ul>
+			<li class="none">학습관련 질문은 언제든지 물어보세요!</li>
+		</ul>
+	</div>
+	<!-- //타이틀 -->
+	<div class="txt_box">
+		<h5 class="b_bottom">학습질문등록</h5>
+		<div class="qna_write">
+			<form id="HKboardfromSubmit" method="POST" action="/myclass/learning_qna/learning_qna_Insert">
+				<input type="hidden" name="board_id" id="board_id" value="learnqna">
+				<input type="hidden" name="check_select_type" id="check_select_type" value="lecture">
+				<input type="hidden" name="islevel" id="islevel" value="">
+				
+				<ul>
+					<li>
+						<h6>구분</h6>
+						<input type="radio" id="selc1" class="select_type" name="select_type" value="lecture" checked><label for="selc1" class="mlnone">강좌</label>
+						<input type="radio" id="selc2" class="select_type" name="select_type" value="book"><label for="selc2">교재</label>
+					</li>
+					<li>
+						<h6>강좌명/교재명</h6>
+						<label for="select"></label>
+						<select name="select_lec_no" id="select_lec_no">
+							<option value="">수강 중인 강의 / 교재 중 질문 대상 강의를 선택해주세요.</option>
+							<? foreach($selectBoxOption as $option_key => $option_item) { ?>
+								<option value="<?=$option_item['no']?>"><?=$option_item['mem_lec_name']?></option>
+							<? } ?>
+						</select>
+						<span>작성자 <b><?=(!empty($_SESSION['member_name'])) ? $_SESSION['member_name'] : '홍길동' ?></b></span>
+						<span class="line_txt"></span>
+						<span>교수명 <b id="teacher_name">-</b></span>
+						<span class="line_txt"></span>
+						<span>단계 <b id="lecture_level">-</b></span>
+					</li>
+					<li>
+						<h6>질문제목</h6>
+						<input type="text" id="subject" name="subject" placeholder="질문 제목을 입력해주세요.">
+						<textarea name="memo" id="memo" placeholder="내용을 입력해주세요."></textarea>
+					</li>
+				</ul>
+			</form>
+		</div>
+	</div>
+	<!-- 더보기-->
+	<!--<div class="m_btn_wrap">
+		<button class="more_btn">더 보기 </button>
+	</div>-->
+	<!-- //더보기 -->
+	
+	<div class="m_btn_wrap t6">
+		<a href="#;" class="list btn_type2" onclick="alimLayer('alimLearningQna')">취소</a>
+		<a href="#;" onclick="HKboardInert();" class="apply btn_type2">등록</a>
+	</div>
+	
+</div>

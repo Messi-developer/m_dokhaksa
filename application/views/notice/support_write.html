@@ -1,0 +1,106 @@
+<div id="container">
+	<div id="snb">
+		<h2>고객센터</h2>
+		<span class="snb_prev">
+			<a href="#;" class="his_back"><img src="<?=$images?>/common/btn_prev.png" alt="이전"/></a>
+		</span>
+	</div>
+	
+	<div id="notice_container">
+		<!-- 상단 공통 리스트 -->
+		<div class="ul_list">
+			<ul class="cler">
+				<li class="t1"><a href="/notice/main?customerType=consulting">1:1 무료상담</a></li>
+				<li class="t2"><a href="/notice/main?customerType=faq">FAQ</a></li>
+				<li class="t3"><a href="/notice/main?customerType=notice">공지사항</a></li>
+				<li class="t4 on"><a href="/notice/main?customerType=support_write">해커스에 바란다</a></li>
+			</ul>
+		</div>
+		<!-- //상단 공통 리스트 -->
+		
+		<!-- 내용-->
+		<div class="customer_wrap">
+			<form name="hackersHelp" id="hackersHelp" method="POST" action="notice/main/hackersHelp">
+				<div class="customer_in">
+					<div class="tit v3">
+						<h4><span>해커스 독학사</span>에 바란다.</h4>
+						<p>주민등록번호, 비밀번호 등과 같은 개인정보를 글 내용에 <br> 포함하지 않도록 각별히 유의하시기 바랍니다.</p>
+					</div>
+					<div class="consult_in">
+						<span class="ps_txt">*필수</span>
+						<ul>
+							<li>
+								<label for="name"><span>*</span>이름</label>
+								<input type="text" id="name" name="name" placeholder="한글 또는 영문으로 2자 이상 입력해주세요.">
+								<em class="ipt-feedback" id="name_feedback">한글 또는 영문으로 2글자 이상 입력해주세요.</em>
+							</li>
+							<li>
+								<label for="phone"><span>*</span>연락처</label>
+								<input type="text" id="phone" name="phone" placeholder="(-)없이 번호만 입력해주세요." maxlength="11">
+								<em class="ipt-feedback" id="phone_feedback">한글 또는 영문으로 2글자 이상 입력해주세요.</em>
+							</li>
+							<li>
+								<label for="email"><span>*</span>이메일</label>
+								<input type="text" id="email" name="email" placeholder="이메일 입력해주세요." style="width:47%">
+								<span>@</span>
+								<input type="text" name="join_email" id="join_email" placeholder="naver.com" style="width:47%">
+								<em class="ipt-feedback" id="email_feedback">한글 또는 영문으로 2글자 이상 입력해주세요.</em>
+							</li>
+							<li>
+								<label for="subject"><span>*</span>제목</label>
+								<input type="text" id="subject" name="subject">
+								<em class="ipt-feedback" id="subject_feedback">한글 또는 영문으로 2글자 이상 입력해주세요.</em>
+							</li>
+							<li>
+								<label for="help_type"><span>*</span>문의유형</label>
+								<select name="help_type" id="help_type">
+									<option value="2">불편사항</option>
+									<option value="1">칭찬합니다</option>
+									<option value="3">고객제안</option>
+									<option value="4">기타</option>
+								</select>
+							</li>
+							<li>
+								<label for="contents"><span>*</span>문의내용</label>
+								<textarea name="contents" id="contents" class="textarea"></textarea>
+								<em class="ipt-feedback" id="contents_feedback">한글 또는 영문으로 2글자 이상 입력해주세요.</em>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="customer_in v2">
+					<!-- 개인정보 수집 및 이용에 관한 동의  -->
+					<div class="cs_box v2">
+						<label class="click_area cler" for="agree_all">
+							<input type="checkbox" class="icon_v" id="agree_all" name="agree_all" checked><label for="agree_all"></label>
+							<strong>개인정보 수집 및 이용에 관한 동의 <span class="color t2">(필수)</span></strong>
+							<span class="ico_down on">〉</span>
+						</label>
+						<div class="agree_box">
+							<p class="agree_txt">
+								1.개인정보 수집 항목 : 이름,이메일주소,연락처 <br>
+								2.개인정보 수집 목적 : 1:1 문의사항 접수, 응대, 민원해결 <br>
+								3.보유 및 이용기간 : 법령에서정하는 경우를 제외하고는 이용목적 <br>
+								달성시 또는 삭제 요청시까지 <br><br>
+								(*이용자는 개인정보 수집을 거부할 수 있습니다.단, 동의를 거부 <br>
+								하시는 경우 해커스 독학사에 바란다 문의 접수가 불가능합니다.) <br><br>
+							</p>
+						</div>
+					</div>
+					<!-- //개인정보 수집 및 이용에 관한 동의  -->
+				</div>
+				<!-- //내용3-->
+			</form>
+			
+			<div class="btn_wrap">
+				<a href="#;" class="full" onclick="hackersHelpSend();">보내기</a>
+			</div>
+		</div>
+		<!-- //내용-->
+
+	</div>
+	<!--// container -->
+
+</div>
+

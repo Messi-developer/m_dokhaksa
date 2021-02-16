@@ -1,0 +1,323 @@
+@charset "euc-kr";
+/* 20200520 hackers 웹개발5 Publisher  kmp */
+
+.mb20{margin-bottom:20px;}
+.mt20{margin-top:20px;}
+.fl{float:left;}
+.fr{float:right;}
+#wrap.scroll_fixed #header{}
+#wrap.scroll_fixed #gnb{position:fixed;top:0;left:0;right:0;z-index:11;}
+
+/* wrap */
+#wrap{position:relative;width:100%;height:100%;}
+#wrap img {vertical-align:middle !important;}
+.familysite_dim{position: fixed;left:0;top:0;width: 100%;height: 100%;z-index: 1;background: #000;opacity:.7;}
+
+/* header */
+#header{width:100%;z-index:10;background:#fff;position:relative;}
+#header.active{border-bottom:1px solid #e2e2e2;}
+#header h1 {padding-top:19px;text-align:center;position:relative;height:60px;border-bottom:1px solid #d7d7d7;}
+#header h1 img{width:auto;height:19px;}
+#header h1 a{display:inline-block;}
+#header .btn-family-site {height:20px;width:20px;position:relative;cursor:pointer;}
+#header .btn-family-site .icon_family{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #000;display:inline-block;}
+#header .btn-family-site.active .icon_family {border-top:0;border-bottom:5px solid #000;}
+
+/* header - 패밀리 사이트 */
+.fam_site_dim{display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:9;}
+.fam_slide_area{display:none;position:absolute;top:60px;left:0;z-index:11;width:100%;box-sizing:border-box;overflow:hidden}
+.fam_slide_area .fam_slide {background: #fff;}
+.fam_slide_area .sw_menu{padding:0 3px;}
+.fam_slide_area .sw_menu li {width:auto !important;color:#333; font-size:18px;padding:0 3%;height:42px;line-height: 42px;  text-align:center;cursor:pointer;position:relative;font-weight:bold;}
+.fam_slide_area .sw_menu li.active{color:#0097a3;}
+.fam_slide_area .sw_menu li.active:after{content: '';display: block;position: absolute;bottom: 0;left: 0;width: 100%;height: 3px;background-color: #0097a3;}
+.fam_slide_area .fam_category {overflow: hidden; width:100%;}
+.fam_slide_area .fam_category .swiper-slide{background: #fff;}
+.fam_slide_area .fam_category .swiper-slide ul li{float:left;width:calc(50% - 1px);color:#333;font-size:14px;letter-spacing: -1px;}
+.fam_slide_area .fam_category .swiper-slide ul li strong{color:#333;}
+.fam_slide_area .fam_category .swiper-slide ul li a{display:block;line-height: 43px;padding-left:10px;height: 43px;border-top:1px solid #e2e2e2;font-size:16px;}
+.fam_slide_area .fam_category .swiper-slide ul li.bd_left a{border-left:1px solid #e2e2e2}
+
+
+/* header - lnb rnb */
+#header .lnb_menu{width:22px;position:absolute;top:21px;left:15px;cursor:pointer;}
+#header .lnb_menu img{vertical-align:top !important;}
+#header .rnb_menu{position:absolute;top:50%;right:15px;cursor:pointer;margin-top:-9px;}
+#header .rnb_menu img{width:24px;}
+
+/* 전체 메뉴 */
+.lnb_all_menu {position:fixed; top:0px; left:-100%; display:none; width:100%; height:100%; z-index:99;background:#fff;overflow-y:auto;}
+.lnb_menu_close{position:absolute;top:17px;right:15px;width:20px;}
+.all_menu_top{background:#0092a3 url(//gscdn.hackers.co.kr/haksa2080/images/common/lnb_bg.jpg) no-repeat 0 bottom;background-size:100%;padding:0 25px 28px 25px;}
+.all_menu_top .am_login h2{font-size:20px;padding-top:50px;}
+.all_menu_top .am_login h2 a{display:inline-block;background:url(//gscdn.hackers.co.kr/haksa2080/images/common/lnb_login_icon.png) no-repeat right 50%;background-size:7px;padding-right:18px;color:#fff;}
+.all_menu_top .am_login p{color:#fff;font-size:14px;margin-top:10px;}
+
+.am_myInfo h2{width:76px;padding-top:18px;}
+.am_myInfo .am_name{display:block;color:#fff;font-size:21px;margin-top:18px;}
+.am_myInfo .am_benefits{margin-top:5px;}
+.am_myInfo .am_benefits li{display:inline-block;position:relative;color:#fff;padding:0 8px;}
+.am_myInfo .am_benefits li:first-child{padding-left:0;}
+.am_myInfo .am_benefits li:first-child:before{display:none;}
+.am_myInfo .am_benefits li:before{content: '';width: 1px;height: 12px;background-color:#80d1d8;display: inline-block;position: absolute;left:0;top: 5px;}
+
+.am_myInfo .am_fast_link{margin-top:18px;width:100%;}
+.am_myInfo .am_fast_link:after{clear:both;display:block;content:'';}
+.am_myInfo .am_fast_link li{float:left;width:25%;}
+.am_myInfo .am_fast_link li a{display:block;background:url(//gscdn.hackers.co.kr/haksa2080/images/common/lnb_menu_info.png) no-repeat 0 0;background-size:250px 62px;width:62px;padding-top:68px;text-align:center;color:#fff;}
+.am_myInfo .am_fast_link li:nth-child(1) a{background-position:0 0;}
+.am_myInfo .am_fast_link li:nth-child(2n) a{background-position:-63px 0;}
+.am_myInfo .am_fast_link li:nth-child(3n) a{background-position:-125px 0;}
+.am_myInfo .am_fast_link li:nth-child(4n) a{background-position:-188px 0;}
+
+.all_menu_list .am_menu:after{display:block;clear:both;content:''}
+.all_menu_list .am_menu li{width:100%;float:left;border-bottom:1px solid #e8e8e8;}
+.all_menu_list .am_menu li:first-child{border-top:0;}
+.all_menu_list .am_menu li a{display:block;font-weight:bold;color:#0097a3;padding:16px 20px;font-size:17px;background:url(//gscdn.hackers.co.kr/haksa2080/images/common/lnb_login_icon2.png) no-repeat 96% 50%;background-size:16px;}
+.all_menu_list .am_menu li a.on{background:url(//gscdn.hackers.co.kr/haksa2080/images/common/lnb_login_icon2_off.png) no-repeat 96% 50%;background-size:18px;}
+.all_menu_list .am_menu li ul{float:left;background:#f6f7f9;border-top:1px solid #e8e8e8;width:100%;padding-bottom:16px;}
+.all_menu_list .am_menu li ul li{width:50%;border-bottom:0;}
+.all_menu_list .am_menu li ul li a{font-weight:normal;color:#333333;padding:16px 0 0 20px;font-size:14px;background:none;}
+.all_menu_list .am_menu li:last-child > a{background:none;}
+
+.all_menu_list .am_menu_etc{border-top:5px solid #dddee0}
+.all_menu_list .am_menu_etc:after{display:block;clear:both;content:''}
+.all_menu_list .am_menu_etc li{width:50%;float:left;}
+.all_menu_list .am_menu_etc li a{border-left:1px solid #e8e8e8;display:block;color:#585858;padding:12px 20px;font-size:15px;background:url(//gscdn.hackers.co.kr/haksa2080/images/common/lnb_login_icon3.png) no-repeat 92% 50%;background-size:16px;}
+.all_menu_list .am_menu_etc li:first-child a{border-left:0;}
+.all_menu_btm{background:#585858;text-align:center;padding:20px 0;}
+.all_menu_btm dt{font-size:15px;color:#fff;background:url(//gscdn.hackers.co.kr/haksa2080/images/common/lnb_login_icon4.png) no-repeat 0 0;background-size:16px;padding-left:24px;display:inline-block;}
+.all_menu_btm dd{color:#c7c7c7;font-size:12px;margin-top:10px;}
+.all_menu_btm dd:last-child a{display:inline-block;font-size:14px;width:120px;text-align:center;border:1px solid #a8a8a8;border-radius:20px;padding:5px 0;color:#fff;margin:0 5px;}
+
+/* gnb */
+#gnb{background:#fff;}
+#gnb ul{width:100%;overflow:hidden;/* background:url(https://mpublic.hackers.com/images/common/bd-line.gif) repeat-x 0 bottom; */}
+#gnb ul.bg{background:#f3f4f6;}
+#gnb li{float:left;width:50%;text-align:center;}
+#gnb li a{display:block;font-weight:bold; border-bottom:4px solid #dddee0; line-height:46px;color:#585858;font-size:17px;}
+#gnb li.active a,
+#gnb li a:hover{color:#0097a3; border-bottom:4px solid #0097a3;}
+#gnb .col2 li{width:50%;}
+#gnb .col3 li{width:33.33333333333%;}
+#gnb .col4 li{width:25%;}
+#gnb .col5 li{width:20%;}
+
+
+/* gsnb */
+#gnb .gsnb.on{display:block;}
+#gnb .gsnb.bg{background:#fff;border-bottom: 1px solid #ddd;}
+#gnb .gsnb{display:none;}
+#gnb .gsnb ul:after{clear:both;content:"";display:block;}
+#gnb .gsnb ul{overflow:visible;/* border-bottom: 1px solid #ddd; */}
+#gnb .gsnb li{position:relative;text-align:left;}
+#gnb .gsnb li a{border-bottom:0; font-size:15px; padding-left: 20px; position:relative; color:#717171;}
+#gnb .gsnb li a:before{content: '';width: 4px;height: 4px;background-color: #717171;display: inline-block;position: absolute;left: 10px;top:48%;border-radius:4px;}
+#gnb .gsnb li.active a,
+#gnb .gsnb li.on a,
+#gnb .gsnb li a:hover{color:#0097a3;}
+#gnb .gsnb li.active a:before,
+#gnb .gsnb li.on a:before,
+#gnb .gsnb li a:hover:before{background:#0097a3;}
+
+
+#gnb .gsnb ul.col4.t2 li{width: auto !important; margin-left:10px;}
+
+/* snb */
+#snb{position:relative;border-bottom:1px solid #d7d7d7;}
+#snb.snb_bg{background:#f3f4f6;}
+#snb h2{text-align:center;padding:16px 0;color:#585858;font-size:16px;font-weight:normal;}
+#snb .snb_prev{position:absolute;top:15px;left:15px;width:20px; cursor:pointer;}
+#snb .snb_prev a{display:block; cursor:pointer;}
+#snb .snb_prev a img{cursor:pointer;}
+
+/* contetns */
+#container{width:100%;}
+
+/* footer */
+#footer{width:100%;}
+.foot_info_area{background:#414141;}
+.foot_menu {text-align:center;padding:15px 0;border-bottom:1px solid #4c4c4c;margin:0 3%;}
+.foot_menu:after{clear:both;display:block;content:'';}
+.foot_menu li{width:20%;float:left;position:relative;}
+.foot_menu li a{color:#b1b1b1;font-size:13px;}
+.foot_menu li:first-child:before{display:none;}
+.foot_menu li:before{content: '';width: 2px;height: 12px;background-color: #797979;display: inline-block;position: absolute;left:0;top: 5px;}
+.foot_copy{text-align: center;font-size:12px;line-height:20px;color:#828282;padding:20px 0;}
+.foot_copy span{margin:0 5px;}
+
+/* player btn */
+#playerBtn{display:block; width:22px; height:22px; background:url('https://www.haksa2080.com/img/re_main/sub/class/ico_sample_moive.png') no-repeat 0 0; background-size:100%;}
+
+/* event 상단 서브 GNB */
+.event_gnb > ul{width:100%;overflow:hidden;overflow-x:auto;white-space:nowrap;border-bottom:1px solid #ddd;box-shadow: 0px 2px 11px #ddd;}
+.event_gnb > ul > li{display:inline-block;width:25%;}
+.event_gnb > ul > li > a{display:block;text-align:center;line-height:40px;color:#717171;}
+.event_gnb > ul > li.on > a{color:#0097a3;font-weight:bold;}
+
+
+/* 알림 레이어 */
+.alim_dim{z-index:10;width:100%;height:100%;position:fixed;top:0;left:0;background:#000;opacity:0.4;}
+.alim_layer{display:none;z-index:15;width:100%;height:100%;position:fixed;top:0;left:0;right:0;bottom:0;text-align:center;}
+.alim_layer:before {height:100%;content:'';display:inline-block;vertical-align:middle}
+.alim_layer .alim_area{position: relative;display: inline-block;vertical-align: middle; margin: 0 auto;text-align: left;background-color: #fff;min-width:300px;border-radius:6px;padding:38px 30px 25px 30px;z-index:12;}
+.alim_layer .alim_close{position:absolute;top:15px;right:15px;width:20px;}
+.alim_layer .alim_close a{display:block;}
+
+.alim_layer .alim_txt{text-align:center;}
+.alim_layer .alim_txt img{width:40px;display:block;margin: 0 auto 10px auto;}
+
+.alim_layer .alim_button{margin-top:40px;}
+.alim_layer .alim_button ul{overflow:hidden;width:100%;}
+.alim_layer .alim_button li{width:100%;float:left;}
+.alim_layer .alim_button .col2 li{width:49%;}
+.alim_layer .alim_button .col2 li{width:49%;float:right;}
+.alim_layer .alim_button .col2 li:first-child{float:left;}
+.alim_button .black_btn{display:block;text-align:center;background:#414141;color:#fff;font-size:15px;border:1px solid #414141;line-height:40px;border-radius:4px;font-weight:bold;width:100%;box-sizing: border-box;}
+.alim_button .white_btn{display:block;text-align:center;background:none;color:#787878;font-size:15px;border:1px solid #a1a1a1;line-height:40px;border-radius:4px;font-weight:bold;width:100%;box-sizing: border-box;}
+
+
+/* 아쿠아 플레이어 */
+#content section .aqua{background-color:#fff;}
+#content section .aqua dd.btn_lecture a{color:#b41e2f; font-weight:bold;}
+
+/* list none 일경우 노출 */
+.list_none {
+	padding: 110px 0 40px !important;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	color: #c0c0c0;
+	border-bottom: 0 !important;
+	background: #fff url(//gscdn.hackers.co.kr/haksa2080/images/icon/no_list.png)no-repeat center 40px;
+	background-size: 60px 60px;
+	border: 0;
+}
+.bg-gray{
+	background: #e9eaeb url(//gscdn.hackers.co.kr/haksa2080/images/icon/no_list.png)no-repeat center 40px;
+	background-size: 60px 60px;
+}
+
+
+/*이벤트 유의사항*/
+#event_guide .btn_area{background:#000;color:#fff;font-weight:bold;font-size:16px;text-align: center;padding:15px 0;}
+#event_guide .btn_area.on + .pro_refund_guide{display:block;}
+.pro_refund_guide{display:none;color: #000;position:relative;padding:0 5% 5%;}
+.pro_refund_guide h3{font-size: 20px;margin:20px 0 10px;}
+.pro_refund_guide dl dt{font-size: 17px;margin-bottom:10px;font-weight:bold;}
+.pro_refund_guide dl dd{padding-left: 10px;font-size: 14px;line-height: 1.6;}
+.pro_refund_guide dl dd ul{margin:5px 0;}
+.pro_refund_guide dl dd ul li{padding-left:14px;}
+.pro_refund_guide span.red_txt{color:#df0404}
+.pro_refund_guide .btn_class{margin:15px 0;padding-left:0;}
+.pro_refund_guide .btn_class a{background-color: #707070;text-align: center;line-height: 30px;display:inline-block;padding:0 10px;color:#fff;}
+.pro_refund_guide .event_info{text-align: center;margin-bottom:20px;}
+
+.proRefundview{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-40%);background:#fff;color:#000;z-index:11;width:95%;height:400px;overflow:auto;}
+.dimBg{position: fixed;top: 0;left: 0;width: 100%;height: 100%;opacity: 0.8;background-color: #000;z-index:10;}
+
+.proRefundview .proRefundviewBox{position:relative;padding:10px;}
+.proRefundview h4{font-size:16px;text-align:center;}
+.proRefundview .event_info{margin-top:20px;}
+.event_info th{border:1px solid #d3d3d3;padding:10px 0;text-align:center;background:#ebebeb;font-size:12px;height:auto;}
+.event_info td{border:1px solid #d3d3d3;padding:15px 6px;font-size:12px;height:auto;}
+.proRefundview .prorefund_close{position: absolute;color: #000;font-size: 25px;top:5px;right: 10px;}
+
+.proRefundList {overflow:hidden;width:100%;}
+.proRefundList li{float:left;width:48%;}
+.proRefundList li.list_fr{float:right;}
+
+.red_f{color:red;}
+
+
+
+/* 타이머 공통 */
+.timer_box{width:100%;background:#000;text-align:center}
+.timer_box .timer_in{padding:10px 0;margin:0 auto;box-sizing: border-box;}
+.timer_box .timer_in > div{display:inline-block;color:#fff;letter-spacing:0;vertical-align:middle}
+.timer_box .timer_in > div.time_area{margin-left:5%;font-size:0.8rem;}
+.timer_box .timer_in > div.finish_mark img{display:block;min-width:60px;max-width:80px}
+.timer_box .bx_time{font-size:1.4rem;letter-spacing:-1px}
+.timer_box .bx_time span[data-component="timer"]{font-size:1.9rem;line-height:1.9rem}
+.timer_box span[data-format="label"]{display:inline-block;width:80px;height:80px;background:url('//gscdn.hackers.co.kr/haksa2080/images/event/timer_pop_bg.png') no-repeat 0 0;background-size:80px auto;}
+.timer_box span[data-format="label"]:after{display:inline-block;content:'';width:0;height:100%;vertical-align:middle;}
+.timer_box span[data-format="label"] {animation-name:finish_mark;animation-duration: 2s;animation-iteration-count: infinite;animation-direction: normal;animation-timing-function: ease-in-out;animation-fill-mode: both;animation-delay: 1s;}
+.timer_box .tx_info{font-size:0.7rem;line-height:0.9rem;font-weight:normal;color:#d6d6d6}
+.finish_mark .txt{display:inline-block;margin-top:8px;font-size:14px;color:#fff;font-weight:600;vertical-align:middle;}
+.finish_mark .txt strong{display:block;color:#fff695}
+@keyframes finish_mark{
+	0%, 100%{transform:translate(0,5px)}
+	50%{transform:translate(0,-5px)}
+}
+@keyframes opacity_key {
+	0%, 100%  { opacity: 1; }
+	30% { opacity: 0.3; }
+	60% { opacity: 0.6; }
+	90% { opacity: 0.9; }
+}
+.timebox span[data-format="ss"],.timer_box span[data-format="ss"] {
+	animation-name: opacity_key;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-direction: normal;
+	animation-timing-function: ease-out;
+	animation-fill-mode: both;
+	animation-delay: 0;
+}
+
+
+/* 초간편 문자상담 신청 */
+.event_wrap{display:none;}
+.event_wrap .bg{background:#000;opacity:0.5;position:fixed;top:0;left:0;width:100%;height:100%;z-index:11;}
+.smsApply_con{ position:fixed;top:50%;left:50%;margin:-180px 0 0 -155px;z-index:12;width:310px;text-align:center;border:3px solid #f14f3a;background-color:#fff;}
+.smsApply_con h2{color:#000;font-weight:normal;font-size:1.3rem;margin:15px 0 0; font-family:Malgun Gothic; font-weight:bold;}
+.smsApply_con h2 span{color:#f14f3a;}
+.smsApply_con .sms_txt_area{background:#fff; position:relative;}
+.smsApply_con .sms_txt_area .txt_top{font-size:1.1rem; padding-top:3px; letter-spacing:-0.5px; padding-top:5px; color:#222;}
+.smsApply_con img{width:100%;}
+
+.sms_form{padding:12px 15px 12px 15px; text-align:left; font-size:0.8rem;}
+
+.sms_form .row{margin-bottom:8px;}
+.sms_form .row input{height:40px;width:222px; border:none; background:#fff; padding-left:5px; font-size:14px; border:1px solid #ddd; }
+
+
+.write_sms ul li{overflow:hidden;margin-bottom:10px;}
+.write_sms ul li label{float:left;position:relative;top:14px; width:25%; font-size:14px;}
+.write_sms ul li input{float:left; width:75%;}
+.sms_form .blit_sms.user_txt{vertical-align:top; margin-right:2px;}
+.sms_form .chk_sms{padding-left:0px;}
+.sms_form .chk_sms input{margin-right:2px;}
+.sms_form .btn_apply{ letter-spacing:0em;display:block; width:80%; margin:0 auto; height:50px; margin-top:25px; color:#fff; font-size:14px; font-weight:bold; }
+.sms_form input[type="text"] { letter-spacing:0em;}
+.smsApply_con .sms_txt_area .logo_sms{padding:15px 0;}
+.smsApply_con .sms_txt_area .logo_sms img{width:120px;}
+.smsApply_con .btn_close{color:#000;width:15px; position:absolute;top:6px;right:7px;}
+.sms_form .view_detail{padding-top:5px;text-align:left; text-indent:30px;}
+.view_detail a{display:block; color:#666;font-size:12px;}
+.sms_form .per_wrap{display:none;height:90px;border:1px solid #ccc;overflow-y:scroll;overflow-x:hidden;}
+.sms_form .per_wrap strong{display:block;padding:3px 0;text-align:center;background:#555;color:#fff;}
+.sms_form .per_wrap p{padding:2px;}
+.view_wrap { margin-top:10px;}
+
+.chk_sms dl dt label,
+.chk_sms dl dd label{color:#666;font-size:12px;}
+.layer_btn{display:block;margin:15px auto 0;}
+
+.chk_sms input[type="checkbox"] {
+    display:none;
+}
+.chk_sms input[type="checkbox"] + label span {
+    display:inline-block;
+    width:15px;
+    height:15px;
+    margin:-2px 10px 0 0;
+    vertical-align:middle;
+    background:url('//gscdn.hackers.co.kr/haksa2080/images/event/img/con_check.png') no-repeat 0 0;
+		background-size:100% auto;
+    cursor:pointer;
+}
+.chk_sms input[type="checkbox"]:checked + label span {
+    background:url('//gscdn.hackers.co.kr/haksa2080/images/event/img/con_check_on.png') no-repeat 0 0;
+		background-size:100% auto;
+}

@@ -1,0 +1,137 @@
+<div class="m_wrap payment">
+	<!-- 타이틀 -->
+	<div class="tit_wrap">
+		<h4 class="cupon">쿠폰내역</h4>
+		<div class="t_wrap">
+			<table>
+				<caption>쿠폰내역</caption>
+				<colgroup>
+					<col style="width:25%">
+					<col style="width:*">
+				</colgroup>
+				<tbody>
+				<tr>
+					<th scope="row">사용</th>
+					<td>
+						<ul>
+							<li>쿠폰과 포인트를 동시에 할인 적용할 수 없습니다.</li>
+							<li>유효기간이 있는 쿠폰의 경우, 해당 기간 외에는 사용이불가합니다.</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">환불</th>
+					<td>
+						<ul>
+							<li>쿠쿠폰을 사용한 결제건 환불 시 결제에 사용한 쿠폰은 환불되지 않습니다.</li>
+							<li>쿠폰을 사용한 결제건 환불 시 결제에 사용한 쿠폰은 환불되지 않습니다.</li>
+						</ul>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- //타이틀 -->
+	<!--쿠폰내역-->
+	<div class="basket_list">
+		<!-- 보유쿠폰 -->
+		<div class="pay_bg">
+			<strong>보유 쿠폰<span> 총 <?=count($userCouponData)?>장</span></strong>
+			<div class="input_wrap">
+				<label for="cupon"></label>
+				<input type="text" id="coupon_number" name="coupon_number" placeholder="쿠폰 번호를 입력해주세요.">
+				<input type="button" name="c_btn" value="등록" onclick="couponInsertCheck();">
+			</div>
+		</div>
+		<!-- //보유쿠폰 -->
+		
+		<!-- 쿠폰 탭메뉴 -->
+		<div class="cupon_wrap">
+			<div class="tab_area t2">
+				<input type="hidden" name="userCoupon" id="userCoupon" value="<?=count($userCouponData)?>">
+				<input type="hidden" name="userUsedCoupon" id="userUsedCoupon" value="<?=$userEndCouponListCnt->cnt?>">
+				
+				<ul class="tab_tit cler">
+					<li class="on"><a href="#;">보유쿠폰</a></li>
+					<li><a href="#;">지난쿠폰</a></li>
+				</ul>
+				<!-- 보유쿠폰 -->
+				<div class="tab_con on" id="use_coupon_content">
+					<? if (!empty($userCouponList)) { ?>
+						<ul class="cupon_list" id="use_coupon_list">
+							<? foreach($userCouponList as $coupon_key => $coupon_item) { ?>
+							<li>
+								<p>
+									<span class="name"><?=$coupon_item['cupone_name']?></span>
+									<? if ($coupon_item['lucky_percent'] == '0') { ?>
+										<span class="percent">할인금액 쿠폰</span>
+										<span class="exp_date">유효기간 : <?=$coupon_item['start_date']?> ~ <?=$coupon_item['end_date']?></span>
+										</p>
+										<div class="discount_box">
+											<img src="//gscdn.hackers.co.kr/haksa2080/images/myclass/bg_cupon2.png" alt="" />
+											<span class="discount"><?=number_format($coupon_item['lucky_price'])?>원 할인</span>
+										</div>
+									<? } else { ?>
+										<span class="percent"><?=$coupon_item['lucky_percent']?>%</span>
+										<span class="exp_date">유효기간 : <?=$coupon_item['start_date']?> ~ <?=$coupon_item['end_date']?></span>
+										</p>
+										<div class="discount_box">
+											<img src="//gscdn.hackers.co.kr/haksa2080/images/myclass/bg_cupon2.png" alt="" />
+											<span class="discount"><?=$coupon_item['lucky_percent']?>% 할인</span>
+										</div>
+									<? } ?>
+								</li>
+							<? } ?>
+						</ul>
+					<? } else { ?>
+						<div class="list_none">
+							보유중인 쿠폰이 <br> 없습니다.
+						</div>
+					<? } ?>
+				</div>
+				<!--// 보유쿠폰 -->
+				
+				<!-- 지난쿠폰 -->
+				<div class="tab_con">
+					<ul class="cupon_list" id="used_coupon_list">
+						<? if (!empty($userEndCouponList)) { ?>
+							<? foreach($userEndCouponList as $coupon_key => $coupon_item) { ?>
+								<li>
+									<img src="//gscdn.hackers.co.kr/haksa2080/images/myclass/bg_cupon.png" alt="">
+									<span class="name"><?=$coupon_item['cupone_name']?></span>
+									<? if ($coupon_item['lucky_percent'] == '0') { ?>
+										<span class="percent t2">할인금액 쿠폰</span>
+										<span class="exp_date">유효기간 : <?=$coupon_item['start_date']?> ~ <?=$coupon_item['end_date']?></span>
+										<span class="discount t2"><?=number_format($coupon_item['lucky_price'])?>원 할인</span>
+									<? } else { ?>
+										<span class="percent t2"><?=$coupon_item['lucky_percent']?>%</span>
+										<span class="exp_date">유효기간 : <?=$coupon_item['start_date']?> ~ <?=$coupon_item['end_date']?></span>
+										<span class="discount t2"><?=$coupon_item['lucky_percent']?>% 할인</span>
+									<? } ?>
+								</li>
+							<? } ?>
+						<? } else { ?>
+							<div class="list_none">
+								지난 쿠폰이 없습니다.
+							</div>
+						<? } ?>
+					</ul>
+				</div>
+				<!--// 지난쿠폰 -->
+			</div>
+		</div>
+		<!-- //쿠폰 탭메뉴 -->
+	</div>
+	<!--//쿠폰내역-->
+	<? if (!empty($userCouponList) || !empty($userEndCouponList)) { ?>
+		<div class="m_btn_wrap books_more">
+			<button class="more_btn" onclick="couponGetList();">더 보기 </button>
+		</div>
+	<? } ?>
+</div>
+<!-- //내용 -->
+<div class="foot_ps_txt">
+	<p>※ 구매한 상품에 대한 환불/취소를 원하실 경우 관련 정책  확인 후 해커스 독학사에 문의주시기 바랍니다. <span>(T&#46;1599-3081)</span></p>
+	<a href="/notice/main?customerType=faq">해커스 독학사 환불규정 ></a>
+</div>

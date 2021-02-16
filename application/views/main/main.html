@@ -1,0 +1,118 @@
+<!-- container -->
+<div id="container">
+	<!-- 시험일정 -->
+	<div class="main_ex_calender">
+		<a href="/main/exam_calender">
+			<strong><?=$main_calender->name?></strong>
+			<ul>
+				<li><?=$main_calender->exam_date_md?><?=$main_calender->exam_day?></li>
+				<li>D-<?=$main_calender->exam_dday?></li>
+			</ul>
+		</a>
+	</div>
+	<!--// 시험일정 -->
+	
+	<!-- 메인 빅배너 -->
+	<? if (!empty($main_slide_banner)) { ?>
+	<div class="main_bnr_area">
+		<div class="main_bnr_top">
+			<ul class="swiper-wrapper">
+				<? foreach($main_slide_banner as $slide_key => $slide_item) { ?>
+					<li class="swiper-slide">
+						<? if (!empty($slide_item['URL_1'])) { ?>
+							<a href="<?=$slide_item['URL_1']?>" target="<?=$slide_item['target']?>">
+						<? } else { ?>
+							<a href="#;">
+						<? } ?>
+							<img src="https://www.haksa2080.com/zfiles/banner_img/<?=$slide_item['imgBanner']?>" alt="" >
+						</a>
+					</li>
+				<? } ?>
+			</ul>
+			<div class="swiper-pagination"></div>
+		</div>
+	</div>
+	<? } ?>
+	
+	<!-- 선배들의 합격 노하우 -->
+	<div class="main_pass_tip">
+		<div class="m_ptit">
+			<h3>선배들의 합격 노하우</h3>
+			<p>꿈이 실현되도록 만들어 드리겠습니다.</p>
+			<!--<span class="btn_more"><a href="#;"><img src="<?/*=$images*/?>/main/btn_more.png" alt="더 보기" ></a></span>-->
+		</div>
+		
+		<div class="main_bnr_tip">
+			<ul class="swiper-wrapper">
+				<li class="swiper-slide"><a href="https://tv.naver.com/v/10054076" target="_blank"><img src="<?=$images?>/main/main_tip_slide01.png" alt="김형원" ></a></li>
+				<li class="swiper-slide"><a href="https://tv.naver.com/v/10054088" target="_blank"><img src="<?=$images?>/main/main_tip_slide02.png" alt="조혜진" ></a></li>
+				<li class="swiper-slide"><a href="https://tv.naver.com/v/10054092" target="_blank"><img src="<?=$images?>/main/main_tip_slide03.png" alt="한장희" ></a></li>
+				<li class="swiper-slide"><a href="https://tv.naver.com/v/9405228/list/452618" target="_blank"><img src="<?=$images?>/main/main_tip_slide04.png" alt="변재환" ></a></li>
+				<li class="swiper-slide"><a href="https://tv.naver.com/v/11760573" target="_blank"><img src="<?=$images?>/main/main_tip_slide05.png" alt="최현중" ></a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<!-- 서브배너 -->
+	<? if (!empty($main_slide_bottom_banner)) { ?>
+	<div class="main_bnr_top">
+		<? if ($main_slide_bottom_banner->URL_1 != '') { ?>
+			<a href="<?=$main_slide_bottom_banner->URL_1?>" target="<?=$main_slide_bottom_banner->target?>">
+		<? } else { ?>
+			<a href="#;">
+		<? } ?>
+			<img src="https://www.haksa2080.com/zfiles/banner_img/<?=$main_slide_bottom_banner->imgBanner?>" alt="" >
+		</a>
+	</div>
+	<? } ?>
+	
+	<!-- 스타교수 -->
+	<div class="main_star_teach">
+		<div class="m_ptit">
+			<h3>스타교수</h3><!--  -->
+			<p>해커스 독학사의 스타교수님들을 소개합니다.</p>
+			<!--<em>* 교수님 이미지를 선택하시면 소개 페이지로 이동합니다.</em>-->
+			<!--<span class="btn_more"><a href="#;"><img src="<?/*=$images*/?>/main/btn_more.png" alt="더 보기" ></a></span>-->
+		</div>
+		
+		<div class="main_bnr_star">
+			<ul class="swiper-wrapper">
+				<? foreach($main_star_teacher as $star_kry => $star_item) { ?>
+					<li class="swiper-slide">
+						<img src="https://www.haksa2080.com/zfiles/teacher_img/<?=$star_item['profile_img']?>" alt="<?=$star_item['name']?>" >
+						<strong class="star_tit"><?=$star_item['name']?></strong>
+						<dl>
+							<dt><?=$star_item['category_name']?></dt>
+							<dd><?=$star_item['brief']?></dd>
+							<dd class="last"><a href="/lecture/lecture_view?lec_no=<?=$star_item['lecture_no']?>" target="_blank">샘플강의</a></dd>
+						</dl>
+					</li>
+				<? } ?>
+			</ul>
+		</div>
+	</div>
+	
+	<!-- 공지사항 -->
+	<div class="main_notice">
+		<div class="m_ptit">
+			<h3>공지사항</h3>
+			<span class="btn_more"><a href="/notice/main?customerType=notice"><img src="<?=$images?>/main/btn_more.png" alt="더 보기" ></a></span>
+		</div>
+		<!--
+			noti_type1 = 배경 녹색 공지
+			noti_type2 = 라인만 녹색 공지
+			noti_type3 = 라인만 보라색 이벤트
+		-->
+		<ul>
+			<? foreach($main_notice as $notice_key => $notice_item) { ?>
+				<li class="noti_type1">
+					<span class="m_noti_icon"><?=($notice_item['division'] == '4') ? '공지' : '이벤트' ?></span>
+					<a href="/notice/view?viewType=notice&notice_no=<?=$notice_item['no']?>"><?=$notice_item['subject']?></a>
+					<span class="m_noti_day"><?=$notice_item['wdate']?></span>
+				</li>
+			<? } ?>
+		</ul>
+	
+	</div>
+</div>
+<!--// container -->

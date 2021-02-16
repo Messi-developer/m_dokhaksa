@@ -1,0 +1,46 @@
+<?
+$img_url = '//gscdn.hackers.co.kr/haksa2080/images/event/200907/';
+
+//timer 이벤트 마감일 (매주 목요일)
+$endDay = '목';
+?>
+
+<div class="evt_wrap">
+
+    <?include 'application/views/event/timer.php'?>
+
+    <img src="<?=$img_url?>cont01.jpg" alt=""/>
+
+    <img id="cta" src="<?=$img_url?>cont02.jpg" alt="" usemap="#cont02_map"/>
+    <map name="cont02_map" map-autoresize>
+        <area shape="rect" coords="459, 112, 621, 150" href="#event_guide"/>
+		<? if ($this->session->userdata('member_id') != '' && $this->session->userdata('member_no') != '') { ?>
+			<area shape="rect" coords="20, 173, 620, 624" href="#;" onclick="paymentApply('338');"/>
+			<area shape="rect" coords="21, 664, 620, 1051" href="#;" onclick="paymentApply('339');"/>
+		<? } else { ?>
+			<area shape="rect" coords="20, 173, 620, 624" href="#;" onclick="alimLayer('alimLogin');"/>
+			<area shape="rect" coords="21, 664, 620, 1051" href="#;" onclick="alimLayer('alimLogin');"/>
+		<? } ?>
+    </map>
+
+    <img src="<?=$img_url?>cont03.jpg" alt="" usemap="#cont03_map"/>
+    <map name="cont03_map" map-autoresize>
+        <area shape="rect" coords="459, 96, 620, 131" href="#event_guide"/>
+		<? if ($this->session->userdata('member_id') != '' && $this->session->userdata('member_no') != '') { ?>
+			<area shape="rect" coords="20, 154, 620, 606" href="#;" onclick="paymentApply('340');"/>
+			<area shape="rect" coords="19, 646, 620, 1034" href="#;" onclick="paymentApply('341');"/>
+		<? } else { ?>
+			<area shape="rect" coords="20, 154, 620, 606" href="#;" onclick="alimLayer('alimLogin');"/>
+			<area shape="rect" coords="19, 646, 620, 1034" href="#;" onclick="alimLayer('alimLogin');"/>
+		<? } ?>
+    </map>
+
+    <img src="<?=$img_url?>cont04.jpg" alt=""/>
+
+    <img src="<?=$img_url?>cont05.jpg" alt="" usemap="#cont05_map"/>
+    <map name="cont05_map" map-autoresize>
+        <area shape="rect" coords="43, 756, 596, 837" href="#cta"/>
+    </map>
+
+    <?include 'application/views/event/refund_guide.php'?>
+</div>

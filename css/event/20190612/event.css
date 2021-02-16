@@ -1,0 +1,45 @@
+/*공통*/
+.evt_wrap{width:100%;}
+.c_red{color:red;}
+.timer_wrap{background-color:#000;}
+.p-r{position:relative;}
+.rio-btn{position:absolute;top:50%;left:50%;margin-left:-138px;margin-top:28%;}
+.rio-btn ul:after{clear:both; content:""; display:block;}
+.rio-btn ul{width:320px;}
+.rio-btn ul li{float:left;margin-right:10px;font-size:14px;}
+.rio-btn ul li label,
+.rio-btn ul li input{display:inline-block;vertical-align:middle;margin:0;}
+.con02{position:relative;}
+.con03{position:relative;}
+.event_input{width:70%;position:absolute;left:15%;top:57%;overflow:hidden;}
+.con03 .event_input{top:45%;}
+.event_input li{width:50%;float:left;padding-bottom:2.2%;font-size:1.5em;}
+.event_input li input{vertical-align:middle;margin-right:5px;}
+.con07{position:relative;}
+.con07 .bxslider-default{width:94%;position:absolute;left:3%;top:26%;}
+
+
+/*강좌/교재/수강기간 테이블*/
+.c-table{display:none;padding-top:20px;}
+.c-table table{width:100%;table-layout:fixed;border-collapse:collapse;}
+.c-table table thead th{text-align:center;font-weight:bold;border-left:1px solid #d3d3d3;border-bottom:1px solid #d3d3d3;background-color:#e9e9e9;}
+.c-table table tbody th{border-left:1px solid #d3d3d3;border-bottom:1px solid #d3d3d3;height:30px;text-align:center;background:#fff;font-size:12px}
+.c-table table tbody td{border-left:1px solid #d3d3d3;border-bottom:1px solid #d3d3d3;text-align:center;background:#fff;font-size:12px}
+.c-table table tbody td.c_red{color:red;}
+
+
+/* 이벤트 탭 */
+.evt_wrap .top_tab{width:100%;overflow:hidden;}
+.evt_wrap .top_tab li{width:33.33333333333%;float:left;}
+.evt_wrap .top_tab li a{display:block;border-left:1px solid #fff;}
+.evt_wrap .top_tab li:first-child a{border-left:0;}
+.evt_wrap .top_tab.col3 li{width:33.3333333333333333%}
+
+.tab-list{background-color:#fffdd9;}
+.tab-list > ul{width:90%;margin:0 auto 30px;}
+.tab-list > ul:after{clear:both; content:""; display:block;}
+.tab-list > ul > li{float:left; width:49%;margin-bottom:10px;margin-right:2%;text-align:center;}
+.tab-list > ul > li:nth-child(2n){margin-right:0;}
+.tab-list > ul > li a{display:block;}
+.js-tab-type2-con{display:none;}
+.js-tab-type2-con.on{display:block;}

@@ -1,0 +1,188 @@
+/**/
+.tal{text-align:left !important;}
+.col_main{color:#0097a3 !important;}
+
+/* 메인 빅배너 */
+.books_bnr_area{position:relative;overflow:hidden;}
+.books_bnr_top .swiper-pagination{bottom:inherit;top:20px;left:15px;background:url(//gscdn.hackers.co.kr/haksa2080/images/main/main_big_icon.png) no-repeat 0 0;background-size:60px;width:60px;height:22px;text-align:center;color:#fff;font-size:12px;line-height:22px;}
+
+
+/* 검색 패널*/
+.search_panel{width:100%;position:relative;border-top:5px solid #dddee0;border-bottom:1px solid #d7d7d7;}
+.search_panel strong{display:block;padding:25px 130px 25px 15px;color:#565656;font-size:18px;}
+.search_panel strong span{color:#0097a3;}
+.search_panel .btnSearch{border:1px solid #989898;border-radius:4px;color:#6c6c6c;font-size:14px;background:#fff;padding:7px 32px 7px 15px;position:relative;}
+.search_panel .btnSearch:before{content: '';width: 14px;height: 7px;position: absolute;right:10px;top:40%;background:url(//gscdn.hackers.co.kr/haksa2080/images/books/btn_search_icon.png) no-repeat 0 0;background-size:14px auto;}
+.search_panel .btnSearch.active:before{background-position-y:-7px;}
+
+.search_right{position:absolute;top:20px;right:15px;}
+.btnSearchView{border-top:1px solid #d7d7d7;margin:0 15px;padding:20px 0;}
+.btnSearchView li{position:relative;padding-left:60px;margin-top:10px;}
+.btnSearchView li:first-child{margin-top:0;}
+.btnSearchView li span{position:absolute;top:12px;left:0;color:#565656;font-size:14px;}
+
+.button_area {margin-top:18px;text-align:right;}
+.button_area  button{display:inline-block;background:#0097a3;color:#fff;font-size:15px;width:90px;text-align:center;padding:10px 0;border-radius:4px;margin-left:8px;}
+.button_area  button:first-child{background:#414141}
+
+.books_list{padding:0 15px 25px 15px;background:#f3f4f6}
+.books_list > ul > li{padding-top:25px;}
+.books_list li.books_nolist{font-size:25px;color:#c0c0c0;font-weight:bold;text-align:center;margin:0;padding:15% 0;display:none;}
+.books_list li.books_nolist.on{display:block;}
+.books_list li.books_nolist img {width:50px;display:block;margin: 0 auto 10px auto;}
+.books_list li .books_img{position:relative; height:196px; background:url('//gscdn.hackers.co.kr/haksa2080/images/books/books_img_bg.png') no-repeat 100% 60%;background-size:cover;}
+.books_list li .books_img span{display:inline-block;background:#fff;color:#0097a3;font-size:12px;line-height:22px;height:22px;border-radius:25px;padding:0 10px;}
+.books_list li .books_img .cl_type{background:#54fff9;color:#00676f;}
+.books_list li .books_img .books_icon{position:absolute;top:10%;left:5%;}
+.books_list li .books_img p{color:#fff; font-size:15px; position:absolute; top:34%; left:5%; width:48%; height:60px; overflow-y:auto;}
+.books_list li .books_img strong{display:block;color:#fff;font-size:21px;position:absolute; top:68%; left:5%;}
+
+.books_list li .books_name{border-left:1px solid #cccccc;border-right:1px solid #cccccc;display:block;background:#fff;padding:5%;}
+.books_list li .books_name dl{overflow:hidden;background:url(//gscdn.hackers.co.kr/haksa2080/images/books/boos_sch_icon04.png) no-repeat right 50%;background-size:12px;}
+.books_list li .books_name dt{float:left;width:100%;font-size:20px;color:#333333;font-weight:bold;margin-bottom:10px;}
+.books_list li .books_name dd{float:left;font-size:14px;color:#565656;height:20px;padding-left:20px;line-height:20px;}
+.books_list li .books_name dd.num_day {background:url(//gscdn.hackers.co.kr/haksa2080/images/books/boos_sch_icon01.png) no-repeat 0 50%;background-size:16px;}
+.books_list li .books_name dd.num_point{background:url(//gscdn.hackers.co.kr/haksa2080/images/books/boos_sch_icon02.png) no-repeat 0 50%;background-size:16px;}
+.books_list li .books_name dd.line_txt{background:#a9a9a9;margin:0 8px;padding:0;width:1px;height:16px;position:relative;top:2px;}
+
+.books_list li .books_amt{border:1px solid #cccccc;border-top:0;padding:0 5%;background:#fff;border-radius:0 0 6px 6px;}
+.books_list li .books_amt dl{border-top:1px solid #cccccc;padding:5% 0;position:relative;}
+.books_list li .books_amt dl dt{position:absolute;top:36%;left:0;font-size:17px;color:#565656;}
+.books_list li .books_amt dl dd{padding-left:100px;text-align:right;color:#565656;font-size:15px; overflow:hidden;}
+.books_list li .books_amt dl .dc_amt{text-decoration:line-through;}
+.books_list li .books_amt dl dd span{display:inline-block; margin-top:2px; float:right; color:#fff;background:#36b9c3;font-size:12px;border-radius:20px;line-height:26px;padding:0 10px;vertical-align:middle;margin-right:5px;}
+.books_list li .books_amt dl dd strong{float:right; color:#eb0032;font-size:22px;display:inline-block;line-height:26px;vertical-align:middle;}
+.books_list .books_more{border-top:1px solid #9f9fa0;margin-top:5%;}
+.books_list .books_more .txt_btn{display:block;text-align:center;font-size:14px;color:#8a8a8a;background:url(//gscdn.hackers.co.kr/haksa2080/images/books/boos_sch_icon03.png) no-repeat 50% bottom;background-size:12px;padding:15px 0 10px 0;width:100%;box-sizing: border-box;}
+
+.books_btn {margin-top:10px;}
+.books_btn ul{overflow:hidden;width:100%;}
+.books_btn li{float:left;padding-top:0;}
+.books_btn li:first-child{float:left;}
+.books_btn .col2 li{width:49%;float:right;}
+.books_btn .col2 li:first-child{float:left;}
+.books_btn .black_btn{display:block;text-align:center;background:#414141;color:#fff;font-size:17px;border:1px solid #414141;line-height:45px;border-radius:4px;font-weight:bold;width:100%;box-sizing: border-box;}
+.books_btn .white_btn{display:block;text-align:center;background:none;color:#787878;font-size:17px;border:1px solid #919191;line-height:45px;border-radius:4px;font-weight:bold;width:100%;box-sizing: border-box;}
+
+
+/* view */
+.books_view_top{}
+.books_view_top .books_img{display:block; height:260px; position:relative; background:url(//gscdn.hackers.co.kr/haksa2080/images/books/books_view_bg.jpg) no-repeat 0 0; background-size:100%;}
+
+.books_view_top .books_img .books_icon{position:absolute;top:13%;left:5%;}
+.books_view_top .books_img .books_icon span{display:inline-block;background:#0097a3;color:#fff;font-size:14px;line-height:26px;height:26px;border-radius:26px;padding:0 10px;}
+.books_view_top .books_img p{color:#232323; font-size:1rem; position:absolute; top:30%; left:5%;font-weight:bold; width:190px;}
+.books_view_top .books_img strong{display:block;color:#0097a3;font-size:21px;position:absolute;top:65%;left:5%;}
+
+.books_btn_fixed{position:fixed;bottom:0;left:0;right:0;z-index:5;}
+.books_btn_fixed .btn_green{display:block;text-align:center;background:#0097a3;color:#fff;font-size:18px;line-height:60px;font-weight:bold;width:100%;box-sizing: border-box;}
+
+
+/* view - tab */
+.books_view_tab .tab_tit li{width:50%;text-align:center;}
+.books_view_tab .tab_tit li a{display:block;color:#868686;background:#565656;line-height:42px;height:42px;border-top:3px solid #565656;font-weight:bold;font-size:17px;}
+.books_view_tab .tab_tit li.active a{color:#0097a3;background:#fff;border-top:3px solid #0097a3;}
+.books_view_tab .tab_con_box{padding-top:25px;}
+
+.books_view_tab .video_smaple iframe{border:0;}
+.books_view_tab .video_smaple {position: relative;padding:0 0 56.25% 0}
+.books_view_tab .video_smaple iframe {position: absolute;width: 100%;height: 100%;box-sizing: border-box;}
+
+/* view - table */
+.books_tb_view{padding:0 3%;}
+.books_tb_view table{width:100%;border-top:1px solid #757576;border-bottom:1px solid #757576;}
+.books_tb_view table th{background:#f0f1f5;font-size:15px;color:#545454;padding:15px 0 ;text-align:center;border-bottom:1px solid #fff;}
+.books_tb_view table th span{color:#818181;font-size:11px;font-weight:normal;}
+.books_tb_view table td{padding:15px 0;font-size:15px;color:#333333;border-bottom:1px solid #ebebeb;text-align:center;}
+.books_tb_view table td > #playerBtn{margin:0 auto;}
+.books_tb_view .books_more_btn{display:block;margin-top:10px;}
+.books_tb_view .books_more_btn a{display:inline-block;color:#fff;font-size:14px;border-radius:4px;line-height:30px;height:30px;padding:0 22px 0 15px;background:#36b9c3 url(//gscdn.hackers.co.kr/haksa2080/images/books/boos_view_icon01.png) no-repeat 90% 50%;background-size:7px}
+
+/* tab menu -  공통 */
+.tab_menu_area .tab_tit{overflow:hidden;width:100%;}
+.tab_menu_area .tab_tit li{float:left;cursor:pointer;}
+.tab_menu_area .tab_con_box{display:none;}
+.tab_menu_area .tab_con_box.active{display:block;}
+
+
+/* 강의소개 */
+.view_intro_list{margin:0 15px;}
+.view_intro_list dt{font-size:20px;color:#333333;position:relative;padding:29px 0 0 13px;line-height:20px;font-weight:bold;border-top:1px solid #dbdbdb;}
+.view_intro_list dt:first-child{border-top:0;}
+.view_intro_list dt:before{content: '';width: 3px;height:17px;position: absolute;left:0;top:30px;background:#0097a3;}
+.view_intro_list dd{font-size:15px;color:#333333;margin:0 15px;margin:19px 0 29px 0;}
+.view_intro_list .list_bu ul li{font-size:15px;color:#333333;position:relative;padding-left:9px;margin-top:10px;}
+.view_intro_list .list_bu ul li:first-child{margin-top:0;}
+.view_intro_list .list_bu ul li:before{content: '';width: 3px;height:3px;position: absolute;left:0;top:8px;background:#545454;border-radius:4px;}
+
+
+.view_tit{font-size:20px;color:#333333;position:relative;padding-left:13px;margin:29px 15px 19px 15px;height:20px;line-height:20px;}
+.view_tit:before{content: '';width: 3px;height:17px;position: absolute;left:0;top:2px;background:#0097a3;}
+
+@media only screen and (max-width:320px){
+	.alim_layer .alim_area{margin:0;min-width:initial;width:92%;}
+}
+
+
+/* 구매하기 바로가기 버튼 */
+.fixed_buy{position:fixed;bottom:0;left:0;right:0;z-index:5;}
+.fixed_buy.static{position:static;}
+.fixed_buy .btn_green{display:block;text-align:center;background:#0097a3;color:#fff;font-size:18px;line-height:60px;font-weight:bold;width:100%;box-sizing: border-box;}
+
+.fixed_buy_view{position:fixed;bottom:-600px;left:0;right:0;background:#fff;z-index:13;padding-bottom:156px;}
+.fixed_buy_view .buy_fixed_close{display:block;width:30px;margin:0 auto;text-align:center;padding:8px 0 0 0;}
+.fixed_buy_view .buy_fixed_close img{width:20px;}
+.fixed_buy_dim{display:none;position:fixed;left:0;top:0;width: 100%;height: 100%;z-index:11;background: #000;opacity:.3;}
+
+.select-area{overflow-y:auto;height:240px;padding:0 15px 15px 15px;}
+.select-item-area{margin-top:10px;}
+.select-item-area .default-item{color:#232323;font-size:14px;border:1px solid #c8c8c9;border-radius:4px;height:41px;line-height:41px;width:100%;box-sizing: border-box;text-align:left;padding:0 13px;background:url(//gscdn.hackers.co.kr/haksa2080/images/books/select_icon_off.png) no-repeat 98% 50%;background-size:12px;}
+.select-item-area .default-item.option-selected{background-image:url(//gscdn.hackers.co.kr/haksa2080/images/books/select_icon_on.png);border-radius:4px 4px 0 0;}
+.select-item-area .default-item.option-disabled{background:none;}
+
+.option-group {display:none;}
+.option-group ul{background:#f6f7f9;border:1px solid #c5c6c7;border-top:0;border-radius:0 0 4px 4px;}
+.option-group li{border-top:1px solid #c5c6c7;font-size:13px;color:#565656;}
+.option-group li input[type=radio]{-webkit-appearance:none;position:absolute;width:0;height:0;border:0;background:none}
+.option-group li label{display:block;padding:17px 13px;cursor:pointer;}
+.option-group li:first-child{border-top:0;}
+.option-group li .product_price{display:block;font-weight:bold;font-size:15px;color:#232323;margin-top:5px;}
+
+.option-select-group {padding:0 0 20px 0;}
+.option-select-group li {padding:19px 10px;display:table;width:100%;}
+.option-select-group li:nth-child(even){background:#f6f7f9;}
+.option-select-group li .select_tit{display:table-cell;color:#565656;font-size:14px;width:60%;}
+.option-select-group li strong{display:table-cell;text-align:right;color:#232323;font-size:20px;;vertical-align:middle;padding:10px 0;width:40%}
+.option-select-group li em{vertical-align:middle;}
+.option-select-group li strong span{vertical-align:middle;}
+.option-select-group li .select_del{width:20px;display:inline-block;margin-left:5px}
+
+
+.fixed_buy_btn{position:absolute;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #565656;}
+.select-total{padding:20px 40px 20px 30px;}
+.select-total li{position:relative;color:#363636;font-size:16px;text-align:right;}
+.select-total li span{color:#565656;font-size:15px;position:absolute;top:2px;left:0;}
+.select-total li.last_total{color:#ed244b;font-size:23px;font-weight:bold;}
+.select-total li.last_total span{color:#232323;font-size:17px;top:5px;}
+
+.select-btn li{float:left;width:50%;text-align:center;}
+.select-btn li .btn_black{display:block;background:#272727;font-size:18px;line-height:60px;width:100%;box-sizing: border-box;color:#fff;font-weight:bold;height:60px;}
+.select-btn li .btn_green{display:block;background:#0097a3;font-size:18px;line-height:60px;width:100%;box-sizing: border-box;color:#fff;font-weight:bold;height:60px;}
+
+.teacherImg{width:140px; position:absolute; bottom:0; right:0;}
+.teacherDetailImg{width:180px; position:absolute; bottom:0; right:0;}
+
+
+/**/
+.books_img.t2{overflow:hidden;height:auto;background-repeat-y:repeat;}
+.books_img.t2 .basic_box{float:left;width:50%;}
+.books_img.t2 .basic_box > span{display:block;position:static;float:right;max-width:180px;width:100%;}
+.books_img.t2 .basic_box div,
+.books_img.t2 .basic_box p,
+.books_img.t2 .basic_box strong{position:static;}
+
+.books_img.t2 .basic_box.t2{padding:0 5%;}
+.books_img.t2 .basic_box div{display:inline-block;margin:20px 0;}
+.books_img.t2 .basic_box.t2 p{line-height:1.6;margin-bottom:20px;font-size:1.2rem;letter-spacing: -2px;}
+.books_img.t2 .basic_box.t2 strong{font-size:1.1rem;}
+

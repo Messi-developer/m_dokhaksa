@@ -1,0 +1,64 @@
+<?
+$img_url = '//gscdn.hackers.co.kr/haksa2080/images/event/200917/';
+
+//timer 이벤트 마감일 (매주 목요일)
+$endDay = '목';
+?>
+
+<div class="evt_wrap">
+
+    <?include 'application/views/event/timer.php'?>
+
+	<div class="main-cont" id="pstart">
+		<img src="<?=$img_url?>/v6/cont01.jpg" alt="" border="0">
+		<img src="<?=$img_url?>/v6/cont02.jpg" alt="" border="0">
+		<a href="#;" onClick="move_scroll('i1')" id="call_1">
+			<img src="<?=$img_url?>/v6/cont02_01.jpg" alt="" border="0">
+		</a>
+	</div>
+	
+	<div class="con02" id="i1">
+		<input type="hidden" name="paymentLectureNo" id="paymentLectureNo">
+			<? if ($this->session->userdata('member_id') != '' && $this->session->userdata('member_no') != '') { ?>
+				<a href="#;" onclick="paymentLecture();">
+			<? } else { ?>
+				<a href="#;" onclick="alimLayer('alimLogin');">
+			<? } ?>
+				<img src="<?=$img_url?>/v6/lect.jpg" alt="" border="0">
+			</a>
+		<ul class="event_input">
+			<li>
+				<label for="sub_rdio1"> <input type="radio" id="sub_rdio1" name="lecture_name" value="377" checked />[교양]국어/국사</label>
+			</li>
+			<li>
+				<label for="sub_rdio2"> <input type="radio" id="sub_rdio2" name="lecture_name" value="378" />[교양]국어/영어</label>
+			</li>
+			<li>
+				<label for="sub_rdio3"> <input type="radio" id="sub_rdio3" name="lecture_name" value="379" />[교양]국사/영어</label>
+			</li>
+		</ul>
+	</div>
+	<div>
+		<img src="<?=$img_url?>/v6/cont03.jpg" alt="" border="0">
+	</div>
+	<div>
+		<img src="<?=$img_url?>/v6/cont04.jpg" alt="" border="0">
+		<img src="<?=$img_url?>/v6/cont05.jpg" alt="" border="0">
+		<img src="<?=$img_url?>/v6/cont06.jpg" alt="" border="0">
+		<img src="<?=$img_url?>/v6/cont07.jpg" alt="" border="0">
+		<img src="<?=$img_url?>/v6/cont08.jpg" alt="" border="0">
+		<img src="<?=$img_url?>/v6/cont09.jpg" alt="" border="0">
+	</div>
+	<div>
+		<a href="#;" onClick="move_scroll('i1')"  id="call_1">
+			<img src="<?=$img_url?>/v6/cont10.jpg" alt="" border="0">
+		</a>
+	</div>
+	
+	
+    <!-- 팝업 -->
+	<?include 'application/views/event/counsel_layer.php'?>
+    <!-- //팝업 -->
+	<?include 'application/views/event/refund_guide.php'?>
+	
+</div>

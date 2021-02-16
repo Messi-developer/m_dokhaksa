@@ -1,0 +1,118 @@
+<?
+$all_lec_price = 0;
+?>
+
+<div id="payment_container">
+	<div id="container">
+		<div class="payment">
+			<!-- 타이틀 -->
+			<div class="tit_wrap t3 pt30">
+				<h4 class="pay">장바구니</h4>
+				<ul>
+					<li class="none">장바구니에 담긴 상품은 30일 동안 보관됩니다.</li>
+				</ul>
+			</div>
+			<!-- //타이틀 -->
+			
+			<!--장바구니 리스트 없을 경우-->
+			<div class="no_basket">
+				<span class="icon_x"></span>
+				<p class="text">장바구니 리스트가 없습니다.<br/>리스트를 추가해주세요.</p>
+				<a class="check_btn" href="/lecture/main">강의추가 하러가기</a>
+				<a class="check_btn" href="/books/main">교재추가 하러가기</a>
+			</div>
+			<!--e:장바구니 리스트 없을 경우-->
+			
+			<!--장바구니 리스트 있을 경우-->
+			<div class="basket">
+				
+				<div class="edit_lec">
+					<input type="checkbox" class="icon_v" id="select_all"/><label for="select_all"></label>
+					<label for="select_all"> 전체선택(<span class="select_lec">0</span>/<span class="all_lec"><?=count($basketList)?></span>)</label>
+					<div class="btn_area">
+						<a href="javascript:void(0);" onclick="purchase_lec()" class="pur_lec">구매</a>
+						<a href="javascript:void(0);" class="del_lec">삭제</a>
+					</div>
+				</div>
+				
+				<div class="lec_area">
+					<? if (!empty($basketList)) { ?>
+						<? foreach($basketList as $basket_key => $baskey_item) {
+                            $lec_price = ($basketCheckList['lec_no'][$basket_key] >= 50000) ? (int)($baskey_item->pamount) : (int)($baskey_item->lec_real_price);
+                            $all_lec_price += $lec_price;
+                            
+                            $teacherNameArray = explode(',', $baskey_item->teacher_name);
+						    ?>
+							<label class="lecture active" for="select<?=$basket_key?>" data-lec-no="<?=$basketCheckList['lec_no'][$basket_key]?>">
+								<a href="javascript:void(0);" class="close clear">
+									<span></span>
+									<span></span>
+								</a>
+								
+								<? if ($basketCheckList['lec_no'][$basket_key] < 50000) { ?>
+									<div class="basket_subject"><span class="cl_type"><?=($baskey_item->lec_join != '' || $baskey_item->book_join != '') ? '패키지' : '단과' ?></span></div>
+								<? } ?>
+								
+								<input type="checkbox" class="icon_v" id="select<?=$basket_key?>" checked/>
+								<label for="select<?=$basket_key?>"></label>
+								
+								<span class="sort">[<?=($basketCheckList['lec_no'][$basket_key] >= 50000) ? '교재' : '강의' ?>]</span> <?=($basketCheckList['lec_no'][$basket_key] >= 50000) ? $baskey_item->book_name : $baskey_item->lec_name ?>
+								<p class="teacher">
+									<? if ($basketCheckList['lec_no'][$basket_key] >= 50000) { ?>
+										<?=$baskey_item->author?>
+									<? } else { ?>
+										<? if (count($teacherNameArray) >= 2) { ?>
+											<?=$teacherNameArray[0] . '교수님 외' . (count($teacherNameArray) - 1) . '명' ?>
+										<? } else { ?>
+											<?=$teacherNameArray[0] . '교수님'?>
+										<? } ?>
+									<? } ?>
+								</p>
+								<p class="save_point clear">적립포인트<span><b>0</b>P</span></p>
+								<p class="price clear"><b>금액</b><span><?=number_format($lec_price);?>원</span></p>
+							</label>
+						<? } ?>
+					<? } ?>
+				</div>
+				
+				<div class="price_area all_price">
+					<div class="price_info">
+						<p class="clear">총 상품개수<span class="count"><b>0</b>개</span></p>
+						<p class="clear">총 상품금액<span class="price"><b>0</b>원</span></p>
+						<p class="clear">총 배송비<span class="delivery"><b>0</b>원</span></p>
+					</div>
+					<div class="price_result">
+						<p class="clear">총 결제금액<span class="final_price"><b>0</b>원</span></p>
+						<p class="clear">예상적립포인트<span class="final_save_point"><b>0</b>P</span></p>
+					</div>
+				</div>
+				
+				<div class="finish_btn">
+					<input type="hidden" id="purchase_lec" id="purchase_lec">
+					<button class="check_btn" onclick="purchase_lec()">구매하기</button>
+				</div>
+			
+			</div>
+			
+			<!--e:장바구니 리스트 있을 경우-->
+			<div id="lec_pop">
+				<div class="bg"></div>
+				<div class="cont">
+					<a href="javascript:void(0);" class="close">
+						<span></span>
+						<span></span>
+					</a>
+					<span class="icon_i"></span>
+					<p class="txt"></p>
+					<a class="btn onebox" href="javascript:void(0);">확인</a>
+					<div class="btn2 clear">
+						<a class="btn" href="javascript:void(0);">창닫기</a>
+						<a class="btn remove" href="javascript:void(0);">삭제하기</a>
+					</div>
+				</div>
+			</div>
+		
+		</div>
+	</div>
+	<!--// container -->
+</div>

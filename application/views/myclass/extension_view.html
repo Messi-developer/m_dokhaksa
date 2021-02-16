@@ -1,0 +1,66 @@
+<div class="m_wrap">
+	<!--수강연장신청내역  -->
+	<div class="history_list2">
+		<ul>
+			<li><span>신청강좌</span> <strong><?=$LectureCategoryBigView->name?></strong></li>
+			<li>
+				<span>상태</span>
+				<strong class="t1"><?=$LecReqView->lec_req_state?></strong>
+			</li>
+			<li><span>신청사유</span> <strong>불합격</strong></li>
+			<li><span>신청일자</span> <strong><?=$LecReqView->regdate?></strong></li>
+			<li><span>증빙자료</span> <strong class="ico_file"><a href="https://www.haksa2080.com/zfiles/req_img/<?=$LecReqView->img_file?>" target="_blank"><?=$LecReqView->img_file_real?></a></strong></li>
+		</ul>
+	</div>
+	<!--//수강연장신청내역 -->
+	<!-- 설명 -->
+	<div class="t_wrap t2">
+		<table>
+			<caption>설명</caption>
+			<colgroup>
+				<col style="width:30%;">
+				<col style="width:*;">
+			</colgroup>
+			<tbody>
+			<tr>
+				<th scope="row">수강연장<br>강의</th>
+				<td>
+					<ol>
+						<li>
+							<span><?=$LecMemView->mem_lec_name?></span>
+						</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">해커스가 <br>도움되었던 점</th>
+				<td><?=(!empty($LecReqView->memo1)) ? $LecReqView->memo1 : '등록된 내용이 없습니다.' ?></td>
+			</tr>
+			<tr>
+				<th scope="row">해커스에 <br>바라는점</th>
+				<td><?=(!empty($LecReqView->memo2)) ? $LecReqView->memo2 : '등록된 내용이 없습니다.' ?></td>
+			</tr>
+			<tr>
+				<th scope="row">관리메모</th>
+				<td><?=(!empty($LecReqView->adm_memo)) ? $LecReqView->adm_memo : '등록된 내용이 없습니다.' ?></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+	<!--//설명  -->
+	<!-- 목록으로이동 -->
+	<!--<div class="m_btn_wrap">
+		<a href="myclass_extension.html" class="list btn_type2">목록</a>
+		<a href="#;" class="apply btn_type2">연장신청</a>
+	</div>-->
+	
+	<!-- //목록으로이동 -->
+	<div class="m_btn_wrap t5">
+		<? if ($LecReqView->lec_req_state == '반려') { ?>
+			<a href="/myclass/extension" class="list btn_type2">목록</a>
+			<a href="#;" onclick="location.href='/myclass/extension/extensionWrite?lecReq=<?=$this->input->get('lecReq')?>&lmno=<?=$this->input->get('lmno')?>'" class="apply btn_type2">연장신청</a>
+		<? } else { ?>
+			<a href="#;" class="his_back">목록</a>
+		<? } ?>
+	</div>
+</div>

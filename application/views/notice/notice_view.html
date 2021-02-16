@@ -1,0 +1,54 @@
+<div id="container">
+	
+	<div id="snb">
+		<h2>고객센터</h2>
+		<span class="snb_prev">
+			<a href="#;" class="his_back"><img src="<?=$images?>/common/btn_prev.png" alt="이전"/></a>
+		</span>
+	</div>
+	
+	<div id="notice_container">
+		<!-- 상단 공통 리스트 -->
+		<div class="ul_list">
+			<ul class="cler">
+				<li class="t1"><a href="/notice/main?customerType=consulting">1:1 무료상담</a></li>
+				<li class="t2"><a href="/notice/main?customerType=faq">FAQ</a></li>
+				<li class="t3 on"><a href="/notice/main?customerType=notice">공지사항</a></li>
+				<li class="t4"><a href="/notice/main?customerType=support_write">해커스에 바란다</a></li>
+			</ul>
+		</div>
+		<!-- //상단 공통 리스트 -->
+		
+		<!-- 내용-->
+		<div class="customer_wrap">
+			<div class="customer_in v3">
+				<div class="tit_wrap">
+					<strong>
+						<span class="color t2" style="color:<?=($notice_view->big_cate == '4') ? '#0097a3' : '#8f69b2' ?>">[<?=($notice_view->big_cate == '4') ? '공지' : '이벤트' ?>]</span>
+						<?=$notice_view->subject?>
+					</strong>
+					<ul class="cler">
+						<li>작성일 <b><?=$notice_view->wdate?></b></li>
+						<li>조회수 <b><?=$notice_view->hit?></b></li>
+					</ul>
+				</div>
+				<div class="view_txt_box">
+					<?=$notice_view->memo?>
+					<!--<div class="img_box">
+						최대 가로크기 690px
+					</div>-->
+					<p class="color t2 mt20">
+						※코로나19 확산 추이에 따라 일정이 변경 될 수 있으므로 접수시 반드시 연락 가능한 휴대폰 번호와 이메일을 기재하시기 바랍니다.
+					</p>
+				</div>
+			</div>
+			<div class="btn_wrap">
+				<a href="/notice/main?customerType=notice" class="full">목록</a>
+			</div>
+		</div>
+		<!-- //내용-->
+	
+	</div>
+	<!--// container -->
+	
+</div>

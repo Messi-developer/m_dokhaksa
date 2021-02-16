@@ -1,0 +1,122 @@
+<?
+$img_url = '//gscdn.hackers.co.kr/haksa2080/images/event/200916/';
+$img_url2 = '//gscdn.hackers.co.kr/haksa2080/images/event/';
+
+//timer 이벤트 마감일 (매주 목요일)
+$endDay = '목';
+?>
+
+<div class="evt_wrap">
+
+    <?include 'application/views/event/timer.php'?>
+
+		<div class="main-cont">
+			<a href="#;" onclick="move_scroll('i1')"><img src="<?=$img_url?>/v1/img_main.jpg" alt="" border="0"></a>
+		</div>
+		<div class="img01" id="i1">
+			<img src="<?=$img_url?>/v1/img01_top.gif" alt="" usemap="#Map1" border="0">
+			<div class="tab-list" id="pstart">
+				<ul class="js-tab-type2">
+					<li class="i1 on tab">
+						<a href="#tab1_1" class="img-btn3 on">
+							<img src="<?=$img_url2?>img/tab-list1-on.png" alt="" border="0" class="imgoff">
+						</a>
+					</li>
+					<li class="i2 tab">
+						<a href="#tab1_2" class="img-btn">
+							<img src="<?=$img_url2?>img/tab-list2-off.png" alt="" border="0" class="imgoff">
+						</a>
+					</li>
+					<li class="i3 tab">
+						<a href="#tab1_3" class="img-btn">
+							<img src="<?=$img_url2?>img/tab-list3-off.png" alt="" border="0" class="imgoff">
+						</a>
+					</li>
+					<li class="i4">
+						<a href="/event/main?evt_code=20200917/" class="img-btn">
+							<img src="<?=$img_url2?>img/tab-list4-off.png" alt="" border="0" class="imgoff">
+						</a>
+					</li>
+				</ul>
+				<div class="js-tab-type2-con on" id="tab1_1">
+					<? if ($this->session->userdata('member_id') != '' && $this->session->userdata('member_no') != '') { ?>
+						<a href="#;" onclick="paymentApply('335');">
+					<? } else { ?>
+						<a href="#;" onclick="alimLayer('alimLogin');">
+					<? } ?>
+						<img src="<?=$img_url?>/img01.gif" alt="" usemap="#Map1" border="0">
+					</a>
+				</div>
+				<div class="js-tab-type2-con" id="tab1_2">
+					<? if ($this->session->userdata('member_id') != '' && $this->session->userdata('member_no') != '') { ?>
+						<a href="#;" onclick="paymentApply('370')">
+					<? } else { ?>
+						<a href="#;" onclick="alimLayer('alimLogin');">
+					<? } ?>
+						<img src="<?=$img_url?>/img02.gif" alt="" usemap="#Map2" border="0">
+					</a>
+				</div>
+				<div class="js-tab-type2-con" id="tab1_3">
+					<? if ($this->session->userdata('member_id') != '' && $this->session->userdata('member_no') != '') { ?>
+						<a href="#;" onclick="paymentApply('337')">
+					<? } else { ?>
+						<a href="#;" onclick="alimLayer('alimLogin');">
+					<? } ?>
+						<img src="<?=$img_url?>/img03.gif" alt="" usemap="#Map3" border="0">
+					</a>
+				</div>
+				<div class="js-tab-type2-con p-r" id="">
+					<a href="javascript:add_memo('어메이징_간호학');">
+						<img src="<?=$img_url?>/img04.gif" alt="" usemap="#Map4" border="0">
+					</a>
+					<div class="rio-btn">
+						<ul>
+							<li>
+								<label for="sub_rdio1"><input type="radio" id="sub_rdio1" name="lecture_name"
+										value="[교양]국어/국사" />[교양]국어/국사</label>
+							</li>
+							<li>
+								<label for="sub_rdio2"><input type="radio" id="sub_rdio2" name="lecture_name"
+										value="[교양]국어/영어" />[교양]국어/영어</label>
+							</li>
+							<li>
+								<label for="sub_rdio3"><input type="radio" id="sub_rdio3" name="lecture_name"
+										value="[교양]국사/영어" />[교양]국사/영어</label>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="img05">
+			<img src="<?=$img_url?>/img05.gif" alt="" border="0">
+		</div>
+		<div class="img06">
+			<img src="<?=$img_url?>/img06.gif" alt="" border="0">
+		</div>
+		<div class="img07">
+			<img src="<?=$img_url?>/img07.gif" alt="" border="0">
+		</div>
+		<div class="img08">
+			<img src="<?=$img_url?>/img08.gif" alt="" border="0">
+		</div>
+		<div class="img09">
+			<div class="bxslider-default" data-mode="horizontal" data-auto="true" data-pager="true" data-controls="false" style="visibility: visible;">
+				<ul class="bxslider">
+					<li><img src="<?=$img_url2?>img/img09.jpg" alt="" border="0"></li>
+					<li><img src="<?=$img_url2?>img/img09-1.jpg" alt="" border="0"></li>
+				</ul>
+			</div>
+			<img src="<?=$img_url?>/img09_btn.gif" alt="" border="0" usemap="#img09">
+			<map name="img09">
+				<area href="#;" onclick="move_scroll('i1')"  id="call_1" coords="30,37,618,148" />
+			</map>
+		</div>
+
+    <?include 'application/views/event/refund_guide.php'?>
+
+	 <!-- 팝업 -->
+	<?include 'application/views/event/counsel_layer.php'?>
+    <!-- //팝업 -->
+</div>

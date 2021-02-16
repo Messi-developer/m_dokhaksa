@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<meta name="Author" content="해커스 독학사" />
+	<meta name="Keywords" content="해커스독학사, 독학학위제, 간호독학사, 간호학4단계, 독학사1단계, 독학사 교양공통, 독학사4단계, 독학사2단계, 독학사3단계, 독학사교재, 독학사인강" />
+	<meta name="Description" content="해커스독학사,독학학위제 간호독학사·독학사1단계 등 시험대비 독학사인강/모의고사교재" />
+	<title>해커스 독학사</title>
+	
+	<meta property="og:title" content="6문제 '그대로 출제' 해커스공기업"><!-- 제목표시 -->
+	<meta property="og:type" content="https://<?=$_SERVER['HTTP_HOST']?>/"><!-- 사이트 종류 -->
+	<meta property="og:image" content="https://hackersg.hackers.com/hackersjob/bbs/data/2019/08/29/fddb4fd9f06fb87f29d07d78516aec97162552.jpg"><!-- 사이트 이미지 -->
+	<meta property="og:url" content="https://<?=$_SERVER['HTTP_HOST']?>/"><!-- 표시하고 싶은 URL -->
+	<meta property="og:description" content="공기업 취업 성공 해커스공기업,NCS합격,고졸채용,공기업전공,코레일,한국전력공사,서울교통공사,기업은행,공기업 취업 해커스공기업"><!-- 본문내용 -->
+	
+	<link type="text/css" href="/css/base.css" rel="stylesheet"><!-- 초기화 css -->
+	<link type="text/css" href="/css/webfont.css" rel="stylesheet"><!-- 웹폰트 css -->
+	<link type="text/css" href="/css/common.css" rel="stylesheet"><!-- 공통 레이아웃 css -->
+	<link type="text/css" href="/css/bxslider.css" rel="stylesheet">
+	<link type="text/css" href="/css/swiper.min.css" rel="stylesheet">
+	<link type="text/css" href="/css/member.css" rel="stylesheet"><!-- member 공통 -->
+	
+	<? // 헤더 로고 LNB 제거 예외처리
+	$checkUri = explode('/', $_SERVER['REQUEST_URI']);
+	
+	$header_change = array('login', 'member', 'notice', 'myclass', 'payment');
+	$daumMapLoad = array('member', 'payment');
+	$myclassLoad = array('myclass');
+	$paymentLoad = array('lecture', 'books');
+	$payment_sub_gnb = array('payment_basket', 'payment_delivery', 'payment_coupon', 'payment_point')
+	?>
+	
+	<? if (!empty($_css)) { ?><link type="text/css" href="/css/<?=$_css?>.css" rel="stylesheet"><? } ?>
+	
+	<script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="/js/auto_map.js"></script>
+	<script type="text/javascript" src="/js/bxSlider.min.js"></script>
+	<script type="text/javascript" src="/js/bxslider.js"></script>
+	<script type="text/javascript" src="/js/swiper.min.js"></script>
+	<script type="text/javascript" src="/js/common.ui.js"></script><!-- 공통 ui js -->
+	<script type="text/javascript" src="/js/member.js"></script><!-- member 공통 -->
+	
+	<? if (!LMHAKSA) { ?>
+		<? if (in_array($checkUri[1], $daumMapLoad)) { ?>
+			<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<? } ?>
+	<? } ?>
+	
+	<!-- event -->
+	<? if (!empty($event_common_js)) { ?><script type="text/javascript" src="/js/<?=$event_common_js?>.js"></script><? } ?>
+	<? if (!empty($_js)) { ?><script type="text/javascript" src="/js/<?=$_js?>.js"></script><? } ?>
+	
+</head>
+
+<body>
+<div id="wrap">
+    <div class="fam_site_dim"></div>
+
+    <!-- top_family_site -->
+    <div class="fam_slide_area">
+        <div class="fam_slide">
+            <ul class="swiper-wrapper sw_menu">
+                <li class="swiper-slide active">어학</li>
+                <li class="swiper-slide">취업</li>
+                <li class="swiper-slide">자격증</li>
+                <li class="swiper-slide wsize">공무원·임용</li>
+                <li class="swiper-slide">유학</li>
+                <li class="swiper-slide wsize">편입·평생교육</li>
+            </ul>
+        </div>
+        <div class="fam_category">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <ul>
+                        <li><a href="//m.hackers.ac" target="_blank">해커스<strong>어학원</strong></a></li>
+                        <li class="bd_left"><a href="//mtalk.hackers.com" target="_blank">해커스톡<strong>영어회화</strong></a></li>
+                        <li><a href="//mchamp.hackers.com" target="_blank">해커스<strong>인강</strong></a></li>
+                        <li class="bd_left"><a href="//mchina.hackers.com" target="_blank">해커스<strong>중국어</strong></a></li>
+                        <li><a href="//mjapan.hackers.com" target="_blank">해커스<strong>일본어</strong></a></li>
+                        <li class="bd_left"><a href="//m.hackers.co.kr" target="_blank">해커스<strong>영어</strong></a></li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <ul>
+                        <li><a href="//mjob.hackers.com" target="_blank">해커스<strong>잡</strong></a></li>
+                        <li class="bd_left"><a href="//mpublic.hackers.com" target="_blank">해커스<strong>공기업</strong></a></li>
+                        <li><a href="//mjob.hackers.com/edu_m/?c=376" target="_blank">해커스<strong>취업아카데미</strong></a></li>
+                        <li class="bd_left"><a></a></li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <ul>
+                        <li><a href="//mfn.hackers.com" target="_blank">해커스<strong>금융</strong></a></li>
+                        <li class="bd_left"><a href="//mcpa.hackers.com" target="_blank">해커스<strong>경영아카데미</strong></a></li>
+                        <li><a href="//mland.hackers.com" target="_blank">해커스<strong>공인중개사</strong></a></li>
+                        <li class="bd_left"><a href="//mland.hackers.com" target="_blank">해커스<strong>주택관리사</strong></a></li>
+                        <li><a href="//mjob.hackers.com/edu_m/?m=event&event_code=170628&k=historyevent&_C_=195461&utm_source=family_mobiletab&utm_medium=hackersjob_mobiletab&utm_campaign=%20public_main" target="_blank">해커스<strong>한국사</strong></a></li>
+                        <li class="bd_left"><a href="//mpublic.hackers.com/event/main/page/?evtCode=20170901&k=elecfreepass&_C_=195461&utm_source=family_mobiletab&utm_medium=hackersjob_mobiletab&utm_campaign=%20public_main" target="_blank">해커스<strong>전기기사</strong></a></li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <ul>
+                        <li><a href="//mgosi.hackers.com/?_C_=195510&utm_source=family_mobiletab&utm_medium=public_mobiletab&utm_campaign=%20gosi_main" target="_blank">해커스<strong>공무원</strong></a></li>
+                        <li class="bd_left"><a href="//mpolice.hackers.com/?_C_=195726%20&utm_source=%20family_mobiletab&utm_medium=hackerspolice_mobiletab&utm_campaign=hackerspolice_main" target="_blank">해커스<strong>경찰</strong></a></li>
+                        <li><a href="//mfire.hackers.com/?%20_C_=195319&utm_source=%20family_mobiletab&utm_medium=hackersfire_mobiletab&utm_campaign=hackersfire_main" target="_blank">해커스<strong>소방</strong></a></li>
+                        <li class="bd_left"><a href="//mteacher.hackers.com/?%20_C_=195321&utm_source=%20family_mobiletab&utm_medium=hackersteachers_mobiletab&utm_campaign=hackersteachers_main" target="_blank">해커스<strong>임용</strong></a></li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <ul>
+                        <li><a href="//mprep.hackers.com/?%20_C_=195323&utm_source=%20family_mobiletab&utm_medium=hackersprep_mobiletab&utm_campaign=hackersprep_main" target="_blank">해커스<strong>프렙</strong></a></li>
+                        <li class="bd_left"><a href="//m.gohackers.com/?_C_=195126&utm_source=family_mobiletab&utm_medium=prep_mobiletab&utm_campaign=gohac_main" target="_blank"><strong>고우</strong>해커스</a></li>
+                        <li><a href="//m.hackersuhak.com/?keywd=family_mobiletab_gohac_to_hackersuhak_20190314&logger_kw=family_mobiletab_gohac_to_hackersuhak_20190314&utm_source=family_mobiletab&utm_medium=gohac_mobiletab&utm_campaign=hackersuhak_main" target="_blank">해커스<strong>유학컨설팅</strong></a></li>
+                        <li class="bd_left"><a href="//sat.hackers.ac/?keywd=family_mobiletab_gohac_to_sat_20190314&logger_kw=family_mobiletab_gohac_to_sat_20190314#utm_source=family_mobiletab&utm_medium=gohac_mobiletab&utm_campaign=sat_main" target="_blank">HACKERS<strong>SAT·ACT</strong></a></li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <ul>
+                        <li><a href="//m.hackersut.com/?keywd=family_mobiletab_hackersuhak_to_hackersut_20190314&logger_kw=family_mobiletab_hackersuhak_to_hackersut_20190314&source=logger_kw" target="_blank">해커스<strong>편입</strong></a></li>
+                        <li class="bd_left"><a href="//m.edu2080.co.kr/?_C_=195492&utm_source=family_mobiletab&utm_medium=hackersjob_mobiletab&utm_campaign=%20edu2080_main" target="_blank"><strong>해커스</strong>원격평생교육원</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--// top_family_site -->
+
+    <!-- header -->
+    <div id="header">
+        <h1>
+            <a href="/"><img src="https://gscdn.hackers.co.kr/haksa2080/images/common/logo.gif" alt="해커스 독학사"></a>
+            <a class="btn-family-site"><span class="icon_family"></span></a>
+        </h1>
+
+        <a class="lnb_menu"><img src="https://gscdn.hackers.co.kr/haksa2080/images/common/top_icon_lnb.gif" alt="왼쪽 메뉴"></a>
+        <span class="rnb_menu">
+            <? if (!empty($_SESSION['member_id']) || !empty($_SESSION['zb_logged_user_id'])) { ?>
+                <a href="/myclass/main" class="btn_mypage"><img src="https://gscdn.hackers.co.kr/haksa2080/images/common/btn_mypage.gif" alt="마이페이지 이동"></a>
+            <? } else { ?>
+                <a class="btn_login" href="/login/main">로그인</a>
+            <? } ?>
+        </span>
+    </div>
+    <!--// header -->
+
+    <!-- GNB fixed 제외 -->
+    <? if ((in_array($checkUri[1], $myclassLoad) || (in_array($checkUri[2], $payment_sub_gnb)))) { ?>
+    <div id="snb">
+        <h2>마이클래스</h2>
+        <span class="snb_prev">
+            <a href="#;" class="his_back">
+                <img src="https://gscdn.hackers.co.kr/haksa2080/images/common/btn_prev.png" alt="이전" >
+            </a>
+        </span>
+    </div>
+    <? } ?>
+    <!--// GNB fixed 제외 -->
+
+    <!-- 전체메뉴 -->
+    <div class="lnb_all_menu">
+        <div class="all_menu_top">
+            <? if (!empty($_SESSION['member_id']) || !empty($_SESSION['zb_logged_user_id'])) { // 로그인후 ?>
+                <div class="am_myInfo">
+                    <h2><a href="#;" onclick="memberLogOut('<?=$user_info->user_id?>');"><img src="https://gscdn.hackers.co.kr/haksa2080/images/common/lnb_menu_logout.png" alt="로그아웃" ></a></h2>
+
+                    <strong class="am_name"><?=$_SESSION['member_name']?> 님, 환영합니다!</strong>
+                    <ul class="am_benefits">
+                        <li>포인트 <strong><?=number_format($user_point)?>P</strong></li>
+                        <li>쿠폰 <strong><?=$user_coupon_cnt?> 매</strong></li>
+                    </ul>
+
+                    <ul class="am_fast_link">
+                        <li><a href="/member/member_info?memType=memUpdate">정보수정</a></li>
+                        <li><a href="/myclass/main">나의강의실</a></li>
+                        <li><a href="/payment/payment_basket">장바구니</a></li>
+                        <li><a href="/notice/main?customerType=consulting">1:1상담</a></li>
+                    </ul>
+                </div>
+            <? } else { // 로그인전 ?>
+                <div class="am_login">
+                    <h2><a href="/login/main">로그인</a></h2>
+                    <p>해커스 독학사 아이디로 로그인하시고 <br>다양한 학습과 혜택을 이용해보세요!</p>
+                </div>
+            <? } ?>
+
+        </div>
+        <div class="all_menu_list">
+            <ul class="am_menu">
+                <li>
+                    <a href="#;" onclick="packageToggleHeader($(this))">강의 / 교재신청</a>
+                    <ul>
+                        <li><a href="/lecture/main">- 강의신청</a></li>
+                        <li><a href="/books/main">- 교재신청</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#;" onclick="packageToggleHeader($(this))">학과</a>
+                    <ul>
+						<li><a href="/event/main?evt_code=20190612">- 전단계패키지</a></li>
+						<li><a href="/event/main?evt_code=20200318">- 환급반</a></li>
+						<li><a href="/event/main?evt_code=20190118">- 1단계</a></li>
+						<li><a href="/event/main?evt_code=20180912">- 간호학과</a></li>
+                        <li><a href="/event/main?evt_code=20200313">- 경영학과</a></li>
+                        <li><a href="/event/main?evt_code=20181210">- 영어영문학과</a></li>
+						<li><a href="/event/main?evt_code=20200428">- 합격전략특강</a></li>
+                    </ul>
+                </li>
+                <li><a href="/payment/payment_delivery">결제/배송내역</a></li>
+            </ul>
+            <ul class="am_menu_etc">
+                <li><a href="https://www.haksa2080.com/" target="_blank">PC버전</a></li>
+                <li><a href="/notice/main?customerType=faq">FAQ</a></li>
+            </ul>
+        </div>
+        <div class="all_menu_btm">
+            <dl>
+                <dt>AquaNManager 앱 다운로드</dt>
+                <dd>
+                    모바일에서 해커스독학사 강의를 수강하시려면<br />
+                    AquaNManager 앱을 설치하셔야 합니다.
+                </dd>
+                <dd>
+                    <a href="https://play.google.com/store/apps/details?id=com.cdn.aquanmanager">android</a>
+                    <a href="https://apps.apple.com/kr/app/aqua-nmanager/id1048325731">ios</a>
+                </dd>
+            </dl>
+        </div>
+
+        <span class="lnb_menu_close"><a><img src="https://gscdn.hackers.co.kr/haksa2080/images/common/lnb_menu_close.png" alt=""></a></span>
+    </div>
+    <!-- // 전체메뉴 -->
+
+    <!-- gnb -->
+    <div id="gnb">
+        <h2 class="hide">주 메뉴</h2>
+        <? if (!in_array($checkUri[1], $header_change)) { // 로그인 or 회원가입 페이지 헤더제외 ?>
+        <ul class="col2"><!-- 활성시 active 추가 -->
+            <li class="<?=($checkUri[1] == 'lecture' || $checkUri[1] == 'books') ? 'active' : '' ?>"><a href="/lecture/main">강의/교재</a></li>
+            <li class="<?=($checkUri[1] == 'event') ? 'active' : '' ?>"><a href="/event/main?evt_code=20190612">학과</a></li>
+        </ul>
+        <? } ?>
+
+        <!--강의/교재신청 페이지에서만 노출-->
+        <? if ((in_array($checkUri[1], $paymentLoad) && $checkUri[2] != 'payment_basket' && $checkUri[2] != 'payment_delivery')) { ?>
+            <div class="gsnb bg on">
+                <ul class="col4">
+                    <li class="<?=($_SERVER['REQUEST_URI'] == '/lecture/main' || $checkUri[1] == 'lecture') ? 'active' : '' ?>"><a href="/lecture/main">강의신청</a></li>
+                    <li class="<?=($_SERVER['REQUEST_URI'] == '/books/main' || $checkUri[1] == 'books') ? 'active' : '' ?>"><a href="/books/main">교재신청</a></li>
+                </ul>
+            </div>
+        <? } ?>
+
+        <!-- myclass, payment -->
+        <? if ((in_array($checkUri[1], $myclassLoad) || in_array($checkUri[2], $payment_sub_gnb))) { ?>
+            <ul class="col3 bg">
+                <li class="<?=(($checkUri[1] == 'myclass' && !in_array($checkUri[2], $payment_sub_gnb) && $checkUri[2] != 'learning_qna')) ? 'active' : '' ?>"><a href="/myclass/main">강좌관리</a></li>
+                <li class="<?=(($checkUri[1] == 'myclass' && $checkUri[2] == 'learning_qna')) ? 'active' : '' ?>"><a href="/myclass/learning_qna">학습질문관리</a></li>
+                <li class="<?=($checkUri[1] == 'payment' && in_array($checkUri[2], $payment_sub_gnb)) ? 'active' : '' ?>"><a href="/payment/payment_basket">결제관리</a></li>
+            </ul>
+
+            <!-- GNB -->
+            <div class="gsnb bg on">
+                <? if (($checkUri[1] == 'myclass' && $checkUri[2] != 'payment_basket' && $checkUri[2] != 'learning_qna')) { ?>
+                    <ul class="col2">
+                        <li class="<?=(($checkUri[2] != 'extension' && empty($checkUri[4]))) ? 'active' : '' ?>"><a href="/myclass/main">단과/패키지 강좌</a></li>
+                        <li class="<?=(($checkUri[2] == 'extension' || $checkUri[4] == 'extensionWrite')) ? 'active' : '' ?>"><a href="/myclass/extension">수강연장</a></li>
+                    </ul>
+                <? } ?>
+
+                <? if (($checkUri[1] == 'myclass' && $checkUri[2] == 'learning_qna')) { ?>
+                    <ul class="col2">
+                        <li class="<?=(($checkUri[1] == 'myclass' && $checkUri[3] != 'learning_qna_write')) ? 'active' : '' ?>"><a href="/myclass/learning_qna">학습질문 목록</a></li>
+                        <li class="<?=(($checkUri[1] == 'myclass' && $checkUri[3] == 'learning_qna_write')) ? 'active' : '' ?>"><a href="/myclass/learning_qna/learning_qna_write">학습질문 등록</a></li>
+                    </ul>
+                <? } ?>
+
+                <? if ($checkUri[1] == 'payment' && in_array($checkUri[2], $payment_sub_gnb)) { ?>
+					<!--<div class="gsnb on swiper-container">-->
+						<ul class="col4 swiper-wrapper t2">
+							<li class="swiper-slide <?=($checkUri[2] == 'payment_basket') ? 'active' : '' ?>"><a href="/payment/payment_basket">장바구니</a></li>
+							<li class="swiper-slide <?=($checkUri[2] == 'payment_delivery') ? 'active' : '' ?>"><a href="/payment/payment_delivery">결제/배송내역</a></li>
+							<li class="swiper-slide <?=($checkUri[2] == 'payment_coupon') ? 'active' : '' ?>"><a href="/payment/payment_coupon">쿠폰내역</a></li>
+							<li class="swiper-slide <?=($checkUri[2] == 'payment_point') ? 'active' : '' ?>"><a href="/payment/payment_point">포인트내역</a></li>
+						</ul>
+					<!--</div>-->
+                <? } ?>
+            </div>
+            <!--// GNB -->
+        <? } ?>
+
+        <!-- 이벤트페이지 서브 GNB -->
+        <div class="gsnb bg swiper-container" style="<?=($_SERVER['PATH_INFO'] == '/event/main') ? 'display:block' : 'display:none' ?>">
+            <ul class="swiper-wrapper">
+				<li class="swiper-slide <?=($this->input->get('evt_code') == '20190612') ? 'on' : '' ?>"><a href="/event/main?evt_code=20190612">전단계패키지</a></li>
+				<li class="swiper-slide <?=($this->input->get('evt_code') == '20200318') ? 'on' : '' ?>"><a href="/event/main?evt_code=20200318">환급반</a></li>
+				<li class="swiper-slide <?=($this->input->get('evt_code') == '20190118') ? 'on' : '' ?>"><a href="/event/main?evt_code=20190118">1단계</a></li>
+				<li class="swiper-slide <?=($this->input->get('evt_code') == '20180912') ? 'on' : '' ?>"><a href="/event/main?evt_code=20180912">간호학과</a></li>
+                <li class="swiper-slide <?=($this->input->get('evt_code') == '20200313') ? 'on' : '' ?>"><a href="/event/main?evt_code=20200313">경영학과</a></li>
+                <li class="swiper-slide <?=($this->input->get('evt_code') == '20181210') ? 'on' : '' ?>"><a href="/event/main?evt_code=20181210">영어영문학과</a></li>
+				<li class="swiper-slide <?=($this->input->get('evt_code') == '20200428') ? 'on' : '' ?>"><a href="/event/main?evt_code=20200428">합격전략특강</a></li>
+            </ul>
+        </div>
+
+    </div>

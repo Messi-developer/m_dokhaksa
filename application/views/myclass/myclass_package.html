@@ -1,0 +1,97 @@
+<div class="m_wrap t2">
+	<!-- 타이틀 -->
+	<div class="tit_wrap t2">
+		<dl>
+			<dt><?=$getLectureList->mem_lec_name?></dt>
+			<dd><?=($getLectureList->start_date != '') ? str_replace(':', '-', $getLectureList->start_date) : '-' ?> ~ <?=($getLectureList->end_date != '') ? str_replace(':', '-', $getLectureList->end_date) : '-' ?></dd>
+		</dl>
+	</div>
+	<!-- //타이틀 -->
+	<!-- 리스트 -->
+	<div class="lec_list t2"><!-- 클래스 t2=>패키지 리스트 , end=> 수강완료강좌 -->
+		<ul>
+			<!-- 부모강의 -->
+			<!--<li>
+				<div class="books_store_box">
+					<div class="books_icon">
+						<span class="cl_type">패키지</span>
+						<span class="on"><?/*=($getLectureList->lec_state == '2') ? '수강중' : '수강대기' */?></span>
+					</div>
+					<div class="books_name">
+						<dl>
+							<dt><?/*=$getLectureList->mem_lec_name*/?></dt>
+							<dd class="num_name"><?/*=(!empty($getLectureList->teacher_info->teacher_name)) ? $getLectureList->teacher_info->teacher_name : '-' */?> 교수님</dd>
+							<dd class="line_txt"></dd>
+							<dd class="num_pen">총 <?/*=(!empty($getLectureList->teacher_info->lec_su)) ? $getLectureList->teacher_info->lec_su : '0' */?>강</dd>
+							<dd class="line_txt t2"></dd>
+							<dd class="num_day num_day_sub"><?/*=$getLectureList->total_term*/?>일 (<?/*=($getLectureList->start_date != '') ? str_replace(':', '-', $getLectureList->start_date) : '-' */?> ~ <?/*=($getLectureList->end_date != '') ? str_replace(':', '-', $getLectureList->end_date) : '-' */?>)</dd>
+						</dl>
+					</div>
+					<div class="lec_bar_wrap">
+						<div class="bar">
+							<div class="bar_in" style="width:<?/*=round($getLectureList->lecKangUserTotalLoadingPercent, 2)*/?>%"></div>
+						</div>
+						<p><i class="bar_num"><?/*=$getLectureList->lecKangUserLoadingCnt->cnt*/?></i>강/<span>총 <?/*=(!empty($getLectureList->teacher_info->lec_su)) ? $getLectureList->teacher_info->lec_su : '0' */?>강</span></p>
+						<strong><span><?/*=round($getLectureList->lecKangUserTotalLoadingPercent, 2)*/?></span>%</strong>
+					</div>
+				</div>
+				<div class="m_btn_wrap <?/*=($getLectureList->lec_state == '2') ? '' : 'lec_stay' */?>">
+					<a href="#;" onclick="classStart('<?/*=$getLectureList->no*/?>', '<?/*=$getLectureList->lec_no*/?>', 'package', '<?/*=$getLectureList->lec_state*/?>', '<?/*=$getLectureList->total_term*/?>')">
+						<?/*=($getLectureList->lec_state == '2') ? '강의실 입장' : '수강대기' */?>
+					</a>
+				</div>
+			</li>-->
+			<!--// 부모강의 -->
+			<!-- 자식강의 -->
+			<? foreach($getLectureList->child as $lecture_key => $lecture_item) {
+				$teacher_name = explode(',', $lecture_item['child_teacher_info']->teacher_name);
+				?>
+				<li>
+					<div class="books_store_box">
+						<div class="books_icon">
+							<span class="cl_type">단과</span>
+							<span class="<?=($lecture_item['lec_state'] == '2') ? 'on' : '' ?>"><?=($lecture_item['lec_state'] == '2') ? '수강중' : '수강대기' ?></span> <!-- class on 배경색 -->
+						</div>
+						<div class="books_name">
+							<dl>
+								<dt><?=$lecture_item['mem_lec_name']?></dt>
+								<dd class="num_name"><?=(count($teacher_name) > 1) ? $teacher_name[0] .' 교수님  외' . (count($teacher_name) - 1).'명' : $teacher_name[0] . ' 교수님' ?></dd>
+								<!--<dd class="num_name"><?/*=(!empty($lecture_item['child_teacher_info']->teacher_name)) ? $lecture_item['child_teacher_info']->teacher_name : '이름X' */?> 선생님</dd>-->
+								<dd class="line_txt"></dd>
+								<dd class="num_pen">총 <?=(!empty($lecture_item['child_teacher_info']->lec_su)) ? $lecture_item['child_teacher_info']->lec_su : '0' ?>강</dd>
+								<dd class="line_txt t2"></dd>
+								<dd class="num_day num_day_sub">
+									<?=$lecture_item['total_term']?>일
+									<? if ($lecture_item['lec_state'] == '2') { ?>
+										(<?=(!empty($lecture_item['start_date'])) ? str_replace(':', '-', $lecture_item['start_date']) : '' ?> ~ <?=(!empty($lecture_item['end_date'])) ? str_replace(':', '-', $lecture_item['end_date']) : '-' ?>)
+									<? } ?>
+								</dd>
+							</dl>
+						</div>
+						<div class="lec_bar_wrap">
+							<? if ($lecture_item['lec_state'] == '2') { ?>
+							<div class="bar">
+								<div class="bar_in" style="width:<?=round($lecture_item['lecKangUserTotalLoadingPercent'], 2)?>%"></div>
+							</div>
+							<p><i class="bar_num"><?=$lecture_item['lecKangUserLoadingCnt']->cnt?></i>강/<span>총 <?=(!empty($lecture_item['child_teacher_info']->lec_su)) ? $lecture_item['child_teacher_info']->lec_su : '0' ?>강</span></p>
+							<strong><span><?=round($lecture_item['lecKangUserTotalLoadingPercent'], 2)?></span>%</strong>
+							<? } ?>
+						</div>
+					</div>
+					<div class="m_btn_wrap <?=($lecture_item['lec_state'] == '2') ? '' : 'lec_stay' ?>">
+						<a href="#;" onclick="classStart('<?=$lecture_item['no']?>', '<?=$lecture_item['lec_no']?>', 'package', '<?=$lecture_item['lec_state']?>', '<?=$lecture_item['total_term']?>')">
+							<?=($lecture_item['lec_state'] == '2') ? '강의실 입장' : '수강대기' ?>
+						</a>
+					</div>
+				</li>
+			<? } ?>
+			<!--// 자식강의 -->
+		</ul>
+	</div>
+	<!-- //리스트 -->
+	<!-- 목록으로이동 -->
+	<div class="m_btn_wrap t2">
+		<a href="/myclass/main" class="btn_list">목록으로 이동</a>
+	</div>
+	<!-- //목록으로이동 -->
+</div>

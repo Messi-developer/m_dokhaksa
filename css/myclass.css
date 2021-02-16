@@ -1,0 +1,407 @@
+@charset "euc-kr";
+/*공통*/
+.c_red{color:#ed244b;}
+.cler:After{clear:both;content:"";display:block;}
+.m_wrap{}
+.view_tit{font-size:20px;color:#333333;position:relative;padding-left:13px;margin:29px 5% 15px;height:20px;line-height:20px;}
+.view_tit:before{content: '';width: 3px;height:17px;position: absolute;left:0;top:2px;background:#0097a3;}
+.line_txt{display:inline-block;background:#a9a9a9;margin:0 8px;padding:0;width:1px;height:16px;position:relative;top:2px;}
+.txt_show{position:absolute;top:0px;right:20px;width:30px;height:30px;line-height:30px;text-align:center;transform:rotate(90deg);font-size:26px;color:#aaa;z-index:1;transition:0.5s;}
+.mlnone{margin-left:0 !important;}
+.b_bottom{border-bottom:1px solid #ddd;}
+
+
+/*타이틀*/
+.tit_wrap{padding:5% 5%;}
+.tit_wrap h4{display:block;padding-left:50px;font-size:20px;background:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_simple.png')no-repeat 7px 1px;background-size:contain;}
+.tit_wrap h4.cup{background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_cup.png');background-size:auto 29px;background-position:0 center;}
+.tit_wrap h4.qna{background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_qna.png');}
+.tit_wrap h4.pay{background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_cart.png');}
+.tit_wrap h4.money{padding-left:42px;background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_money.png');background-size:28px 28px;}
+.tit_wrap h4.cupon{background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_cupon.png');}
+.tit_wrap h4.point{padding-left:42px;background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_point.png');background-size:28px 28px;}
+.tit_wrap ul{margin-top:20px;}
+.tit_wrap ul li{position:relative;margin-top:5px;padding-left:20px;font-size:14px;color:#545454;}
+.tit_wrap ul li:first-child{margin-top:0;}
+.tit_wrap ul li:before{content: '';width: 4px;height: 4px;background-color: #717171;display: inline-block;position: absolute;left:10px;top:7px;border-radius:4px;}
+.tit_wrap ul li.none{padding-left:0;}
+.tit_wrap ul li.none:before{display:none;}
+.tit_wrap .t_wrap{padding:5% 0 0 0;}
+.tit_wrap .t_wrap table{border-color:#ddd;}
+.tit_wrap .t_wrap table td ul{margin-top:0;}
+
+/*탭메뉴*/
+.my_tab_area{}
+.my_tab_area .my_tab_tit li{float:left; width:50%; text-align:center;}
+.my_tab_area .my_tab_tit li a{display:block; height:48px; line-height:44px; font-size:20px; color:#b7b7b7; font-weight:bold; border-top:4px solid #565656; background:#565656;}
+.my_tab_area .my_tab_tit li.on a{color:#0097a3;border-color:#0097a3;background:#fff;}
+
+.my_tab_area .my_tab_con{display:none;}
+.my_tab_area .my_tab_con.on{display:block;}
+
+/**/
+.f_list{padding:5%;border-bottom:1px solid #ddd;}
+.f_list ul li{float:left;}
+.f_list ul li a{display:block; position:relative; padding-left:30px; color:#989898; font-size:14px; letter-spacing: -1px;}
+.f_list ul li.on a{color:#0097a3;}
+.f_list ul li:first-child a{padding-left:0;}
+.f_list ul li:first-child a:after{display:none;}
+.f_list ul li a:after{content:"";display:block;position:absolute;top:11%;left:15px;width:1px;height:15px;background:#989898;}
+
+/*강의리스트*/
+.lec_list{}
+.lec_tit{padding:3.5% 5%; border-bottom:1px solid #ddd;}
+.lec_tit a{position:relative; display:block; font-size:24px; font-weight:bold; color:#232323;}
+.lec_tit a span{
+	position: absolute;
+	top: 0px;
+	right: 20px;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	transform: rotate(90deg);
+	font-size: 26px;
+	color: #aaa;
+	z-index: 1;
+	transition: 0.5s;
+}
+
+.lec_tit a span.on{transform: rotate(-90deg);}
+
+.m_btn_wrap{padding:20px 0;text-align:center;}
+.m_btn_wrap.t2{padding:0;}
+.pb5{padding-bottom:5% !important;}
+.m_btn_wrap.t3{padding:20px 5% 0;}
+.m_btn_wrap.t4{padding:0 5%;}
+.m_btn_wrap.t5{padding:0 5% 29px;}
+.m_btn_wrap.t6{padding:29px 5%;}
+.m_btn_wrap a{display:inline-block;width:100%;line-height:40px;color:#fff;font-size:17px;border-radius:10px;background:#414141;}
+.m_btn_wrap.lec_stay a{background-color:#f3f4f6; color:#787878; border:1px solid #787878;}
+.m_btn_wrap a.btn_list{color:#fff;border-radius:0;background:#0092a3;}
+.m_btn_wrap button.more_btn{display: block;
+	text-align: center;
+	font-size: 14px;
+	color: #8a8a8a;
+	background: url(https://gscdn.hackers.co.kr/haksa2080/images/books/boos_sch_icon03.png) no-repeat 50% bottom;
+	background-size: 12px;
+	padding:0 0 10px 0;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.m_btn_wrap a.more_view{color:#000;background:#e9eaee url(https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_more.png)no-repeat 35% center;background-size:15px 15px;}
+.m_btn_wrap a.btn_type2{width:43%;margin-left:2%;border-radius:5px;}
+.m_btn_wrap a.btn_type2.list{margin-left:0;}
+.m_btn_wrap a.btn_type2.apply{background:#0092a3;}
+.m_btn_wrap a.t1{color:#fff;background:#0092a3;}
+
+/* 교재신청 LIST  */
+.lec_list > ul{padding:0 5% 5%;border-top:1px solid #ddd;background:#f3f4f6;}
+.lec_list > ul > li{padding-top:25px;}
+.lec_list > ul li .books_store_box{padding:5%;border:1px solid #cccccc;border-radius:6px;background:#fff;}
+.lec_list li.books_nolist{font-size:25px;color:#c0c0c0;font-weight:bold;text-align:center;margin:0;padding:15% 0;display:none;}
+.lec_list li.books_nolist.on{display:block;}
+.lec_list li.books_nolist img {width:50px;display:block;margin: 0 auto 10px auto;}
+
+.lec_list li .books_icon span{display:inline-block; border:1px solid #333333; color:#333333; font-size:12px; line-height:22px;height:22px;border-radius:25px;padding:0 10px;}
+.lec_list li .books_icon span.on{color:#fff;background:#0092a3;border-color:#0092a3;}
+.lec_list li .books_icon .cl_type{color:#0092a3;border:1px solid #0092a3;}
+
+.lec_list li .books_name{overflow:hidden;width:100%;}
+.lec_list li .books_name dl{padding-top:10px;float:left;width:74%;}
+.lec_list li .books_name dl:after{content:'';display:block;clear:both;}
+.lec_list li .books_name .img_upload{width:24%;float:right;}
+.lec_list li .books_name dt{float:left; width:100%; font-size:20px; color:#333333; font-weight:bold; margin-bottom:10px;}
+.lec_list li .books_name dd{float:left;font-size:14px;color:#565656;height:20px;padding-left:20px;line-height:20px;}
+.lec_list li .books_name dd.num_name {background:url(https://gscdn.hackers.co.kr/haksa2080/images/books/boos_sch_icon0102.png) no-repeat 0 50%; background-size:16px;}
+.lec_list li .books_name dd.num_point{background:url(https://gscdn.hackers.co.kr/haksa2080/images/books/boos_sch_icon02.png) no-repeat 0 50%;background-size:16px;}
+.lec_list li .books_name dd.num_day{margin-top:5px;background:url(https://gscdn.hackers.co.kr/haksa2080/images/books/boos_sch_icon01.png) no-repeat 0 50%;background-size:16px;}
+.lec_list li .books_name dd.num_pen{background:url(https://gscdn.hackers.co.kr/haksa2080/images/books/boos_sch_icon05.png) no-repeat 0 50%;background-size:16px;}
+
+.num_day_sub{float:none; display:block; clear:both; margin-top:10px;}
+
+.lec_list li .books_name dd.line_txt{background:#a9a9a9;margin:0 8px;padding:0;width:1px;height:16px;position:relative;top:2px;}
+.lec_list li .books_name dd.line_txt.t2{display:none;}
+
+.lec_list li .books_amt{}
+.lec_list li .books_amt dl{border-top:1px solid #cccccc;padding:5% 0;position:relative;}
+.lec_list li .books_amt dl dt{position:absolute;top:36%;left:0;font-size:17px;color:#565656;}
+.lec_list li .books_amt dl dd{padding-left:100px;text-align:right;color:#565656;font-size:15px;}
+.lec_list li .books_amt dl dd strong{color:#eb0032;font-size:22px;display:inline-block;line-height:26px;vertical-align:middle;}
+
+.books_list_more{border-top:1px solid #9f9fa0;margin-top:5%;}
+.books_list_more .txt_btn{display:block;text-align:center;font-size:14px;color:#8a8a8a;background:url(https://gscdn.hackers.co.kr/haksa2080/images/books/boos_sch_icon03.png) no-repeat 50% bottom;background-size:12px;padding:15px 0 10px 0;width:100%;box-sizing: border-box;}
+
+/*강의바*/
+.lec_bar_wrap{padding:10px 0 0;overflow:hidden;}
+.bar{position:relative;width:100%;height:10px;border-radius:10px;background:#dddee0;}
+.bar .bar_in{position:absolute;top:0;left:0;width:90%;height:10px;border-radius:10px;background:#0092a3;}
+
+.lec_bar_wrap p{float:left; margin-top:5px; color:#0092a3; font-size:14px;}
+.lec_bar_wrap p span{color:#565656;}
+
+.lec_bar_wrap strong{float:right;margin:5px 5px 0 0;color:#0092a3;font-size:14px;}
+
+/*수강완료*/
+.lec_list.end > ul{display:block !important;background:#fff;}
+.lec_list.end .bar .bar_in{background:#848484;}
+.lec_list.end .lec_bar_wrap p{color:#848484;}
+.lec_list.end .lec_bar_wrap strong{color:#848484;}
+
+/*패키지 리스트*/
+.m_wrap{padding:30px 0;}
+.m_wrap.t2{padding:0;}
+.tit_wrap.t2{padding:0;}
+.tit_wrap dl{width:100%;padding:5%;background:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/bg_mctop.jpg')no-repeat 0 0;background-size:100%;}
+.tit_wrap dl dt{color:#fff;font-size:22px;}
+.tit_wrap dl dd{color:#fff;font-size:14px;}
+
+.lec_list.t2 > ul{display:block;}
+
+/*강의실*/
+.view_tit_wrap{text-align:Center;}
+.view_tit_wrap span{display:inline-block;color:#0097a3;line-height:26px;height:26px;border:1px solid #0097a3;border-radius:26px; padding:0 15px; margin-top:30px;}
+.view_tit_wrap h4{display:block; margin-top:16px; font-size:22px; font-weight:bold;}
+
+.lect_info_wrap{border-bottom:3px solid #dddee0;}
+.t_wrap{padding:29px 5%;}
+.t_wrap table{table-layout:fixed;border-collapse:collapse;width:100%;border-top:1px solid #232323;border-bottom:1px solid #232323;}
+.t_wrap table tbody th{padding:5%;border-top:1px solid #fff;background-color:#f0f1f5;}
+.t_wrap table tbody th span{display:block;padding-top:25px;background-size:20px 20px;background-repeat:no-repeat;background-position:center top;}
+.t_wrap table tbody th span.ico1{background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_calendar.png');}
+.t_wrap table tbody th span.ico2{background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_chk.png');}
+.t_wrap table tbody th span.ico3{background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_file.png');}
+.t_wrap table tbody th span.ico4{background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_question.png');}
+.t_wrap table tbody th span.ico5{background-image:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_pen.png');}
+.t_wrap table tbody td{padding:5%;border-top:1px solid #ddd;}
+.t_wrap table tbody td > ul > li > strong > span{color:#0097a3;}
+.t_wrap table tbody td > ul > li.bar{margin-top:5px;}
+.t_wrap table tbody td a{display:black;padding-right:15%;background:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_href.png')no-repeat right center;background-size:contain;}
+.t_wrap table tbody tr:first-child th,
+.t_wrap table tbody tr:first-child td{border-top:0;}
+
+
+/*영상리스트*/
+.mov_list{padding:0 5%;}
+.mov_list > ul > li{overflow:hidden;padding:5% 0;border-bottom:1px solid #ccc;}
+.mov_list > ul > li .f_l{float:left;width:45%;}
+.mov_list > ul > li .f_l > a{display:block;position:relative;}
+.mov_list > ul > li .f_l .bg_box{position:absolute;top:0;left:0;width:100%;}
+.mov_list > ul > li .f_l .bg_box span{position:absolute;top:0;left:0;color:#fff;padding:3% 8%;border-radius:0 0 10px 0;background:rgba(0,0,0,0.6);}
+.mov_list > ul > li .f_r{float:right;width:53%;padding:2% 0 2% 2%;}
+.mov_list > ul > li .f_r strong{display:block;margin-bottom:5%;font-size:18px;}
+.mov_list > ul > li .f_r strong span{display:block;color:#0097a3;}
+.mov_list > ul > li .f_r ul li span.t2{color:#0097a3;}
+.mov_list > ul > li .f_r ul li span.t1{color:#ed244b;}
+
+/*수강연장*/
+.tit_wrap.t3{border-bottom:3px solid #dddee0;}
+
+.tit_wrap.t3 h4 span{color:#0097a3;}
+
+.txt_box{padding:5%;border-bottom:3px solid #dddee0;}
+.txt_box h4{font-size:20px; padding-bottom: 5%;}
+.txt_box h5{font-size:18px; padding-bottom:5%;}
+.txt_box ol{padding-top:3%;}
+.txt_box ol li span{display:inline-block;}
+
+/*수강연장 신청*/
+.history_list2{padding:5% 5% 0;}
+.history_list2 ul li{margin-top:5%;}
+.history_list2 ul li:first-child{margin-top:0;}
+.history_list2 ul li span{display:inline-block;position:relative;width:30%;padding-left:10px;}
+.history_list2 ul li strong{display:inline-block;}
+.history_list2 > ul > li strong.t1{color:#0097a3;}
+.history_list2 > ul > li strong.t2{color:#ed244b;}
+
+.history_list2 ul li span{}
+.history_list2 ul li span:before{content: '';width:3px;height:10px;position:absolute;left:0;top:5px;background:#0097a3;}
+.history_list2 ul li strong.ico_file{padding-left:7%;background:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_clip.png')no-repeat 0 0;background-size:contain;}
+
+/*수강연장 신청내역*/
+.history_list{padding:5% 5% 0;}
+.history_list h4{font-size:20px;padding-bottom:5%;}
+.history_list > ul{padding-bottom:5%;border-bottom:1px solid #ddd;}
+.history_list > ul > li{margin-top:5%;padding:3%;border:1px solid #ccc;border-radius:10px;color:#383838;font-size:14px;}
+.history_list > ul > li:first-child{margin-top:0;}
+.history_list > ul > li > ul > li{position:relative;padding-left:10px;}
+.history_list > ul > li > ul > li:before{content:'';position:absolute;top:50%;left:0;width:4px;height:4px;border-radius:4px;background:#383838;}
+.history_list > ul > li > ul > li span{display:inline-block;width:30%;}
+.history_list > ul > li > ul > li strong{display:inline-block;margin-left:10px;color:#000;}
+.history_list > ul > li > ul > li strong.t1{color:#0097a3;}
+.history_list > ul > li > ul > li strong.t2{color:#ed244b;}
+
+/* 신청내역이 없을경우 */
+.list_none{
+	padding:110px 0 40px;
+	text-align:center;
+	font-size:20px;
+	font-weight:bold;
+	color:#c0c0c0;
+	border-bottom:0;
+	background:#fff url('https://gscdn.hackers.co.kr/haksa2080/images/icon/no_list.png')no-repeat center 40px;
+	background-size:60px 60px;
+	border:0;
+}
+
+
+/*수강연장신청*/
+.write_wrap{padding:5%;}
+.write_wrap h5{font-size:4vw;padding-bottom:3%;border-bottom:1px solid #ddd;}
+.write_wrap h5 span{display:inline-block;margin-left:8px;color:#0097a3;font-size:3.5vw;}
+.write_list ul li{margin-top:5%;}
+.write_list ul li:frist-child{margin-top:0;}
+.write_list ul li span.star{display:inline-block;margin-right:5px;color:#0097a3;}
+.write_list ul li textarea{margin-top:3%;min-height:150px;overflow-y:scroll;}
+.filebox{margin-top:3%;}
+.filebox input[type="file"] {
+	position: absolute;
+	width: 0;
+	height: 0;
+	padding: 0;
+	overflow: hidden;
+	border: 0;
+}
+
+.filebox label {
+	display: inline-block;
+	padding: 0 20px;
+	height:7vw;
+	line-height:7vw;
+	color: #fff;
+	vertical-align: middle;
+	background-color: #6c6c6d;
+	cursor: pointer;
+	border: 1px solid #ebebeb;
+	border-radius: 5px;
+	box-sizing:border-box;
+}
+
+/* named upload */
+.filebox .upload-name {
+	display: inline-block;
+	width:60%;
+	height: 7vw;
+	padding: 0 10px;
+	margin-right:3%;
+	vertical-align: middle;
+	background-color: #f5f5f5;
+	border: 1px solid #ebebeb;
+	border-radius: 5px;
+
+}
+.upload-exam-text{display:block; margin-top:6px; font-size:12px; color:#0097a3;}
+
+.cs_box{}
+.cs_box h6{font-size:1.1em;font-weight:500;}
+.cs_list{padding:5% 0;}
+.cs_list ul li{text-align:center;}
+.cs_list ul li a{border-radius:5px;}
+
+.cs_list ul li:first-child{margin-left:0;}
+.cs_list ul li a{display:block;line-height:40px;border:1px solid #ddd;}
+.cs_list ul li.on a{font-weight:bold;color:#fff;border-color:#0097a3; background:#0097a3;}
+.cs_list ul li.on a{padding-left:20px;color:#0097a3;background:#fff url('https://gscdn.hackers.co.kr/haksa2080/images/customer/ico_chk_on.png')no-repeat 15% 50%;background-size:20px 20px;}
+
+.cs_list ul li > label{position:relative;display:block;line-height:40px;}
+.cs_list ul li > label input[type="checkbox"]{display:none;}
+.cs_list ul li > label label{display:block;width:100%;border:1px solid #ddd;border-radius:10px;}
+.cs_list ul li > label input[type="checkbox"]:checked + label{border-radius:40px;color:#fff;border:1px solid #0097a3;background:#0097a3;}
+
+.cs_list ul li > label label:after{content:'Γ';display:none;position:absolute;top:10px;left:20%;width:18px;height:18px;line-height:20px;border:1px solid #c2c2c2;border-radius:50%;color:#c2c2c2;text-align: center;font-size:16px;transform:rotate(225deg);}
+.cs_list ul li > label input[type="checkbox"]:checked + label{border-radius:10px;color:#0097a3;background:#fff;}
+.cs_list ul li > label input[type="checkbox"]:checked + label:after{display:block;background:#0097a3;color:#fff;border-color:#0097a3;}
+.cs_list ul li.all > label input[type="checkbox"]:checked + label:after{display:none;}
+
+/*질문/답변*/
+.qna_list{}
+.qna_list .q_box{padding:3%;border-bottom:1px solid #ddd;}
+.qna_list .q_box span.state{display:inline-block;padding:5px 10px;border:1px solid #0097a3;color:#0097a3;font-size:11px;border-radius:5px;}
+.qna_list .q_box span.state.t2{border-color:#848484;color:#848484;}
+.qna_list .q_box a{display:block;position:relative;padding:13px 0 8px 0;font-size:20px;color:#000;}
+.qna_list .q_box a:after {display:block; content:""; clear:both;}
+.qna_list .q_box a span.txt_show{top:10px; right:0;}
+.qna_list .q_box a span.txt_tit { display:block; float:left; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; width:85%;}
+.qna_list .q_box a span.on{transform: rotate(-90deg);}
+.qna_list .q_box ul li{float:left;color:#565656;}
+.qna_list .q_box ul li:first-child{margin-left:0;}
+
+.qna_list .a_box{display:none;padding:3% 3% 0;background:#f6f7f9;}
+.qna_list .a_box .q_view{padding-bottom:3%;border-bottom:1px solid #ddd; position:relative;}
+.qna_list .a_box .q_view ul li{float:left;color:#565656;}
+.qna_list .a_box .q_view strong{display:block;padding-bottom:5px;font-size:16px;color:#333;}
+.qna_list .a_box .q_view p{font-size:14px;padding:5px 0;}
+.qna_list .a_box .a_view{padding:3% 0;}
+.qna_list .a_box .a_view h5{padding:0 0 10px 20px;font-size:16px;color:#0097a3;background:url('https://gscdn.hackers.co.kr/haksa2080/images/myclass/ico_teacher.png')no-repeat 0 5px; background-size:15px 15px;}
+.a_view .review_title{padding-bottom: 3%; margin-bottom: 3%; border-bottom: 1px solid #ddd;}
+.qna_list .a_box .a_view em{font-weight:bold; color:#0097a3; padding-right:1%;}
+
+.close {position:absolute;top:15px;right:15px;z-index: 1;}
+.close span {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 20px;
+	height: 1px;
+	background: #909090;
+}
+
+.close span:first-of-type {
+	transform: translate(-50%,-50%) rotate(45deg);
+}
+
+.close span:last-of-type {
+	transform: translate(-50%,-50%) rotate(-45deg);
+}
+
+/*학습질문등록*/
+.qna_write{}
+.qna_write ul li{overflow:hidden;padding:3% 0;}
+.qna_write ul li h6{margin-bottom:3%;font-size:16px;color:#565656;}
+.qna_write ul li > input[type="radio"]{display:none;}
+.qna_write ul li > input[type="radio"]+label{
+	display:block;
+	float:left;
+	width:49.5%;
+	line-height:35px;
+	margin-left:1%;
+	text-align:center;
+	border:1px solid #767677;
+	border-radius:20px;
+	background:rgba(255,255,255,0.6);
+	box-sizing:border-box;
+}
+.qna_write ul li > input[type="radio"]:checked+label{color:#fff;border-color:#0097a3;background:#0097a3;}
+.qna_write ul li span{}
+.qna_write ul li span b{display:inline-block;margin-left:3%;color:#0097a3;}
+.qna_write ul li select{margin-bottom:3%;}
+.qna_write ul li textarea{margin-top:3%;min-height:150px;overflow-y:auto;}
+
+
+/*증빙자료 제출방법*/
+.tab_area{}
+.tab_area .tab_tit li{float:left;width:50%;line-height:50px;font-size:20px;text-align:center;}
+.tab_area .tab_tit li a{display:block;border-bottom:1px solid #232323;color:#666;font-weight:bold;background-color:#f0f1f5;}
+.tab_area .tab_tit li.on a{border:1px solid #232323;border-bottom:0;color:#0097a3;background-color:#fff;}
+.tab_area .tab_con{display:none;}
+.tab_area .tab_con.on{display:block;}
+
+/*테블릿*/
+/*@media screen and (min-width: 768px){
+	.tit_wrap h4{padding-left:63px; font-size:24px;}
+	.tit_wrap ul li{font-size:16px;}
+	.my_tab_area .my_tab_tit li a{font-size:24px;}
+	.f_list ul li a{font-size:16px;}
+	.lec_list li .books_name dt{font-size:24px;}
+	.lec_tit a{font-size:3vw;}
+	.m_btn_wrap a{font-size:20px;}
+	.lec_bar_wrap p{font-size:16px;}
+	.lec_bar_wrap strong{font-size:16px;}
+	.lec_list li .books_icon span{font-size:14px;}
+
+	.lec_tit{padding:3%;}
+	.lec_list li .books_name dd{margin-bottom:10px; font-size:16px;}
+	.lec_list li .books_name dd.num_day{margin-top:0;display:block;}
+	.lec_list li .books_name dd.line_txt.t2{display:none;}
+}*/

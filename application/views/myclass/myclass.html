@@ -1,0 +1,234 @@
+<div id="myclass_container">
+	<div id="container">
+		<!-- 내용 -->
+		<div class="m_wrap" style="padding:0 !important;">
+			<!-- 타이틀 -->
+			<div class="tit_wrap">
+				<h4 class="mb20">단과/패키지 강좌</h4>
+				<ul>
+					<li>모든 단과 및 패키지 강좌의 수강중인 강좌를 확인하고 강좌를 바로 들을 수 있습니다.</li>
+					<li>수강대기 강좌는 <span class="c_red">결제일로부터 7일 후에는 수강이 시작됩니다.</span></li>
+					<li>정해진 수강일이 지난 강좌는 수강완료 강좌에서만 확인하실 수 있습니다.</li>
+				</ul>
+			</div>
+			<!-- //타이틀 -->
+			<!-- 탭메뉴 수강중/수강완료-->
+			<div class="my_tab_area">
+				<ul class="my_tab_tit cler">
+					<li class="<?=($_GET['page_type'] != 'lecEnd') ? 'on' : '' ?>"><a href="/myclass/main">수강중인 강좌</a></li>
+					<li class="<?=($_GET['page_type'] == 'lecEnd') ? 'on' : '' ?>"><a href="/myclass/main/?page_type=lecEnd">수강완료 강좌</a></li>
+				</ul>
+				
+				<!-- 수강중강좌 -->
+				<div class="my_tab_con <?=($_GET['page_type'] != 'lecEnd') ? 'on' : '' ?>">
+					<div class="f_list">
+						<ul class="cler">
+							<li class="on"><a href="#;" onclick="checkMyClassType('sortNo');">전체보기</a></li>
+							<li ><a href="#;" onclick="checkMyClassType('lecStart');">최근 수강 순</a></li>
+							<li><a href="#;" onclick="checkMyClassType('lecWdate');">수강기간 임박순</a></li>
+							<li><a href="#;" onclick="checkMyClassType('bigCate');">과목순</a></li>
+						</ul>
+					</div>
+					
+					<!-- 패키지 강의 -->
+					<? if (!empty($package_lecture_list) || !empty($single_lecture_list)) { ?>
+						<? if (!empty($package_lecture_list)) { ?>
+							<div id="myClassContentPackage" class="myClassContent">
+							<div class="lec_list">
+								<div class="lec_tit">
+									<a href="#;" class="on">패키지 강의 <span class="txt_show" onclick="packageToggle($(this))">〉</span></a>
+								</div>
+								<ul>
+									<? foreach($package_lecture_list as $lecture_key => $lecture_item) {
+										$checkPackage = (count($lecture_item['child']) >= 1) ? "package" : "single" ;
+										$teacher_name = explode(',', $lecture_item['teacher_info']->teacher_name);
+									?>
+										<li>
+											<div class="books_store_box">
+												<div class="books_icon">
+													<span class="cl_type">패키지</span>
+													<span class="<?=($lecture_item['lec_state'] == 2) ? 'on' : '' ?>"><?=($lecture_item['lec_state'] == 2) ? '수강중' : '수강대기' ?></span>
+												</div>
+												
+												<div class="books_name">
+													<dl>
+														<dt><?=$lecture_item['mem_lec_name']?></dt>
+														<dd class="num_name"><?=(count($teacher_name) > 1) ? $teacher_name[0] .' 교수님  외' . (count($teacher_name) - 1).'명' : $teacher_name[0] . ' 교수님' ?></dd>
+														<dd class="line_txt"></dd>
+														<dd class="num_pen">총 <?=(!empty($lecture_item['teacher_info'])) ? $lecture_item['teacher_info']->lec_su : '0' ?>강</dd>
+														<dd class="line_txt t2"></dd><!-- 테블릿용 -->
+														<dd class="num_day num_day_sub">
+															<?=(!empty($lecture_item['total_term'])) ? $lecture_item['total_term'] : '-' ?>일
+															<? if ($lecture_item['lec_state'] == 2) { ?>
+																(<?=(!empty($lecture_item['start_date'])) ? str_replace(':', '-', $lecture_item['start_date']) : '-' ?> ~ <?=(!empty($lecture_item['end_date'])) ? str_replace(':', '-', $lecture_item['end_date']) : '-' ?>)
+															<? } ?>
+														</dd>
+													</dl>
+												</div>
+											</div>
+											<div class="m_btn_wrap <?=($lecture_item['lec_state'] != 2) ? 'lec_stay' : '' ?>">
+												<a href="#;" onclick="packageClassStart('<?=$lecture_item['no']?>', '<?=$lecture_item['lec_no']?>', '<?=$checkPackage?>', '<?=$lecture_item['lec_state']?>', '<?=$lecture_item['total_term']?>');"><?=($lecture_item['lec_state'] == 2) ? '강의목록' : '강의시작' ?></a>
+											</div>
+										</li>
+									<? } ?>
+								</ul>
+							</div>
+						</div>
+						<? } ?>
+						<!--// 패키지 강의 -->
+						
+						<!-- 단과 강의 -->
+						<? if (!empty($single_lecture_list)) { ?>
+						<div id="myClassContentSingle" class="myClassContent">
+							<div class="lec_list">
+								<div class="lec_tit">
+									<a href="#;" class="on">단과 강의 <span class="txt_show" onclick="packageToggle($(this))">〉</span></a>
+								</div>
+								<ul>
+									<? foreach($single_lecture_list as $lecture_key => $lecture_item) {
+										$checkPackage = (count($lecture_item['child']) >= 1) ? "package" : "single" ;
+										$teacher_name = explode(',', $lecture_item['teacher_info']->teacher_name);
+										?>
+										<li>
+											<div class="books_store_box">
+												<div class="books_icon">
+													<span class="cl_type">단과</span>
+													<span class="<?=($lecture_item['lec_state'] == 2) ? 'on' : '' ?>"><?=($lecture_item['lec_state'] == 2) ? '수강중' : '수강대기' ?></span>
+												</div>
+												
+												<div class="books_name">
+													<dl>
+														<dt><?=$lecture_item['mem_lec_name']?></dt>
+														<dd class="num_name"><?=(count($teacher_name) > 1) ? $teacher_name[0] .' 교수님  외' . (count($teacher_name) - 1).'명' : $teacher_name[0]. ' 교수님' ?></dd>
+														<dd class="line_txt"></dd>
+														<dd class="num_pen">총 <?=(!empty($lecture_item['teacher_info'])) ? $lecture_item['teacher_info']->lec_su : '0' ?>강</dd>
+														<dd class="line_txt t2"></dd><!-- 테블릿용 -->
+														<dd class="num_day num_day_sub">
+															<?=(!empty($lecture_item['total_term'])) ? $lecture_item['total_term'] : '-' ?>일
+															<? if ($lecture_item['lec_state'] == 2) { ?>
+																(<?=(!empty($lecture_item['start_date'])) ? str_replace(':', '-', $lecture_item['start_date']) : '-' ?> ~ <?=(!empty($lecture_item['end_date'])) ? str_replace(':', '-', $lecture_item['end_date']) : '-' ?>)
+															<? } ?>
+														</dd>
+													</dl>
+												</div>
+												<? if ($lecture_item['lec_state'] == '2') { ?>
+													<div class="lec_bar_wrap">
+														<div class="bar">
+															<div class="bar_in" style="width:<?=round($lecture_item['user_loading_percent'], 2)?>%"></div>
+														</div>
+														<p><i class="bar_num"><?=$lecture_item['user_loading_cnt']->cnt?></i>강 / <span>총 <?=(!empty($lecture_item['teacher_info'])) ? $lecture_item['teacher_info']->lec_su : '0' ?>강</span></p>
+														<strong><span><?=round($lecture_item['user_loading_percent'], 2)?></span>%</strong>
+													</div>
+												<? } ?>
+											</div>
+											<div class="m_btn_wrap <?=($lecture_item['lec_state'] != 2) ? 'lec_stay' : '' ?>">
+												<a href="#;" onclick="classStart('<?=$lecture_item['no']?>', '<?=$lecture_item['lec_no']?>', '<?=$checkPackage?>', '<?=$lecture_item['lec_state']?>', '<?=$lecture_item['total_term']?>')">
+													<?=($lecture_item['lec_state'] == 2) ? '강의실 입장' : '강의시작' ?>
+												</a>
+											</div>
+										</li>
+									<? } ?>
+								</ul>
+							</div>
+						</div>
+						<? } ?>
+						<!--// 단과 강의 -->
+					<? } else { ?>
+						<div class="list_none">
+							수강중인 강좌가 <br> 없습니다.
+						</div>
+					<? } ?>
+				</div>
+				<!-- //수강중강좌 -->
+				
+				
+				<!-- 수강완료강좌 -->
+				<div class="my_tab_con <?=($_GET['page_type'] == 'lecEnd') ? 'on' : '' ?>">
+					<div class="lec_list end"><!-- 클래스 t2=>패키지 리스트 , end=> 수강완료강좌 -->
+						<ul>
+							<!-- 부모강의 -->
+							<? if (!empty($package_lecture_list)) { ?>
+								<? foreach($package_lecture_list as $lecture_key => $lecture_item) { ?>
+									<li>
+										<div class="books_store_box">
+											<div class="books_icon">
+												<span class="cl_type"><?=(count($lecture_item['child']) >= 1) ? '패키지' : '단과' ?></span>
+												<span>수강완료</span>
+											</div>
+											<div class="books_name">
+												<dl>
+													<dt><?=$lecture_item['mem_lec_name']?></dt>
+													<dd class="num_name"><?=(!empty($lecture_item['teacher_info'])) ? $lecture_item['teacher_info']->teacher_name . ' 교수님' : '-' ?></dd>
+													<dd class="line_txt"></dd>
+													<dd class="num_pen">총 <?=(!empty($lecture_item['teacher_info'])) ? $lecture_item['teacher_info']->lec_su : '-' ?>강</dd>
+													<dd class="line_txt t2"></dd><!-- 테블릿용 -->
+													<dd class="num_day num_day_sub"><?=(!empty($lecture_item['end_day']) ? $lecture_item['end_day'] : '-' )?>일 (<em><?=(!empty($lecture_item['start_date'])) ? str_replace(':', '-', $lecture_item['start_date']) : '-' ?> ~ <?=(!empty($lecture_item['end_date']) ? str_replace(':', '-', $lecture_item['end_date']) : '-' )?></em>)</dd>
+												</dl>
+												<!--<span class="img_upload"><a href=""><img src="../images/books/best_test_img.jpg" alt=""></a></span>-->
+											</div>
+											<div class="lec_bar_wrap">
+												<div class="bar">
+													<div class="bar_in" style="width:<?=round($lecture_item['user_loading_percent'], 2)?>%"></div>
+												</div>
+												<p><i class="bar_num"><?=$lecture_item['user_loading_cnt']->cnt?></i>강 / <span>총 <?=(!empty($lecture_item['teacher_info'])) ? $lecture_item['teacher_info']->lec_su : '0' ?>강</span></p>
+												<strong><span><?=round($lecture_item['user_loading_percent'], 2)?></span>%</strong>
+											</div>
+										</div>
+									</li>
+								<? } ?>
+							<? } ?>
+							<!--// 부모강의 -->
+							
+							<!-- 단과강의 -->
+							<? if (!empty($single_lecture_list)) { ?>
+								<? foreach($single_lecture_list as $lecture_key => $lecture_item) { ?>
+									<li>
+										<div class="books_store_box">
+											<div class="books_icon">
+												<span class="cl_type"><?=(count($lecture_item['child']) >= 1) ? '패키지' : '단과' ?></span>
+												<span>수강완료</span>
+											</div>
+											<div class="books_name">
+												<dl>
+													<dt><?=$lecture_item['mem_lec_name']?></dt>
+													<dd class="num_name"><?=(!empty($lecture_item['teacher_info'])) ? $lecture_item['teacher_info']->teacher_name . ' 교수님' : '-' ?></dd>
+													<dd class="line_txt"></dd>
+													<dd class="num_pen">총 <?=(!empty($lecture_item['teacher_info'])) ? $lecture_item['teacher_info']->lec_su : '0' ?>강</dd>
+													<dd class="line_txt t2"></dd><!-- 테블릿용 -->
+													<dd class="num_day num_day_sub"><?=(!empty($lecture_item['end_day'])) ? $lecture_item['end_day'] : '-' ?>일 (<em><?=(!empty($lecture_item['start_date'])) ? str_replace(':', '-', $lecture_item['start_date']) : '-' ?> ~ <?=(!empty($lecture_item['end_date'])) ? str_replace(':', '-', $lecture_item['end_date']) : '-' ?></em>)</dd>
+												</dl>
+												<!--<span class="img_upload"><a href=""><img src="../images/books/best_test_img.jpg" alt=""></a></span>-->
+											</div>
+											<div class="lec_bar_wrap">
+												<div class="bar">
+													<div class="bar_in" style="width:<?=round($lecture_item['user_loading_percent'], 2)?>%"></div>
+												</div>
+												<p><i class="bar_num"><?=$lecture_item['user_loading_cnt']->cnt?></i>강 / <span>총 <?=(!empty($lecture_item['teacher_info'])) ? $lecture_item['teacher_info']->lec_su : '0' ?>강</span></p>
+												<strong><span><?=round($lecture_item['user_loading_percent'], 2)?></span>%</strong>
+											</div>
+										</div>
+									</li>
+								<? } ?>
+							<? } ?>
+							
+							<? if (empty($package_lecture_list) && empty($single_lecture_list)) { ?>
+								<li>
+									<div class="list_none">
+										수강완료된 강좌가 <br> 없습니다.
+									</div>
+								</li>
+							<? } ?>
+							<!--// 부모강의 -->
+						</ul>
+					</div>
+				</div>
+				<!-- 수강완료강좌 -->
+				
+			</div>
+			<!-- //탭메뉴 수강중/수강완료-->
+		</div>
+		<!-- //내용 -->
+	</div>
+	<!--// container -->
+	
+</div>

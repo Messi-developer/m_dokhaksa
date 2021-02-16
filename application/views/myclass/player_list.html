@@ -1,0 +1,123 @@
+<div id="myclass_container">
+    <div id="container">
+        <!-- 내용 -->
+        <div class="m_wrap t2">
+            <!-- 타이틀 -->
+            <div class="view_tit_wrap">
+                <span class="cl_type"><?=($_GET['package_type'] == 'package') ? '패키지' : '단과' ?></span>
+                <h4><?=$lectureView->mem_lec_name?></h4>
+            </div>
+            <!-- //타이틀 -->
+            <!-- 강의설명 -->
+            <div class="lect_info_wrap">
+                <div class="t_wrap">
+                    <table>
+                        <caption>과목설명</caption>
+                        <colgroup>
+                            <col style="width:30%;">
+                            <col style="width:70%;">
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th scope="row"><span class="ico1">수강기간</span></th>
+                            <td>
+                                <ul>
+                                    <li><strong><span><?=$lectureView->end_day?> Days </span>남았습니다.</strong></li>
+                                    <li><?=$lectureView->lec_term?>일&nbsp;<em>(<?=($lectureView->start_date != '') ? str_replace(':', '-', $lectureView->start_date) : '-' ?> ~ <?=($lectureView->end_date != '') ? str_replace(':', '-', $lectureView->end_date) : '-' ?>)</em></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><span class="ico2">학습진도</span></th>
+                            <td>
+                                <ul>
+                                    <li><strong><span><?=round($lectureView->lecKangUserTotalLoadingPercent, 2)?>% </span>(<?=$lectureView->lecKangUserLoadingCnt->cnt?>강/총 <?=$lectureView->lec_su?>강)</strong></li>
+                                    <li class="bar"><div class="bar_in" style="width:<?=round($lectureView->lecKangUserTotalLoadingPercent, 2)?>%"></div></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><span class="ico3">학습자료</span></th>
+                            <td>
+                                <a href="#;" onclick="downloadFile('<?=$lectureView->lec_no?>');">학습자료 다운로드</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><span class="ico4">학습질문</span></th>
+                            <td>
+                                <a href="/myclass/learning_qna/learning_qna_write?no=<?=$this->input->get('no')?>">학습질문하기</a>
+                            </td>
+                        </tr>
+                        <!--<tr>
+                            <th scope="row"><span  class="ico5">수강후기</span></th>
+                            <td>
+                                <a href="#;">수강후기작성하기</a>
+                            </td>
+                        </tr>-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- //강의설명 -->
+			
+            <!--영상리스트  -->
+            <div class="mov_list_wrap">
+                <h4 class="view_tit">강의목록</h4>
+                <div class="mov_list">
+                    <ul id="listGetPageConent">
+						<? if ($lectureView->lecKangList != '') { ?>
+							<? foreach($lectureView->lecKangList as $lec_key => $lec_item) { ?>
+								<li>
+									<div class="f_l">
+										<a href="#none;" onclick="lecture_view('player_view', '<?=$lectureView->no?>', '<?=$lectureView->lec_no?>' , '<?=$lec_item['leck_kang_name']?>', '<?=$this->session->userdata('member_no', true)?>', '<?=$this->session->userdata('member_id', true)?>'); void 0;">
+											<? if (($lectureView->lecLImg != '')) { ?>
+												<img src="https://www.haksa2080.com/zfiles/lecLImg/<?=$lectureView->lecLImg?>" alt="">
+											<? } else { ?>
+												<img src="https://gscdn.hackers.co.kr/haksa2080/images/myclass/test_img.jpg" alt="">
+											<? } ?>
+											<div class="bg_box">
+												<img src="https://gscdn.hackers.co.kr/haksa2080/images/myclass/bg_mov.png" alt="">
+												<span class="time"><?=(!empty($lec_item['leck_time'])) ? $lec_item['leck_time'] . ':00' : '- : -' ?></span>
+											</div>
+										</a>
+									</div>
+									<div class="f_r">
+										<strong>
+											<span><?=(!empty($lec_item['leck_kang_name'])) ? '제 '. $lec_item['leck_kang_name']. '편' : '-' ?></span>
+											<?=(!empty($lec_item['lec_content'])) ? $lec_item['lec_content'] : '' ?>
+										</strong>
+										<ul>
+											<? if (gmdate('i', (int)$lec_item['loading_time']->user_loading_time) >= $lec_item['leck_time']) {
+												$userState = "완료";
+												$userStateStyle = "2";
+											} else if (gmdate('s', (int)$lec_item['loading_time']->user_loading_time) <= 0){
+												$userState = "대기";
+												$userStateStyle = "3";
+											} else {
+												$userState = "진행중";
+												$userStateStyle = "1";
+											} ?>
+											<li>수강여부 : <span class="t<?=$userStateStyle?>"> <?=$userState?></span></li>
+											<li>시청시간 : <?=gmdate('i', (int)$lec_item['loading_time']->user_loading_time) . '분'?> <?=gmdate('s', (int)$lec_item['loading_time']->user_loading_time) . '초'?></li>
+										</ul>
+									</div>
+								</li>
+							<? } ?>
+						<? } else { ?>
+							<li>강의가 없습니다.&nbsp;&nbsp;&nbsp;확인해주세요.</li>
+						<? } ?>
+                    </ul>
+                </div>
+            </div>
+            <!-- //영상리스트 -->
+			
+			<?/* if ($lectureView->lecKangList != '') { */?><!--
+				<div class="m_btn_wrap">
+					<button class="more_btn" onclick="listGetPage('<?/*=$lectureView->no*/?>', '<?/*=$lectureView->lec_no*/?>', '<?/*=$getLecKangCnt->cnt*/?>');">더 보기 </button>
+				</div>
+			--><?/* } */?>
+        </div>
+        <!-- //내용 -->
+    </div>
+    <!--// container -->
+</div>

@@ -1,0 +1,268 @@
+<div id="lecture_container">
+	<div id="lecture_view_container">
+		<div id="snb" class="snb_bg">
+			<h2>강의 상세정보</h2>
+			<span class="snb_prev">
+				<a href="#;" class="his_back"><img src="<?=$images?>/common/btn_prev.png" alt="이전"/></a>
+			</span>
+		</div>
+		
+		<!-- 상세 이미지 -->
+		<div class="books_view_top">
+			<div class="books_img t2">
+				<div class="basic_box t2">
+					<div class="books_icon">
+						<span class="cl_type"><?=nl2br($lecture_list->major_name)?></span>
+					</div>
+					<p><?=$lecture_list->etc?></p>
+					<strong><?=$lecture_list->t_name?> 교수님</strong>
+				</div>
+				<div class="basic_box">
+					<span class="teacherDetailImg"><img src="https://www.haksa2080.com/zfiles/teacher_img/<?=$lecture_list->profile_img?>" alt=""></span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="tab_menu_area books_view_tab">
+			<ul class="tab_tit">
+				<li class="active"><a>강의소개</a></li>
+				<li><a>강의구성</a></li>
+			</ul>
+			<!--강의소개-->
+			<div class="tab_con_box active">
+				<div class="books_tb_view">
+					<table>
+						<colgroup>
+							<col style="width:25%">
+							<col style="width:*">
+						</colgroup>
+						<tbody>
+						<tr>
+							<th>교수님</th>
+							<td><?=($lecture_list->t_name != '') ? $lecture_list->t_name : '-' ?></td>
+						</tr>
+						<tr>
+							<th>단계</th>
+							<td><?=($lecture_list->lec_level != '') ? $lecture_list->lec_level : '-' ?>단계</td>
+						</tr>
+						<tr>
+							<th>학과</th>
+							<td><?=($lecture_list->major_name != '') ? $lecture_list->major_name : '-' ?></td>
+						</tr>
+						<tr>
+							<th>강좌구성</th>
+							<td>총 <?=($lecture_list->lec_su != '') ? $lecture_list->lec_su : '-' ?>강</td>
+						</tr>
+						<tr>
+							<th>수강기간</th>
+							<td><?=($lecture_list->lec_term != '') ? $lecture_list->lec_term : '-' ?>일</td>
+						</tr>
+						<tr>
+							<th>강의명</th>
+							<td><?=($lecture_list->lec_name != '') ? $lecture_list->lec_name : '-' ?></td>
+						</tr>
+						<tr>
+							<th>
+								교재
+								<span style="display:block;">(<?=$lecture_list->lec_book_type?>)</span>
+							</th>
+							<td>
+								<?=($lecture_list->book_info->book_name != '') ? $lecture_list->book_info->book_name : '' ?>
+								<span class="books_more_btn">
+									<? if ($lecture_list->lecToBookCheck->book_code != '' && $lecture_list->book_info->book_id != '') { ?>
+										<a href="/books/books_view?book_id=<?=$lecture_list->book_info->book_id?>">자세히 보기</a>
+									<? } else { ?>
+										<a href="#;" onclick="alert('준비중입니다.');">자세히 보기</a>
+									<? } ?>
+								</span>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				
+				<h4 class="view_tit">샘플강의</h4>
+				<div class="video_smaple">
+					<? switch($lecture_list->t_name) {
+						case '최수지' :
+							echo "<iframe src=\"https://cdndown.hackers.com/hackers/mp4/withus/sample/5min/294_s.mp4\" controls></iframe>";
+							break;
+						case '연미정' :
+							echo "<iframe src=\"https://cdndown.hackers.com/hackers/mp4/withus/sample/5min/295_s.mp4\" controls></iframe>";
+							break;
+						case '서호성' :
+							echo "<iframe src=\"https://cdndown.hackers.com/hackers/mp4/withus/sample/5min/297_s.mp4\" controls></iframe>";
+							break;
+						case '육지훈' :
+							echo "<iframe src=\"https://cdndown.hackers.com/hackers/mp4/withus/sample/5min/347_s.mp4\" controls></iframe>";
+							break;
+						case '허정' :
+							echo "<iframe src=\"https://cdndown.hackers.com/hackers/mp4/withus/sample/5min/343_s.mp4\" controls></iframe>";
+							break;
+						case '최재웅' :
+							echo "<iframe src=\"https://cdndown.hackers.com/hackers/mp4/withus/sample/5min/342_s.mp4\" controls></iframe>";
+							break;
+						case '박재희' :
+							echo "<iframe src=\"https://cdndown.hackers.com/hackers/mp4/withus/sample/5min/345_s.mp4\" controls></iframe>";
+							break;
+						case '장효열' :
+							echo "<iframe src=\"https://cdndown.hackers.com/hackers/mp4/withus/sample/5min/373_s.mp4\" controls></iframe>";
+							break;
+						case '최성희' :
+							echo "<iframe src=\"https://cdndown.hackers.com/hackers/mp4/withus/sample/5min/375_s.mp4\" controls></iframe>";
+							break;
+						case '이재연' :
+							echo "<iframe src=\"https://cdndown.hackers.com/hackers/mp4/withus/sample/5min/346_s.mp4\" controls></iframe>";
+							break;
+						case '박근완' :
+							echo "<iframe src=\"https://cdndown.hackers.com/hackers/mp4/withus/sample/5min/344_s.mp4\" controls></iframe>";
+							break;
+						case '윤광덕' :
+							echo "<iframe src=\"https://cdndown.hackers.com/hackers/mp4/withus/sample/5min/296_s.mp4\" controls></iframe>";
+							break;
+						case '강태홍' :
+							echo "<iframe src=\"https://cdndown.hackers.com/hackers/mp4/withus/sample/5min/298_s.mp4\" controls></iframe>";
+							break;
+						case '김승범' :
+							echo "<iframe src=\"https://cdndown.hackers.com/hackers/mp4/withus/sample/5min/324_s.mp4\" controls></iframe>";
+							break;
+						case '원현희' :
+							echo "<iframe src=\"https://cdndown.hackers.com/hackers/mp4/withus/sample/5min/366_s.mp4\" controls></iframe>";
+							break;
+						default :
+							echo "준비중입니다.";
+							break;
+					} ?>
+				</div>
+				
+				<dl class="view_intro_list">
+					<? if ($lecture_list->lec_desc1 != '') { ?>
+						<dt>강의소개</dt>
+						<dd><?=nl2br($lecture_list->lec_desc1)?></dd>
+					<? } ?>
+					
+					<? if ($lecture_list->lec_desc2 != '') { ?>
+						<dt>강의목표</dt>
+						<dd><?=nl2br($lecture_list->lec_desc2)?></dd>
+					<? } ?>
+					
+					<? if ($lecture_list->lec_desc4 != '') { ?>
+						<dt>수강대상</dt>
+						<dd class="list_bu"><?=nl2br($lecture_list->lec_desc4)?></dd>
+					<? } ?>
+				</dl>
+			</div>
+			
+			<!--강의구성 ()-->
+			<div class="tab_con_box">
+				<div class="books_tb_view">
+					<table>
+						<colgroup>
+							<col style="width:20%">
+							<col style="width:*">
+							<col style="width:20%">
+						</colgroup>
+						<tbody>
+						<? if (!empty($lecture_kang)) { ?>
+							<? foreach($lecture_kang as $kang_key => $kang_item) { ?>
+								<tr>
+									<td><?=$kang_item['leck_kang_name']?>강</td>
+									<td class="tal"><?=$kang_item['lec_content']?></td>
+									<td class="col_main"><?=$kang_item['leck_time']?>분</td>
+								</tr>
+							<? } ?>
+						<? } else { ?>
+							<tr>
+								<td colspan="3">
+									<div class="list_none">
+										강의리스트가 없습니다.
+									</div>
+								</td>
+							</tr>
+						<? } ?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 구매하기 버튼 -->
+		<div class="books_btn_fixed">
+			<button type="button" class="btn_green" onclick="buyFixedOpen();">구매하기</button>
+		</div>
+		
+		<!-- 구매하기 선택 -->
+		<div class="fixed_buy_dim"></div>
+		<div class="fixed_buy_view">
+			<a class="buy_fixed_close" onclick="buyFixedClose();"><img src="<?=$images?>/books/btn_buy_view.png" alt="닫기"></a>
+			<div class="select-area">
+				<!-- 상품 1 -->
+				<div class="select-item-area">
+					<button type="button" data-target="option-item_list_00" class="default-item" data-scroll="true"><!-- option-selected, option-disabled -->
+						강의선택
+					</button>
+					<div class="option-group" id="option-item_list_00">
+						<ul>
+							<li>
+								<input type="radio" id="product_0" value="<?=$lecture_list->lec_no?>" name="select_lec_code[]">
+								<label for="product_0">
+									<span class="product_title">(강의)&nbsp;<?=$lecture_list->lec_name?></span>
+									<span class="product_price"><span class="num"><?=number_format($lecture_list->lec_price)?></span>원</span>
+								</label>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				<!-- 상품 2 -->
+				<? if ($lecture_list->lecToBookCheck->cnt > 0 && $lecture_list->book_info->book_id != '') { ?>
+					<div class="select-item-area">
+						<button type="button" data-target="option-item_list_01" class="default-item" data-scroll="true"><!-- option-selected, option-disabled -->
+							교재선택
+						</button>
+						<div class="option-group" id="option-item_list_01">
+							<ul>
+								<li>
+									<input type="radio" id="product_01" value="<?=((int)$lecture_list->book_info->book_id + 50000)?>" name="select_lec_code[]">
+									<label for="product_01">
+										<span class="product_title">(교재)&nbsp;<?=$lecture_list->book_info->book_name?></span>
+										<span class="product_price"><span class="num"><?=number_format($lecture_list->book_info->pamount)?></span>원</span>
+									</label>
+								</li>
+							</ul>
+						</div>
+					</div>
+				<? } ?>
+				<!-- 선택 목록 -->
+				<div class="option-select-group">
+					<ul>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="fixed_buy_btn">
+				<input type="hidden" name="selectLecCode" id="selectLecCode">
+				
+				<!-- 상품 가격  -->
+				<ul class="select-total">
+					<li><span>예상 적립포인트</span> <em id="amt_point">0</em>p</li>
+					<li class="last_total"><span>총상품금액</span><em class="alltotal_amt">0</em>원</li>
+				</ul>
+				
+				<!-- 상품 구매 -->
+				<ul class="select-btn">
+					<? if ($this->session->userdata('member_id') != '' && $this->session->userdata('member_no') != '') { ?>
+						<li><button type="button" class="btn_black" onclick="lectureViewBasket('alimBasket', '<?=$_SERVER['REQUEST_URI']?>');">장바구니</button></li>
+						<li><button type="button" class="btn_green" onclick="lectureViewPayment('lecture');">바로구매</button></li>
+					<? } else { ?>
+						<li><button type="button" class="btn_black" onclick="alimLayer('alimLogin');">장바구니</button></li>
+						<li><button type="button" class="btn_green" onclick="alimLayer('alimLogin')">바로구매</button></li>
+					<? } ?>
+				</ul>
+			</div>
+		</div>
+		
+	</div>
+	<!--// container -->
+</div>
+<!--// wrap -->

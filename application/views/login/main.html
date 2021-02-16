@@ -1,0 +1,94 @@
+<!-- container -->
+<div id="container">
+	<div id="snb">
+		<h2>로그인</h2>
+		<span class="snb_prev">
+			<a href="#;" class="his_back"><img src="<?=$images?>/common/btn_prev.png" alt="이전"/></a>
+		</span>
+	</div>
+	
+	<div id="login_container">
+		<div class="member-wrap">
+			<!-- <div class="content_tit">
+				<h1>
+					<img src="<?=$images?>/member/tit_login.png" alt="해커스 독학사 로그인"/>
+				</h1>
+			</div> -->
+			
+			<!--로그인 form-->
+			<form method="POST" action="/login/main/memberLogin" name="loginform" id="loginform">
+				<input type="hidden" name="return_url" id="return_url" value="<?=$_GET['return_url']?>">
+				
+				<div class="login_con">
+					<ul class="login_box">
+						<li>
+							<input type="text" name="user_id" id="user_id" placeholder="아이디" onkeyup="enterkey(this);" value="<?=(!empty($_COOKIE['SAVEID'])) ? $_COOKIE['SAVEID'] : '' ?>">
+							<span class="value_clear">x</span>
+						</li>
+						<li>
+							<input type="password" name="password" id="password" onkeyup="enterkey(this);" placeholder="비밀번호" >
+							<span class="value_clear">x</span>
+						</li>
+					</ul>
+					<div class="login_state">
+						<span class="input_chk <? if(!empty($_COOKIE['IDSAVECHECK'])) echo 'on' ?>">
+							<i class="ico_input"></i>
+							<input type="checkbox" name="IDSAVECHECK" id="IDSAVECHECK" <? if(!empty($_COOKIE['IDSAVECHECK'])) echo 'checked' ?>>
+							<label for="IDSAVECHECK">ID 저장</label>
+						</span>
+					</div>
+					<div class="btn_area">
+						<a href="#;" onclick="memberLogin();" class="btn-login">로그인</a>
+						<a href="/member/main?pageType=ut" class="btn-join-quick">해커스편입 ID로 간편 회원가입</a>
+					</div>
+					<div class="login_link">
+						<a href="/member/main">회원가입</a>
+						<a href="/member/search?searchType=id&search=tel">아이디 · </a>
+						<a href="/member/search?searchType=password&search=tel">비밀번호 찾기</a>
+					</div>
+				</div>
+			</form>
+			<!--// 로그인 form-->
+			
+			
+			<ul class="aside_bottom">
+				<li>
+					<a href="/notice/main?customerType=faq&tab=2">
+						<i class="icon-qa"></i>로그인 관련 Q&A
+					</a>
+				</li>
+				<li>
+					<a href="tel:15993081">
+						<i class="icon-tel"></i>학습 지원센터 <span>1599 - 3081</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!--// container -->
+</div>
+<!--// container -->
+
+<? if ($this->input->get('restMember') != '') { ?>
+	<!-- 휴면회원 서비스 알림 -->
+	<div class="alim_layer" id="restMember" style="display:block;">
+		<div class="alim_dim"></div>
+		<div class="alim_area">
+			<p class="alim_txt">
+				<img src="//gscdn.hackers.co.kr/haksa2080/images/icon/layer_icon_warning.png" alt="경고 아이콘" >
+				회원님의 계정은 현재 휴면상태입니다. <br />
+				로그인을 위해서는 휴면을 해제해주세요.
+			</p>
+			<span class="alim_close">
+			<a onclick="alimLayerClose('restMember')"><img src="//gscdn.hackers.co.kr/haksa2080/images/common/alim_layer_close.png" alt="닫기"></a>
+		</span>
+			<!-- 버튼 -->
+			<div class="alim_button">
+				<ul class="col2">
+					<li><a onclick="alimLayerClose('restMember')" class="white_btn">창닫기</a></li>
+					<li><a href="#;" onclick="restMemberAgain('<?=$this->input->get('no')?>', '<?=$this->input->get('restMember')?>');" class="black_btn">휴면회원해지</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+<? } ?>

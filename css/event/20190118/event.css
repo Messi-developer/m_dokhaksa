@@ -1,0 +1,55 @@
+/* 초간편 문자상담 신청 */
+.event_wrap{display:none;}
+.event_wrap .bg{background:#000;opacity:0.5;position:fixed;top:0;left:0;width:100%;height:100%;z-index:11;}
+.smsApply_con{ position:fixed;top:50%;left:50%;margin:-180px 0 0 -155px;z-index:12;width:310px;text-align:center;border:3px solid #f14f3a;background-color:#fff;}
+.smsApply_con h2{color:#000;font-weight:normal;font-size:1.3rem;margin:15px 0 0; font-family:Malgun Gothic; font-weight:bold;}
+.smsApply_con h2 span{color:#f14f3a;}
+.smsApply_con .sms_txt_area{background:#fff; position:relative;}
+.smsApply_con .sms_txt_area .txt_top{font-size:1.1rem; padding-top:3px; letter-spacing:-0.5px; padding-top:5px; color:#222;}
+.smsApply_con img{width:100%;}
+
+.sms_form{padding:12px 15px 12px 15px; text-align:left; font-size:0.8rem;}
+
+.sms_form .row{margin-bottom:8px;}
+.sms_form .row input{height:40px;width:222px; border:none; background:#fff; padding-left:5px; font-size:14px; border:1px solid #ddd; }
+
+
+.write_sms ul li{overflow:hidden;margin-bottom:10px;}
+.write_sms ul li label{float:left;position:relative;top:14px; width:25%; font-size:14px;}
+.write_sms ul li input{float:left; width:75%;}
+.sms_form .blit_sms.user_txt{vertical-align:top; margin-right:2px;}
+.sms_form .chk_sms{padding-left:0px;}
+.sms_form .chk_sms input{margin-right:2px;}
+.sms_form .btn_apply{ letter-spacing:0em;display:block; width:80%; margin:0 auto; height:50px; margin-top:25px; color:#fff; font-size:14px; font-weight:bold; }
+.sms_form input[type="text"] { letter-spacing:0em;}
+.smsApply_con .sms_txt_area .logo_sms{padding:15px 0;}
+.smsApply_con .sms_txt_area .logo_sms img{width:120px;}
+.smsApply_con .btn_close{color:#000;width:15px; position:absolute;top:6px;right:7px;}
+.sms_form .view_detail{padding-top:5px;text-align:left; text-indent:30px;}
+.view_detail a{display:block; color:#666;font-size:12px;}
+.sms_form .per_wrap{display:none;height:90px;border:1px solid #ccc;overflow-y:scroll;overflow-x:hidden;}
+.sms_form .per_wrap strong{display:block;padding:3px 0;text-align:center;background:#555;color:#fff;}
+.sms_form .per_wrap p{padding:2px;}
+.view_wrap { margin-top:10px;}
+
+.chk_sms dl dt label,
+.chk_sms dl dd label{color:#666;font-size:12px;}
+.layer_btn{display:block;margin:15px auto 0;}
+
+.chk_sms input[type="checkbox"] {
+    display:none;
+}
+.chk_sms input[type="checkbox"] + label span {
+    display:inline-block;
+    width:15px;
+    height:15px;
+    margin:-2px 10px 0 0;
+    vertical-align:middle;
+    background:url('//gscdn.hackers.co.kr/haksa2080/images/event/img/con_check.png') no-repeat 0 0;
+		background-size:100% auto;
+    cursor:pointer;
+}
+.chk_sms input[type="checkbox"]:checked + label span {
+    background:url('//gscdn.hackers.co.kr/haksa2080/images/event/img/con_check_on.png') no-repeat 0 0;
+		background-size:100% auto;
+}

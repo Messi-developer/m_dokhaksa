@@ -1,0 +1,181 @@
+<div id="payment">
+	<div class="payment_top" id="snb">
+		<h2>
+			<? switch ($lectureMemData->regi_method) {
+				case '0' :
+					echo '입금대기';
+					break;
+				default :
+					echo '결제완료';
+			} ?>
+		</h2>
+		<span class="snb_prev">
+			<a href="javascript:void(0);" class="his_back"><img src="<?=$images?>/common/btn_prev.png" alt="이전"/></a>
+		</span>
+	</div>
+	
+	<div id="payment_container">
+		<div class="payment">
+			<div class="result"> <!--무통장입금일 경우 deposit 클래스 추가-->
+				<div class="check_icon"><input type="checkbox" class="icon_v"/><label></label></div>
+				<p class="result_msg">
+					<span>“<?=$this->session->userdata('member_name')?>”</span> 님의<br/>
+					<span><?=($resultPaymentInfo->bank_name != '' && $resultPaymentInfo->account_num != '') ? "무통장입금 신청이" : "결제가" ?></span> 완료되었습니다.
+				</p>
+				
+				<!-- 신용카드결제 -->
+				<div class="result_chk card_info" style="<?=($resultPaymentInfo->regi_method == '1') ? 'display:block' : 'display:none' ?>">
+					<table width="100%">
+						<colgroup>
+							<col width="60px"/>
+							<col width="20px"/>
+							<col width="*"/>
+						</colgroup>
+						<tr>
+							<td>주문번호</td>
+							<td>|</td>
+							<td><?=$resultPaymentInfo->order_num?></td>
+						</tr>
+						<tr>
+							<td>결제수단</td>
+							<td>|</td>
+							<td>신용카드</td>
+						</tr>
+						<tr>
+							<td>결제일시</td>
+							<td>|</td>
+							<td><?=$resultPaymentInfo->tdate?></td>
+						</tr>
+					</table>
+				</div>
+				
+				<!-- 무통장입금 -->
+				<div class="result_chk deposit_info" style="<?=($resultPaymentInfo->regi_method == '2' || $resultPaymentInfo->regi_method == '3' || $resultPaymentInfo->regi_method == '0') ? 'display:block' : 'display:none' ?>">
+					<table width="100%">
+						<colgroup>
+							<col width="60px"/>
+							<col width="20px"/>
+							<col width="*"/>
+						</colgroup>
+						<tr>
+							<td>주문번호</td>
+							<td>|</td>
+							<td><?=$resultPaymentInfo->order_num?></td>
+						</tr>
+						<tr class="vtc_top">
+							<td>결제수단</td>
+							<td>|</td>
+							<td><span>(주)위더스교육</span><br/><?=$resultPaymentInfo->bank_name?> <?=$resultPaymentInfo->account_num?></td>
+						</tr>
+						<tr class="vtc_top">
+							<td>결제일시</td>
+							<td>|</td>
+							<!--<td>
+								<?/*=date( 'Y-m-d', strtotime( '+1 week', strtotime($resultPaymentInfo->wdate)))*/?>
+							</td>-->
+							<td><?=date('Y-m-d', strtotime('+1 week'))?> 이내<br/><p>(신청일로부터 7일 이내)</p></td>
+						</tr>
+						<tr>
+							<td colspan="3">
+								<p>※ 해당 무통장입금 신청내역은 마이클래스의 결제내역에서 다시 확인하실 수 있습니다.</p>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+			</div>
+			
+			<div class="payment_section">
+				<h2 class="payment_icon">
+					<img src="<?=$images?>/payment/order_history.jpg" alt="주문내역"><span>주문내역</span>
+				</h2>
+				<? if (!empty($package_lecture_list)) { // 패키지 강의 ?>
+                <div class="lec_list">
+					<div class="lec_tit">
+						<a href="javascript:void(0);" class="on">패키지 강의 <span class="txt_show on" onclick="paymentToggle($(this))">〉</span></a>
+					</div>
+					<? foreach($package_lecture_list as $package_key => $package_item) { ?>
+						<div class="lec_area">
+							<div class="lecture type2" data-lecMem-lecNo="<?=$package_item['lec_no']?>">
+								<div class="tit_price_wrap">
+									<span class="sort">[<?=($package_item['lec_no'] > 50000) ? '교재' : '강의' ?>]</span> <?=str_replace('<br>', '', $package_item['mem_lec_name']) ?>
+									<p class="teacher">
+										<?=($package_item['lec_no'] > 50000) ? $package_item['book_info']->author : (!empty($package_item['lecture_info']->t_name)) ? $package_item['lecture_info']->t_name . ' 교수님' : '-' ?>
+									</p>
+								</div>
+								<div class="lec_price_wrap">
+									<p class="clear save_point">적립포인트<span><b><?=number_format($package_item['total_price'] * 0.05)?></b>P</span></p>
+									<p class="price clear"><b>금액</b>
+										<span><?=number_format($package_item['total_price'])?>원</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					<? } ?>
+                </div>
+				<? } ?>
+				
+				<? if (!empty($single_lecture_list)) { // 단과 강의 ?>
+				<div class="lec_list">
+					<div class="lec_tit">
+						<a href="javascript:void(0);" class="on">단과 강의 <span class="txt_show on" onclick="paymentToggle($(this))">〉</span></a>
+					</div>
+					<? foreach($single_lecture_list as $single_key => $single_item) { ?>
+						<div class="lec_area">
+							<div class="lecture type2" data-lecMem-lecNo="<?=$single_item['lec_no']?>">
+								<div class="tit_price_wrap">
+									<span class="sort">[<?=($single_item['lec_no'] > 50000) ? '교재' : '강의' ?>]</span> <?=str_replace('<br>', '', $single_item['mem_lec_name']) ?>
+									<p class="teacher">
+										<?=((int)$single_item['lec_no'] > 50000) ? $single_item['book_info']->author . ' 교수님' : $single_item['lecture_info']->t_name . ' 교수님'; ?>
+									</p>
+								</div>
+								<div class="lec_price_wrap">
+									<p class="clear save_point">적립포인트<span><b><?=number_format($single_item['total_price'] * 0.05)?></b>P</span></p>
+									<p class="price clear"><b>금액</b>
+										<span>
+											<?=((int)$single_item['total_price'] < 30000) ? number_format((int)$single_item['total_price'] - 3000) : number_format($single_item['total_price']) ?>원
+										</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					<? } ?>
+				</div>
+				<? } ?>
+			</div>
+			
+			<div class="payment_section all_price">
+				<div class="price_area">
+					<div class="price_info">
+						<p class="clear">총 상품금액<span class="price"><b><?=number_format($paymentPrice->real_price)?></b>원</span></p>
+						<p class="clear">총 배송비<span class="delivery"><b><?=((int)$paymentResultPrice->total_price < 30000) ? number_format(3000) : '' ?></b>원</span></p>
+						<p class="clear">쿠폰할인
+							<span class="coupon_dis">
+								<b>
+									<?=(!empty($discount_coupon)) ? '-' . number_format(array_sum($discount_coupon)) . '원' : '없음' ?>
+								</b>
+							</span>
+						</p>
+						<p class="clear">적립금사용
+							<span class="point_use">
+								<b>
+									<?=(!empty($discount_point)) ? number_format(array_sum($discount_point)) . '원' : '사용안함' ?>
+								</b>
+							</span>
+						</p>
+					</div>
+					<div class="price_result">
+						<p class="clear">총 결제금액<span class="final_price"><b><?=number_format($paymentResultPrice->total_price)?></b>원</span></p>
+						<p class="clear">예상적립포인트<span class="final_save_point"><b><?=number_format((int)$paymentResultPrice->total_price * 0.05)?></b>P</span></p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="finish_btn">
+				<a class="check_btn" href="/myclass/main">마이클래스 바로가기</a>
+			</div>
+		
+		</div>
+	</div>
+	<!--// container -->
+</div>

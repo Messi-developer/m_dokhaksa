@@ -1,0 +1,50 @@
+
+<style type="text/css">
+    #content section .aqua {float:left; width:100%; margin:0; padding:0;}
+    #content section .aqua h2 {padding:10px 0 9px; font-size:16px; line-height:21px; text-align:center; color:#fff; background:#2c2e39;}
+    #content section .aqua h2 em {color:#fff000;}
+    #content section .aqua dl {margin:0 9px; border-bottom:1px solid #bbb;}
+    #content section .aqua dl:nth-child(3n) {border-bottom:none;}
+    #content section .aqua dt {padding:28px 0 0; text-align:center; line-height:20px; font-size:14px;}
+    #content section .aqua dd.aqua_app {padding:45px 0 23px; text-align:center; font-size:14px;}
+    #content section .aqua dd.aqua_app img {margin:0 0 5px; width:60px;}
+    #content section .aqua dd.aqua_app a {color:#b41e2f; font-weight:bold; font-size:14px;}
+    #content section .aqua dd.btn_lecture {padding:24px 0; text-align:center;}
+    #content section .aqua dd.btn_lecture img{width:24px;}
+    #content section .aqua dd.btn_lecture a {display:inline-block; font-size:14px;}
+</style>
+
+
+<div id="content">
+    <section>
+        <div class="aqua">
+            <h2>모바일에서 학습하기 위해서는<br /><em>AquaNManager</em>가 설치되어 있어야 합니다.</h2>
+            <dl>
+                <dt>AquaNManager 설치 아이콘을 누르시면<br />AquaNManager 가 다운로드/설치됩니다.</dt>
+                <dd class="aqua_app"><a href="<?=$market_URL?>"><img src="https://gscdn.hackers.co.kr/haksa2080/images/common/icon-aquanmanager.gif" alt="aqua app" /><br />AquaNManager 설치</a></dd>
+            </dl>
+            <dl>
+                <dt>AquaNManager 설치가 완료되었다면<br />강의듣기 버튼을 클릭하세요!</dt>
+                <dd class="btn_lecture"><a href="javascript:vod_load();" class="btn_grey">강의듣기</a></dd>
+            </dl>
+        </div>
+        <iframe id="vodAndroid" name="vodAndroid" src="about:blank" marginwidth="0" marginheight="0" vspace="0" hspace="0" frameBorder="0" width="0" height="0"></iframe>
+    </section>
+</div>
+
+<script type='text/javascript'>
+
+    $(function(){
+        vod_load();
+    });
+
+    function vod_load(){
+        top.location.href="<?=$fullurl?>";
+    }
+
+    <?if($checkOS == "ios"){?>
+    function chkInstall() {
+        document.location.href = "<?=$market_URL?>";
+    }
+    <? }?>
+</script>

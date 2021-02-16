@@ -1,0 +1,143 @@
+<!-- 내용 -->
+<div class="m_wrap payment">
+	<div class="tit_wrap">
+		<h4 class="point">포인트 내역</h4>
+		<div class="t_wrap">
+			<table>
+				<caption>포인트 내역</caption>
+				<colgroup>
+					<col style="width:25%">
+					<col style="width:*">
+				</colgroup>
+				<tbody>
+				<tr>
+					<th scope="row">적립</th>
+					<td>
+						<ul>
+							<li>회원가입시 5,000포인트 지급합니다.</li>
+							<li>결제금액의 5% 포인트로 적립 됨/배송비는 제외합니다.</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">사용</th>
+					<td>
+						<ul>
+							<li>수강신청 시 현금처럼 사용할 수 있습니다.</li>
+							<li>100포인트 = 결제 시 '100원'</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">환불</th>
+					<td>
+						<ul>
+							<li>포인트를 사용한 결제 건 환불 시 결제에 사용한 포인트는 환불되지 않습니다.</li>
+							<li>구매시 사용한 포인트는 결제 취소 후 재사용이 불가능합니다.</li>
+						</ul>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- //타이틀 -->
+	<!--쿠폰내역-->
+	<div class="basket_list">
+		<!-- 보유쿠폰 -->
+		<div class="pay_bg">
+			<strong>보유포인트<span> <?=($user_point != '') ? number_format($user_point) : '0' ?>P</span></strong>
+		</div>
+		<!-- //보유쿠폰 -->
+		<!-- 쿠폰 탭메뉴 -->
+		<div class="cupon_wrap">
+			<div class="tab_area t2">
+				<input type="hidden" name="userPoint" id="userPoint" value="<?=count($use_point_list_cnt)?>">
+				<input type="hidden" name="userUsedPoint" id="userUsedPoint" value="<?=count($used_point_list_cnt)?>">
+				
+				<ul class="tab_tit cler">
+					<li class="on"><a href="#;">적립내역</a></li>
+					<li><a href="#;">차감내역</a></li>
+				</ul>
+				<!-- 적립내역 -->
+				<div class="tab_con on" id="use_point_content">
+					<? if (!empty($use_point_list)) { ?>
+						<ul class="cupon_list point" id="use_point_list">
+							<? foreach($use_point_list as $point_key => $point_item) { ?>
+								<li>
+									<p>
+										<span class="name"><?=(!empty($point_item['point_title'])) ? $point_item['point_title'] : '-' ?></span>
+										<span class="percent">point</span>
+										<span class="exp_date">적립일 : <?=$point_item['wdate']?></span>
+									</p>
+									<div class="discount_box">
+										<img src="//gscdn.hackers.co.kr/haksa2080/images/myclass/bg_cupon2.png" alt="" />
+										<span class="discount"><?=number_format($point_item['point'])?>P</span>
+									</div>
+								</li>
+							<? } ?>
+						</ul>
+					<? } else { ?>
+						<div class="list_none">
+							적립내역이 <br> 없습니다.
+						</div>
+					<? } ?>
+				</div>
+				<!--// 적립내역 -->
+				
+				<!-- 차감내역 -->
+				<div class="tab_con">
+					<? if (!empty($used_point_list)) { ?>
+						<ul class="cupon_list point" id="used_point_list">
+							<? foreach($used_point_list as $point_key => $point_item) { ?>
+							<li>
+								<p>
+									<span class="name">
+										<?
+										switch($point_item['point_state']) {
+											case '1' :
+												echo "결제시 사용";
+												break;
+											case '2' :
+												echo "기간만료";
+												break;
+											case '3' :
+												echo "관리자삭제";
+												break;
+										}
+										?>
+									</span>
+									<span class="percent t2">point</span>
+									<span class="exp_date">차감일 : <?=$point_item['wdate']?></span>
+								</p>
+								<div class="discount_box">
+									<img src="//gscdn.hackers.co.kr/haksa2080/images/myclass/bg_cupon2.png" alt="" />
+									<span class="discount t2"><?=number_format($point_item['point'])?>P</span>
+								</div>
+							</li>
+							<? } ?>
+						</ul>
+					<? } else { ?>
+						<div class="list_none">
+							차감내역이 <br> 없습니다.
+						</div>
+					<? } ?>
+				</div>
+				<!--// 차감내역 -->
+			</div>
+		</div>
+		<!-- //쿠폰 탭메뉴 -->
+	</div>
+	<!--//쿠폰내역-->
+	<? if (!empty($use_point_list) && !empty($used_point_list)) { ?>
+		<div class="m_btn_wrap">
+			<button class="more_btn" onclick="pointGetList();">더 보기 </button>
+		</div>
+	<? } ?>
+</div>
+<!-- //내용 -->
+<div class="foot_ps_txt">
+	<p>※ 구매한 상품에 대한 환불/취소를 원하실 경우 관련 정책  확인 후 해커스 독학사에 문의주시기 바랍니다. <span>(T&#46;1599-3081)</span></p>
+	<a href="/notice/main?customerType=faq">해커스 독학사 환불규정 ></a>
+</div>
+

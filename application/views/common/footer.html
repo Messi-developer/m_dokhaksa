@@ -1,0 +1,36 @@
+
+		<!-- footer -->
+		<div id="footer">
+			<div class="foot_info_area">
+				<ul class="foot_menu">
+					<? if (!empty($_SESSION['member_id']) || (!empty($_SESSION['zb_logged_user_id']))) { ?>
+						<li><a href="#;" onclick="memberLogOut('<?=$_SESSION['member_id']?>');">로그아웃</a></li>
+						<li><a href="/member/member_info?memType=memUpdate">정보수정</a></li>
+					<? } else { ?>
+						<li><a href="/login/main">로그인</a></li>
+						<li><a href="/member/main">회원가입</a></li>
+					<? } ?>
+					<li><a href="/notice/main?customerType=consulting">고객센터</a></li>
+					<li><a href="https://www.haksa2080.com/" target="_blank">PC버전</a></li>
+					<li><a href="/notice/main?customerType=consulting">무료1:1상담</a></li>
+				</ul>
+				<div class="foot_copy">
+					고객센터 : 1599-3081 (평일 : 08:30~19:00 / 토 일 공휴일 휴무)<br />
+					이메일 : 15993081@haksa2080.com<span>l<span> 팩스 : 02-3481-0600<br /><br />
+		
+						해커스 독학사(주) 위더스교육 대표이사 : 김승범<br />
+						사업자등록번호 : 305-86-18850 l<br />
+						통신판매번호 : 제 2012-서울서초-1191호<br /><br />
+		
+						원격평생교육시설번호 : 제 원-377호[호스팅 제공자 : (주)KT]<br />
+						주소 : 서울시 서초구 서초동 1317-31 세계빌딩 7층
+				</div>
+			</div>
+		</div>
+		<!--// footer -->
+	
+	
+	</div><!--// wrap -->
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<div class="m_wrap">
+	<!-- 타이틀 -->
+	<div class="tit_wrap t3">
+		<h4 class="cup">합격할 때까지 책임지는 해커스만의 <span>합격보장제</span></h4>
+		<ul>
+			<li>패키지 강좌를 수강하시는 분들의 시험 재도전을 위해 다음 시험일까지수강 연장의 기회를 드리고 있습니다.</li>
+			<li>해커스에서 수강하시는모든 분들이 합격하는 그 날까지 해커스는 함께 하겠습니다.</li>
+		</ul>
+	</div>
+	<!-- //타이틀 -->
+	<!-- 리스트 -->
+	<div class="txt_box">
+		<h4>수강연장규정</h4>
+		<ol>
+			<li><span>1.</span>학습자가 구매 한 강의(패키지)옵션 중 수강연장 항목이 있는 강의만 연장가능</li>
+			<li><span>2.</span>증빙자료(구입 한 당 해 년도 본인 확인이 가능한 불합격 성적표 or 응시 확인 사실서)제출</li>
+			<li><span>3.</span>불합격한 과목에 한 해서만 강의 연장 가능(단,4단계 총점합격제로 시험 응시 할 경우 전체 연장 가능)</li>
+			<li><span>4.</span>수강연장 기간은 다음 해 수강과목의 단계별 시험 응시일까지 제공</li>
+			<li><span>5.</span>수강연장 신청 기간은 구입한 상품에 당 해 년도 시험이끝난 후 90일 이내에 신청해야만 연장 가능(신청기간이 지날 경우 연장 불가)</li>
+		</ol>
+	</div>
+	<!-- //리스트 -->
+	<!-- 증빙자료제출법 -->
+	<div class="txt_box">
+		<h4>증빙자료 제출방법</h4>
+		<div class="tab_area">
+			<ul class="tab_tit cler">
+				<li class="on"><a href="#;">합격자 발표 기간 중</a></li>
+				<li><a href="#;">합격자 발표 기간 외</a></li>
+			</ul>
+			<div class="tab_con on">
+				<img src="https://gscdn.hackers.co.kr/haksa2080/images/myclass/img_mclass_con01.jpg"  usemap="#cont01">
+				<map name="cont01" map-autoresize map-size="690">
+					<area shape="rect" coords="37,139,230,207" href="https://bdes.nile.or.kr:444/nile/base/bdesMain.do?" alt="바로가기" target="blank_">
+				</map>
+			</div>
+			<div class="tab_con">
+				<img src="https://gscdn.hackers.co.kr/haksa2080/images/myclass/img_mclass_con02.jpg"  usemap="#cont02" >
+				<map name="cont02" map-autoresize map-size="690">
+					<area shape="rect" coords="38,101,228,161" href="https://bdes.nile.or.kr:444/nile/certIssue/nCertIssue2_1.do?" alt="바로가기" target="blank_">
+				</map>
+			</div>
+		</div>
+		<div class="m_btn_wrap">
+			<a href="extension/extensionWrite">연장 신청하기</a>
+		</div>
+	</div>
+	<!-- //증빙자료제출법 -->
+	
+	<!-- 수강연장신청내역 -->
+	<div class="history_list">
+		<h4>수강연장 신청 내역</h4>
+		<? if (!empty($lecReqList)) { ?>
+			<ul id="lecReq_list">
+				<? foreach($lecReqList as $lecReq_key => $lecReq_item) {
+					switch($lecReq_item['lec_req_state']) {
+						case '1' :
+							$lecReq_item['lec_req_state'] = '신청완료';
+							$state_style = "#0097a3";
+							break;
+						case '2' :
+							$lecReq_item['lec_req_state'] = '연장완료';
+							$state_style = "#8f69b2";
+							break;
+						case '3' :
+							$lecReq_item['lec_req_state'] = '반려';
+							$state_style = "#d61e1e";
+							break;
+					}
+					?>
+					<li>
+						<ul>
+							<li><span>연장신청강좌</span> <strong><?=(!empty($lecReq_item['lectureMemInfo']->mem_lec_name)) ? $lecReq_item['lectureMemInfo']->mem_lec_name : '강의이름' ?></strong></li>
+							<li><span>상태</span> <strong class="t1" style="color:<?=$state_style?>"><?=$lecReq_item['lec_req_state']?></strong></li>
+							<li><span>연장신청일</span> <strong><?=substr($lecReq_item['regdate'], '0', '10')?></strong></li>
+							<li><span>연장기간</span> <strong><?=(!empty($lecReq_item['end_no'])) ? str_replace(':', '-', $lecReq_item['end_no']) : '-' ?></strong></li>
+						</ul>
+						<div class="m_btn_wrap">
+							<a href="extension/extensionView?lecReq=<?=$lecReq_item['no']?>&lmno=<?=$lecReq_item['lectureMemInfo']->no?>" class="more_view">자세히보기</a>
+						</div>
+					</li>
+				<? } ?>
+			</ul>
+		<? } else { ?>
+			<div class="list_none">
+				현재 수강연장 <br>신청내역이 없습니다.
+			</div>
+		<? } ?>
+	</div>
+	<!-- //수강연장신청내역 -->
+	<? if (!empty($lecReqList)) { ?>
+		<div class="m_btn_wrap books_more">
+			<button class="more_btn" onclick="lecReqGetPage('<?=$lecReqListCnt?>');">더 보기 </button>
+		</div>
+	<? } ?>
+</div>

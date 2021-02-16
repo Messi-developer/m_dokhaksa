@@ -1,0 +1,60 @@
+<?
+$img_url = '//gscdn.hackers.co.kr/haksa2080/images/event/200428/m/';
+
+//timer 이벤트 마감일 (매주 목요일)
+$endDay = '목';
+?>
+
+<div class="evt_wrap">
+
+    <? /* include 'application/views/event/timer.php' */?>
+
+    <img src="<?=$img_url?>cont01.jpg" alt="" usemap="#cont01_map" />
+    <map name="cont01_map" map-autoresize>
+        <area shape="rect" coords="13,791,622,873" href="#link" />
+    </map>
+
+    <img id="link" src="<?=$img_url?>cont02.jpg" alt="" />
+
+    <div class="cont03">
+        <img src="<?=$img_url?>cont03.jpg" alt="" usemap="#cont03_map" />
+        <map name="cont03_map" map-autoresize>
+            <? if ($this->session->userdata('member_id') != '' && $this->session->userdata('member_no') != '') { ?>
+				<area shape="rect" coords="326,464,595,554" href="#;" onclick="paymentLecture();"/>
+			<? } else { ?>
+				<area shape="rect" coords="326,464,595,554" href="#;" onclick="alimLayer('alimLogin');"/>
+			<? } ?>
+        </map>
+        <span class="text01">
+            TESAT 이론 &amp; 대표 문제풀이<br/>
+            무제한 수강 30일 +<br/>
+            12/20 시험일까지 무료 연장
+        </span>
+        <span class="text02">
+            한국경제신문 출판<br/>
+            TESAT 특별시험 전용 교재
+        </span>
+		<input type="hidden" name="paymentLectureNo" id="paymentLectureNo" value="355">
+        <ul class="chk_box">
+            <li><input type="radio" name="lec_no" id="checkRadion1" onChange="choice_lec()" value="355" checked><label for="checkRadion1">응시권 미포함</label></li>
+            <li><input type="radio" name="lec_no" id="checkRadion2" onChange="choice_lec()" value="356"><label for="checkRadion2">응시권 포함</label></li>
+        </ul>
+        <p class="text03"><span id="view_price">139,000</span> 원</p>
+    </div>
+
+    <img src="<?=$img_url?>cont04.jpg" alt=""/>
+
+    <div class="cont05">
+        <img src="<?=$img_url?>cont05.jpg" alt="" usemap="#cont05_map" />
+        <map name="cont05_map" map-autoresize>
+            <area shape="rect" coords="61,2986,597,3070" href="#link" />
+        </map>
+        <div class="mov_box">
+            <iframe src="https://tv.naver.com/embed/13357266?autoPlay=false" frameborder="no" scrolling="no" marginwidth="0" marginheight="0" width="100%" height="190" allowfullscreen=""></iframe>
+        </div>
+    </div>
+
+    <img src="<?=$img_url?>cont06.jpg" alt=""/>
+    <img src="<?=$img_url?>cont07.jpg" alt=""/>
+    <?include 'application/views/event/'.$_GET['evt_code'].'/event_info.html'?>
+</div>

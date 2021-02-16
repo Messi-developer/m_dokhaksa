@@ -1,0 +1,137 @@
+<div id="lecture_container">
+	<!-- 강의신청 빅배너 -->
+	<div class="books_bnr_area">
+		<div class="books_bnr_top">
+			<ul class="swiper-wrapper">
+				<? foreach($lecture_main_banner as $banner_key => $banner_item) { ?>
+					<li class="swiper-slide"><a href="<?=$banner_item['URL_1']?>" target="<?=$banner_item['target']?>"><img src="https://www.haksa2080.com/zfiles/banner_img/<?=$banner_item['imgBanner']?>" alt="" ></a></li>
+				<? } ?>
+			</ul>
+			<div class="swiper-pagination"></div>
+		</div>
+	</div>
+	
+	<!-- search panel -->
+	<div class="search_panel">
+		<strong>검색결과 <span><?=count($lecture_list_cnt)?></span>건</strong>
+		<div class="search_right">
+			<button type="button" class="btnSearch" onclick="btnClickClass('btnSearchView');">상세검색</button>
+		</div>
+		<!-- 상세검색 뷰 -->
+		<div class="btnSearchView" style="display:none;">
+			<form name="contentSearchForm" id="contentSearchForm" method="POST" action="/lecture/main" >
+				<input type="hidden" name="lectureList_cnt" id="lectureList_cnt">
+				<ul>
+					<li>
+						<span>학과명</span>
+						<select name="category_seq_num" id="category_seq_num" class="contentsSearch">
+							<option value="">전체</option>
+							<option value="1" <?=($_POST['category_seq_num'] == '1') ? 'selected' : '' ?>>교양공통</option>
+							<option value="3" <?=($_POST['category_seq_num'] == '3') ? 'selected' : '' ?>>간호학과</option>
+							<option value="2" <?=($_POST['category_seq_num'] == '2') ? 'selected' : '' ?>>경영학과</option>
+							<option value="21" <?=($_POST['category_seq_num'] == '21') ? 'selected' : '' ?>>영어영문학과</option>
+						</select>
+					</li>
+					<li>
+						<span>단계명</span>
+						<select name="lec_level" id="lec_level" class="contentsSearch">
+							<option value="">전체</option>
+							<option value="lec_level1" <?=($_POST['lec_level'] == 'lec_level1') ? 'selected' : '' ?>>1단계</option>
+							<option value="lec_level2" <?=($_POST['lec_level'] == 'lec_level2') ? 'selected' : '' ?>>2단계</option>
+							<option value="lec_level3" <?=($_POST['lec_level'] == 'lec_level3') ? 'selected' : '' ?>>3단계</option>
+							<option value="lec_level4" <?=($_POST['lec_level'] == 'lec_level4') ? 'selected' : '' ?>>4단계</option>
+						</select>
+					</li>
+					<li>
+						<span>교수명</span>
+						<select name="teacher_list_name" id="teacher_list_name" class="contentsSearch" value="<?=(!empty($_POST['teacher_list_name'])) ? $_POST['teacher_list_name'] : '' ?>">
+							<option value="">전체</option>
+							<? foreach($lecture_teahcer_list as $teacher_key => $teacher_item) { ?>
+								<option value="<?=$teacher_item['t_name']?>" <?=($_POST['teacher_list_name'] == $teacher_item['t_name']) ? 'selected' : '' ?>><?=$teacher_item['t_name']?></option>
+							<? } ?>
+						</select>
+					</li>
+				</ul>
+			</form>
+			<div class="button_area">
+				<button type="button" onclick="searchReNew('contentsSearch');">초기화</button>
+				<button type="button" onclick="contentSearch();">검색</button>
+			</div>
+		</div>
+	</div>
+	
+	<!-- search panel -->
+	<div class="books_list">
+		<ul id="lectureList_content">
+			<? if (!empty($lecture_list)) { ?>
+				<? foreach($lecture_list as $lecture_key => $lecture_item) {
+					// 원가 == 판매 같을경우 비노출
+					$price_content = ($lecture_item['lec_price'] == $lecture_item['lec_real_price'] || $lecture_item['lec_price'] <= $lecture_item['lec_real_price']) ? 'display:none' : 'display:block';
+					?>
+					<li>
+						<div class="books_img">
+							<div class="teacherImg">
+								<? if (!empty($lecture_item['profile_img'])) { ?>
+									<img src="https://www.haksa2080.com/zfiles/teacher_img/<?=$lecture_item['profile_img']?>" alt="">
+								<? } ?>
+							</div>
+							<div class="books_icon">
+								<span class="cl_type"><?=$lecture_item['major_name']?></span>
+								<span><?=(!empty($lecture_item['lec_level'])) ? $lecture_item['lec_level'] . '단계' : '-' ?></span>
+								<? if (!empty($lecture_item['new_icon'])) { ?>
+									<span><?=$lecture_item['new_icon']?></span>
+								<? } ?>
+							</div>
+							<p><?=$lecture_item['introduction']?></p>
+							<strong><?=$lecture_item['t_name']?> 교수님</strong>
+						</div>
+						
+						<a href="/lecture/lecture_view?lec_no=<?=$lecture_item['lec_no']?>" class="books_name">
+							<dl>
+								<dt><?=$lecture_item['lec_name']?></dt>
+								<dd class="num_day"><?=$lecture_item['lec_term']?>일(총 <?=$lecture_item['lec_su']?>강)</dd>
+								<dd class="line_txt"></dd>
+								<dd class="num_point"><?=number_format($lecture_item['lec_point'])?>P </dd>
+							</dl>
+						</a>
+						
+						<div class="books_amt">
+							<dl>
+								<dt>수강료</dt>
+								<dd class="dc_amt" style="<?=$price_content?>"><?=number_format($lecture_item['lec_price'])?>원</dd>
+								<dd>
+									<strong><?=number_format((int)$lecture_item['lec_real_price'])?>원</strong>
+									<span style="<?=$price_content?>">▼ <?=($lecture_item['lec_percent'] > 0) ? $lecture_item['lec_percent'] : '-'?>% 할인</span>
+								</dd>
+							</dl>
+						</div>
+						
+						<div class="books_btn">
+							<ul class="col2">
+								<? if (!empty($_SESSION['member_id'])) { ?>
+									<li><button type="button" class="white_btn" onclick="alimLayer('alimBasket', '<?=$lecture_item['lec_no']?>', '/payment/payment_basket')">장바구니</button></li>
+									<li><button type="button" class="black_btn" onclick="paymentApply('<?=$lecture_item['lec_no']?>');">수강신청</button></li>
+								<? } else { ?>
+									<li><button type="button" class="white_btn" onclick="alimLayer('alimLogin')">장바구니</button></li>
+									<li><button type="button" class="black_btn" onclick="alimLayer('alimLogin')">수강신청</button></li>
+								<? } ?>
+							</ul>
+						</div>
+					</li>
+				<? } ?>
+			<? } else { ?>
+				<li class="books_nolist on">
+					<img src="<?=$images?>/icon/no_list.png" alt="검색결과가 없습니다." >
+					검색 결과가 없습니다.<br />
+					재확인 후 조회해주세요.
+				</li>
+			<? } ?>
+		</ul>
+		
+		<!-- 더보기 버튼 -->
+		<div class="books_more">
+			<a href="#;" style="letter-spacing:0.5px;" class="txt_btn" onclick="listGetPageLecture('<?=count($lecture_list_cnt)?>');">10개 더보기(<span id="lectureTotal_cnt"></span>/<?=count($lecture_list_cnt)?>)</a>
+		</div>
+		
+	</div>
+</div>

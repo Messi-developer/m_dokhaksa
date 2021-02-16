@@ -1,0 +1,143 @@
+<div class="m_wrap payment">
+	<!-- 타이틀 -->
+	<div class="tit_wrap t3">
+		<h4 class="money">결제/배송내역</h4>
+		<ul>
+			<li>무통장입금의 경우 입금기한 내에 입금하지 않을 경우 자동으로 신청이 취소됩니다. (7일이내)</li>
+			<li>영수증은 PC에서 확인하실 수 있습니다.</li>
+		</ul>
+	</div>
+	<!-- //타이틀 -->
+	
+	<!--무통장입금내역-->
+	<div class="basket_list">
+		<div class="pay_bg">
+			<strong>무통장입금 대기내역 총<span> <?=$passBookListCnt?>건</span></strong>
+		</div>
+		<? if (!empty($passBookList)) { ?>
+		<div class="mon_history">
+			<ul class="cler" id="passBookList">
+				<? foreach($passBookList as $passbook_key => $passbook_item) {
+					$nowDate = date("Y:m:d H:i:s", time());  // 오늘 날짜 시간 가져옴.
+					$enddate = $passbook_item['paymentEndDate'] . ' 00:00:00'; // 강의종료일
+					$day_diff = strtotime($enddate) - strtotime($nowDate); // 종료일 - 현재시간
+					$day_rs = ceil(($day_diff) / (60*60*24));
+					
+					$day_rs = ($day_rs != '1') ? $day_rs . '일뒤' : '오늘까지';
+					?>
+					<li>
+						<div class="tit">
+							<span class="date"><?=$day_rs?></span><p><span>주문번호</span><?=$passbook_item['order_num']?></p>
+						</div>
+						<div class="txt">
+							<ul>
+								<li><span>은행명</span> <?=$passbook_item['bank_name']?></li>
+								<li><span>예금주</span> (주)위더스교육</li>
+								<li><span>계좌번호</span> <?=$passbook_item['account_num']?></li>
+								<li class="colr"><span>입금예정금액</span> <?=number_format($passbook_item['payment_total_price']->total_price)?>원</li>
+							</ul>
+							<ul>
+								<li><span>신청일</span> <?=$passbook_item['wdate']?></li>
+								<li><span>입금기한</span> <?=$passbook_item['paymentEndDate']?></li>
+								<li style="overflow:hidden;"><span class="fl">강좌/교재</span> <div class="fl"><?=str_replace(',', '<br />', $passbook_item['mem_lec_name'])?></div></li>
+								<!--<li><span>교재</span> [2019최신개정]교양국어</li>-->
+								<li class="colr t2"><span>총 건수</span> <?=$passbook_item['sub_lecture_cnt']?>건</li>
+							</ul>
+						</div>
+						<p>※ 계좌번호에 맞게 입금을 하셔야 해당 주문이 정상적으로 처리됩니다.</p>
+						<!--<div class="m_btn_wrap t3">
+							<a href="#;" onclick="lectureMemDelete('<?/*=$passbook_item['order_num']*/?>');">취소 신청</a>
+						</div>-->
+					</li>
+				<? } ?>
+			</ul>
+		</div>
+		<? } else { ?>
+			<div class="list_none">
+				무통장입금<br>대기 내역이 없습니다.
+			</div>
+		<? } ?>
+		
+		<? if (!empty($passBookList)) { ?>
+			<div class="m_btn_wrap t5" id="passBookGetPage">
+				<button class="more_btn" onclick="passBookGetPage('<?=$passBookListCnt?>');">이전 내역 더 보기 </button>
+			</div>
+		<? } ?>
+	</div>
+	<!--//무통장입금내역-->
+	
+	<!--결제완료/취소내역-->
+	<div class="basket_list">
+		<div class="pay_bg">
+			<strong>결제완료/취소내역</strong>
+		</div>
+		<? if (!empty($lectureMemList)) { ?>
+		<div class="mon_history">
+			<ul class="cler" id="lectureMemList">
+				<? foreach($lectureMemList as $lecMem_key => $lecMem_item) { ?>
+					<li>
+						<div class="tit">
+							<span class="date t1"><?=$lecMem_item['payment_state']?></span><p><span>주문번호</span><?=$lecMem_item['order_num']?></p>
+						</div>
+						<div class="txt">
+							<ul>
+								<? if ($lecMem_item['lec_no'] > 50000) { ?>
+									<li><span>교재정보</span> <?=str_replace('<br>', '', $lecMem_item['book_info']->book_name)?></li>
+								<? } else { ?>
+									<li><span>상품정보</span> <?=str_replace('<br>', '', $lecMem_item['mem_lec_name'])?></li>
+								<? } ?>
+								<li><span>결제일</span> <?=$lecMem_item['wdate']?></li>
+								<li>
+									<? if (!empty($lecMem_item['discount_div']) || $lecMem_item['discount_div'] != '') { ?>
+										<? if ((int)$lecMem_item['real_price'] == (int)$lecMem_item['discount_price'] || $lecMem_item['discount_percent'] == '100') { ?>
+											<span>결제방법</span> 적립금/쿠폰
+										<? } else { ?>
+											<span>결제방법</span> <?=$lecMem_item['payment_way']?> (일부) + 적립금/쿠폰
+										<? } ?>
+										
+									<? } else { ?>
+										<span>결제방법</span> <?=$lecMem_item['payment_way']?>
+									<? } ?>
+								</li>
+								<li class="colr"><span>금액</span> <?=number_format($lecMem_item['payment_total_price']->total_price)?>원</li>
+							</ul>
+							<? if ($lecMem_item['lec_no'] > 50000) { ?>
+								<ul class="t2">
+									<li style="overflow:hidden;"><span class="fl">배송지정보</span> <div class="fl"><?=$lecMem_item['besong_info']->home_address?>, <?=$lecMem_item['besong_info']->tail_address?> (<?=$lecMem_item['besong_info']->uno?>)</div></li>
+								</ul>
+							<? } ?>
+						</div>
+						
+						<div class="m_btn_wrap t4">
+							<? if ($lecMem_item['lec_no'] > 50000) { ?>
+								<form action="https://delivery.hackers.com/delivery/index.php" method="POST" id="besongSearch_<?=sprintf('%02d', $lecMem_key + 1)?>">
+									<input type="hidden" name="delivery_code_<?=sprintf('%02d', $lecMem_key + 1)?>" id="delivery_code_<?=sprintf('%02d', $lecMem_key + 1)?>">
+									<input type="hidden" name="delivery_number_<?=sprintf('%02d', $lecMem_key + 1)?>" id="delivery_number_<?=sprintf('%02d', $lecMem_key + 1)?>" value="<?=($lecMem_item['besong_info']->book_order != '') ? $lecMem_item['besong_info']->book_order : '' ?>" >
+									<input type="hidden" name="crypt_key" id="crypt_key" value="gP7qls2sla@dl(wks0ekd!!">
+								</form>
+								<a href="#;" onclick="besongSearch('<?=trim($lecMem_item['besong_info']->book_sale)?>','<?=trim($lecMem_item['besong_info']->book_order)?>', '<?=sprintf('%02d', $lecMem_key + 1)?>');" class="more_view">배송조회</a>
+							<? } ?>
+						</div>
+					</li>
+				<? } ?>
+			</ul>
+		</div>
+		<? } else { ?>
+			<div class="list_none">
+				결제완료/취소<br>내역이 없습니다.
+			</div>
+		<? } ?>
+	</div>
+	
+	<!--//결제완료/취소내역-->
+	<? if (!empty($lectureMemList)) { ?>
+		<div class="m_btn_wrap t5" id="lectureMemGetPage">
+			<button class="more_btn" onclick="lectureMemGetPage('<?=$lectureMemListCnt?>');">이전 내역 더 보기 </button>
+		</div>
+	<? } ?>
+</div>
+
+<div class="foot_ps_txt">
+	<p>※ 구매한 상품에 대한 환불/취소를 원하실 경우 관련 정책  확인 후 해커스 독학사에 문의주시기 바랍니다. <span>(T&#46;1599-3081)</span></p>
+	<a href="/notice/main?customerType=faq">해커스 독학사 환불규정 ></a>
+</div>

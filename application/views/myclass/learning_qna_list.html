@@ -1,0 +1,78 @@
+<div class="learning_qna">
+	<!-- 타이틀 -->
+	<div class="tit_wrap t3">
+		<h4 class="qna">학습질문/답변</h4>
+		<ul>
+			<li class="none">학습관련 질문은 언제든지 물어보세요!</li>
+		</ul>
+	</div>
+	<!-- //타이틀 -->
+	<!-- 질문/답변 -->
+	<div class="qna_list">
+		<? if (!empty($boardList)) { ?>
+			<ul id="HKboardBoardList">
+				<? foreach($boardList as $board_key => $board_item) {
+					$changeDivision = "";
+					if (strpos($board_item['division'], '[lecture]')) {
+						$changeDivision = str_replace('[lecture]', ' [ 강의 ]', $board_item['division']);
+					} else {
+						$changeDivision = str_replace('[book]', ' [ 교재 ]', $board_item['division']);
+					}
+					?>
+					<li>
+						<div class="q_box">
+							<span class="state <?=($board_item['answer_cnt'] > 0) ? '' : 't2' ?>"><?=($board_item['answer_cnt'] > 0) ? '답변완료' : '답변대기중' ?></span><!-- t2=> 답변완료 -->
+							<a href="#;" ><span class="txt_tit"><?=$board_item['subject']?></span><span class="txt_show" onclick="packageToggle($(this))">〉</span></a>
+							<ul class="cler">
+								<li><?=$board_item['c_wdate']?></li>
+								<li class="line_txt"></li>
+								<li><?=$changeDivision?></li>
+							</ul>
+						</div>
+						
+						<div class="a_box">
+							<div class="q_view">
+								<!-- 학슴질문 제거버튼 -->
+								<a href="#;" class="close clear" onclick="HKboardDelete('learnqna','<?=$board_item['no']?>');"><span></span><span></span></a>
+								<!--// 학슴질문 제거버튼 -->
+								<strong><?=$changeDivision?></strong>
+								<ul class="cler">
+									<li><?=(!empty($board_item['big_category']->name)) ? $board_item['big_category']->name : '-' ?></li>
+									<li class="line_txt"></li>
+									<li><?=($board_item['lec_level'] != '') ? $board_item['lec_level'] : '-' ?>단계</li>
+								</ul>
+								<p><?=$board_item['memo']?></p>
+							</div>
+							<!-- 답변 -->
+							<? if ($board_item['answer_cnt'] > 0) { ?>
+								<? foreach($board_item['board_review'] as $review_kery => $review_item) { ?>
+									<div class="a_view">
+										<h5><?=$review_item['name']?>교수님</h5>
+										<p class="review_title"><em>[답변]</em> <?=$review_item['subject']?></p>
+										<p><em>[내용]</em> <?=$review_item['memo']?></p>
+									</div>
+								<? } ?>
+							<? } ?>
+							<!--// 답변 -->
+						</div>
+					</li>
+				<? } ?>
+			</ul>
+		<? } else { ?>
+			<div class="list_none">
+				등록된 학습질문이 <br> 없습니다.
+			</div>
+		<? } ?>
+	</div>
+	<!-- //질문/답변 -->
+	<? if (!empty($boardList)) { ?>
+		<div class="m_btn_wrap books_more" style="padding:20px 0 0 0;">
+			<button class="more_btn" onclick="HKboardGetPage('<?=$boardListCnt->cnt?>');">더 보기 </button>
+		</div>
+	<? } ?>
+	<!-- 목록으로이동 -->
+	<div class="m_btn_wrap t6">
+		<a href="/myclass/learning_qna/learning_qna_write" class="t1">학습질문등록</a>
+	</div>
+	<!-- //목록으로이동 -->
+</div>

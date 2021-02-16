@@ -1,0 +1,22 @@
+<!-- LOGGER SCRIPT FOR SETTING ENVIRONMENT -->
+<!-- COPYRIGHT (C) 2002-2017 BIZSPRING INC. BIZMailer(TM) ALL RIGHTS RESERVED. -->
+<script language="javascript">
+/* FOR BIZ., COM. AND ENT. SERVICE. */
+M_NM = "<?=$M_NM?>";	/* 이름    */
+M_EMAIL = "<?=$M_EMAIL?>";/* 이메일 */
+M_MOBILE = "<?=$M_MOBILE?>";/* 핸드폰 */
+M_MEMO1 = "<?=$M_MEMO1?>";/* 메모1 (50byte미만) */
+M_MEMO2 = "<?=$M_MEMO2?>";/* 메모2 (50byte미만) */
+M_MEMO3 = "<?=$M_MEMO3?>";/* 메모3 (50byte미만) */
+M_MEMO4 = "<?=$M_MEMO4?>";/* 메모4 (50byte미만) */
+M_MEMO5 = "<?=$M_MEMO5?>";/* 메모5 (50byte미만) */
+auth_key = "<?=$auth_key?>"; /*자동메일 id*/
+</script>
+<!-- END OF ENVIRONMENT SCRIPT -->
+
+<script language="javascript">/*DO NOT MODIFY THIS SCRIPT.*/function _biz_trk_escape(_str) {var str, ch;var bEncURI = "N";eval("try{bEncURI=encodeURI('Y');}catch(_e){ }" );if( bEncURI == "Y" ) str=encodeURIComponent(_str);else str = escape(_str);while((ch=str.indexOf("+"))>0) str=str.substr(0,ch)+"%2B"+str.substr(ch+1,str.length);while((ch=str.indexOf("/"))>0) str=str.substr(0,ch)+"%2F"+str.substr(ch+1,str.length);while((ch=str.indexOf("&"))>0) str=str.substr(0,ch)+"%26"+str.substr(ch+1,str.length);while((ch=str.indexOf("?"))>0) str=str.substr(0,ch)+"%3F"+str.substr(ch+1,str.length);while((ch=str.indexOf(":"))>0) str=str.substr(0,ch)+"%3A"+str.substr(ch+1,str.length);while((ch=str.indexOf("#"))>0) str=str.substr(0,ch)+"%23"+str.substr(ch+1,str.length);return str;}function _biz_makeSrc(trk_server){var tc = "";var temp;var prtcl=document.location.protocol.indexOf("https")!=-1?"http://":"http://";tc=prtcl+trk_server;tc=tc+"?biz_id=hackers&auth_key="+auth_key;if((typeof M_NM)!="undefined" && M_NM!="") tc+="&m_nm="+ encodeURIComponent(M_NM);if((typeof M_EMAIL)!="undefined" && M_EMAIL!="") tc+="&m_email="+_biz_trk_escape(M_EMAIL);if((typeof M_MOBILE)!="undefined" && M_MOBILE!="") tc+="&m_mobile="+_biz_trk_escape(M_MOBILE);if((typeof M_MEMO1)!="undefined" && M_MEMO1!="") tc+="&m_memo1="+_biz_trk_escape(M_MEMO1);if((typeof M_MEMO2)!="undefined" && M_MEMO2!="") tc+="&m_memo2="+_biz_trk_escape(M_MEMO2);if((typeof M_MEMO3)!="undefined" && M_MEMO3!="") tc+="&m_memo3="+_biz_trk_escape(M_MEMO3);if((typeof M_MEMO4)!="undefined" && M_MEMO4!="") tc+="&m_memo4="+_biz_trk_escape(M_MEMO4);if((typeof M_MEMO5)!="undefined" && M_MEMO5!="") tc+="&m_memo5="+_biz_trk_escape(M_MEMO5);return tc;}var _biz_trk_bMSIE=(document.all)?true:false;var _biz_trk_bJS12=(window.screen)?true:false;var _biz_trk_code_base= _biz_makeSrc("222.122.229.30:8080/bizsmart/action/auto.do");var _biz_trk_img_base=new Image();if(_biz_trk_bJS12==true) {if(_biz_trk_bMSIE) {_biz_trk_img_base.src=_biz_trk_code_base;} else {setTimeout("_biz_trk_img_base.src=_biz_trk_code_base;",1);}} else {if(_biz_trk_bMSIE) document.write('<div style=\"display: none\">');document.write('<img src=\"'+_biz_trk_code_base+'\" height=\"0\" width=\"0\">');if(_biz_trk_bMSIE) document.write('</div>');}
+
+var moveUrl ="<?=$moveUrl?>";
+if(moveUrl) location.href= moveUrl;
+
+</script>

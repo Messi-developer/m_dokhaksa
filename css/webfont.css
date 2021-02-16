@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'noto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Noto Sans Regular'), local('NotoSans-Regular');
+    src: url('/css/fonts/notokr-regular.eot');
+    src: url('/css/fonts/notokr-regular.eot?#iefix') format('embedded-opentype'),
+    url('/css/fonts/notokr-regular.woff2') format('woff2'),
+    url('/css/fonts/notokr-regular.woff') format('woff'),
+    url('/css/fonts/notokr-regular.ttf') format('truetype')
+}
+
+@font-face {
+    font-family: 'noto';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Noto Sans bold'), local('notokr-bold');
+    src: url('/css/fonts/notokr-bold.eot');
+    src: url('/css/fonts/notokr-bold.eot?#iefix') format('embedded-opentype'),
+    url('/css/fonts/notokr-bold.woff2') format('woff2'),
+    url('/css/fonts/notokr-bold.woff') format('woff'),
+    url('/css/fonts/notokr-bold.ttf') format('truetype')
+}
+

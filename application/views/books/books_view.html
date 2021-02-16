@@ -1,0 +1,166 @@
+<div id="books_container">
+	<!-- container -->
+	<div id="container">
+		<div id="snb" class="snb_bg">
+			<h2>교재 상세정보</h2>
+			<span class="snb_prev">
+				<a href="#;" class="his_back"><img src="<?=$images?>/common/btn_prev.png" alt="이전"/></a>
+			</span>
+		</div>
+		
+		<div class="store_view_top">
+			<div class="books_icon">
+				<span class="cl_type"><?=($book_view->level != '') ? $book_view->level : '-'?>단계</span>
+				<span><?=($book_view->category != '') ? $book_view->category : '-'?></span>
+			</div>
+			<h4><?=($book_view->book_name != '') ? $book_view->book_name : '-'?></h4>
+			
+			<div class="store_view_info">
+				<span class="img_upload">
+				<? if ($book_view->book_img != '') { ?>
+					<img src="https://www.haksa2080.com/zfiles/book_img/<?=$book_view->book_img?>" alt="">
+				<? } else { ?>
+					-
+				<? } ?>
+				</span>
+				<div class="books_name">
+					<ul>
+						<li class="list_icon01"><?=($book_view->author != '') ? $book_view->author : '-'?> 저 ( <?=($book_view->year != '' ? $book_view->year : '-' )?> . <?=($book_view->month != '' ? $book_view->month : '')?> . <?=($book_view->day != '') ? $book_view->day : '-'?> )</li>
+						<li class="list_icon02">페이지수 <span><?=($book_view->page_num != '') ? $book_view->page_num : '-'?>p</span></li>
+						<li class="list_icon03"><?=($book_point != '') ? $book_point : '-'?>P 적립</li>
+					</ul>
+				</div>
+				<div class="books_amt">
+					<dl>
+						<dt>금액</dt>
+						<dd>
+							<strong><?=($book_view->pamount != '') ? number_format($book_view->pamount) : '-'?>원</strong>
+						</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+		
+		<div class="store_view_txt">
+			<h4>연계강의</h4>
+			<div class="store_view_bnr">
+				<ul class="swiper-wrapper">
+					<? foreach($book_lecture_list as $book_lecture_key => $book_lecture_imte) { ?>
+						<li class="swiper-slide">
+							<span><?=(!empty($book_lecture_imte['lec_join'])) ? '패키지' : '단과' ?></span>
+							<p><?=$book_lecture_imte['lec_name']?></p>
+						</li>
+					<? } ?>
+				</ul>
+			</div>
+			
+			<h4>교재소개</h4>
+			<div class="store_view_edit bd_bottom">
+				<?=($book_view->intro_new != '') ? $book_view->intro_new : '-'?>
+			</div>
+			
+			<h4>교재목차</h4>
+			<div class="store_view_edit">
+				<?=($book_view->table_contents1 != '') ? nl2br($book_view->table_contents1) : '-'?>
+			</div>
+		</div>
+		
+		<div class="store_delivery_info">
+			<dl>
+				<dt class="btnTit active"><a href="javascript:btnClickView('delivery_view');">배송/교환/환불규정</a></dt>
+				<dd class="delivery_view active">
+					<ul>
+						<li>교재 배송은 평균 2~3일 정도 소요되며, 교재 주문이 일시적으로
+							증가하는 경우 출판사의 교재 재고수량에 따라 배송이 다소 지연
+							될 수 있습니다.</li>
+						
+						<li>교재 교환은 교재 수령 후 7일 이내 사용한 흔적이 전혀 없을 경우
+							회원 반송료 부담하여 반송 확인 후 교환 가능합니다.</li>
+						
+						<li>교재 및 도서 수령 후 7일 이내 사용한 흔적이 전혀 없을 경우 회원
+							반송료 부담하여 반송 확인 후 환불 가능합니다.<br />
+							(교재 및 도서는 재판매가 가능하여야 하므로 사용하지
+							않았더라도 펼쳐 본 흔적이 있을 경우는 환불이 불가합니다.)</li>
+						
+						<li>이벤트 통해 구매하신 교재의 경우, 할인받으신 가격만큼을
+							공제하여 환불받을 수 있습니다.</li>
+					</ul>
+				</dd>
+			</dl>
+		
+		</div>
+		
+		
+		<div class="fixed_buy">
+			<ul class="fixed_buy_btn">
+				<? if (!empty($book_preview)) { ?>
+					<li><a href="/books/books_view?preview=<?=$book_view->book_id?>" class="btn_gray">미리보기</a></li>
+				<? } ?>
+				
+				<? if ($book_view->level != 1) { ?>
+					<li style="<?=(!empty($book_preview)) ? '' : 'width:100%' ?>"><a href="#;" class="btn_green" onclick="buyFixedOpen();">구매하기</a></li>
+				<? } else { ?>
+					<li style="<?=(!empty($book_preview)) ? '' : 'width:100%' ?>"><a href="<?=($book_view->store_link != '') ? $book_view->store_link : '#;'?>" target="_blank" class="btn_green">구매하기</a></li>
+				<? } ?>
+			</ul>
+		</div>
+		
+		
+		<!-- 구매하기 선택 -->
+		<div class="fixed_buy_dim"></div>
+		<div class="fixed_buy_view" style="padding-bottom:60px;">
+			<a class="buy_fixed_close" onclick="buyFixedClose();"><img src="<?=$images?>/books/btn_buy_view.png" alt="닫기"></a>
+			
+			<div class="select-area">
+				<!-- 상품 2 -->
+				<div class="select-item-area">
+					<button type="button" data-target="option-item_list_01" class="default-item" data-scroll="true"><!-- option-selected, option-disabled -->
+						<span><?=str_replace('<br>', '', $book_view->book_name)?></span>
+					</button>
+					<div class="option-group" id="option-item_list_01">
+						<ul>
+							<li>
+								<input type="radio" id="product_4" value="<?=(int)$book_view->book_id + 50000?>" name="product">
+								<label for="product_4">
+									<span class="product_title"><?=str_replace('<br>', '', $book_view->book_name)?></span>
+									<span class="product_price"><span class="num"><?=number_format($book_view->pamount)?></span>원</span>
+								</label>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- 선택 목록 -->
+				<div class="option-select-group">
+					<ul>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="fixed_buy_btn">
+				<!-- 상품 가격  -->
+				<ul class="select-total">
+					<li><span>예상 적립포인트</span> <em id="amt_point">0</em>p</li>
+					<li class="last_total"><span>총상품금액</span><em class="alltotal_amt">0</em>원</li>
+				</ul>
+				
+				<!-- 상품 구매 -->
+				<ul class="select-btn">
+					<input type="hidden" name="selectLecCode" id="selectLecCode">
+					
+					<? if (!empty($_SESSION['member_id'])) { ?>
+						<li><button type="button" class="btn_black" onclick="lectureViewBasket('alimBasket', '<?=$_SERVER['REQUEST_URI']?>');">장바구니</button></li>
+						<li><button type="button" class="btn_green" onclick="lectureViewPayment('books');">바로구매</button></li>
+					<? } else { ?>
+						<li><button type="button" class="btn_black" onclick="alimLayer('alimLogin')">장바구니</button></li>
+						<li><button type="button" class="btn_green" onclick="alimLayer('alimLogin')">바로구매</button></li>
+					<? } ?>
+					
+				</ul>
+			</div>
+		</div>
+	
+	</div>
+	<!--// container -->
+	
+	
+</div>

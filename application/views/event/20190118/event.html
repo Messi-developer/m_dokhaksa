@@ -1,0 +1,37 @@
+<?
+$img_url = '//gscdn.hackers.co.kr/haksa2080/images/event/200918/';
+
+//timer 이벤트 마감일 (매주 목요일)
+$endDay = '목';
+?>
+
+<div class="evt_wrap">
+
+    <?include 'application/views/event/timer.php'?>
+
+    	<img src="<?=$img_url?>cont_02.jpg" alt=""  usemap="#cont_02" />
+		<img src="<?=$img_url?>cont_03.jpg" alt=""  usemap="#cont_03"  id="i1"/>
+		<img src="<?=$img_url?>cont_04.jpg" alt=""  usemap="#cont_04" />
+
+		<map name="cont_02" map-autoresize map-size="640">
+			<area shape="rect" coords="22, 1041, 620, 1137" href="#;" onclick="move_scroll('i1')">
+		</map>
+
+		<map name="cont_03" map-autoresize map-size="640">
+			<? if ($this->session->userdata('member_id') != '' && $this->session->userdata('member_no') != '') { ?>
+				<area shape="rect" coords="20, 773, 619, 873" href="#;" onclick="paymentApply('335')">
+			<? } else { ?>
+				<area shape="rect" coords="20, 773, 619, 873" href="#;" onclick="alimLayer('alimLogin');">
+			<? } ?>
+		</map>
+
+		<map name="cont_04" map-autoresize map-size="640">
+			<area shape="rect" coords="21, 1032, 619, 1137" href="#;" onclick="move_scroll('i1')">
+		</map>
+	<!-- 팝업 -->
+	<?include 'application/views/event/counsel_layer.php'?>
+    <!-- //팝업 -->
+
+    <?include 'application/views/event/refund_guide.php'?>
+
+</div>

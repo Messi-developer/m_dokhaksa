@@ -1,0 +1,69 @@
+<?
+$img_url = 'https://gscdn.hackers.co.kr/haksa2080/images/event/200831/';
+
+//timer 이벤트 마감일 (매주 목요일)
+$endDay = '목';
+?>
+
+<div class="evt_wrap">
+
+    <?include 'application/views/event/timer.php'?>
+
+    <img src="<?=$img_url?>cont01.jpg" alt=""/>
+	<div class="cont02" id="cont02">
+		<div class="tab_box">
+			<ul class="tab_tit">
+				<li class="on"><a href="#;">경영학 0원 끝장패스</a></li>
+				<li><a href="#;">영문학 0원 끝장패스</a></li>
+			</ul>
+			<div class="tab_con on">
+				<input type="hidden" name="checked_lecture" id="checked_lecture" value="372">
+				<img src="<?=$img_url?>cont02_tab01.jpg" alt="">
+				<ul>
+					<li><label for="chk1"><input type="radio" id="chk1" name="chk" value="372" checked>1단계 미포함</label></li>
+					<li><label for="chk2"><input type="radio" id="chk2" name="chk" value="371">1단계 포함</label></li>
+				</ul>
+			</div>
+			<div class="tab_con">
+				<img src="<?=$img_url?>cont02_tab02.jpg" alt="">
+				<ul class="t2">
+					<li><label for="chk3"><input type="radio" id="chk3" name="chk" value="381">1단계 미포함</label></li>
+					<li><label for="chk4"><input type="radio" id="chk4" name="chk" value="380">1단계 포함</label></li>
+				</ul>
+			</div>
+		</div>
+		<div class="result_price">
+			<img src="<?=$img_url?>tab_btn.jpg" alt="" usemap="#cont02">
+			<span class="price">1,390,000 원</span>
+			<map name="cont02" map-autoresize>
+				<? if ($this->session->userdata('member_id') != '' && $this->session->userdata('member_no') != '') { ?>
+					<area shape="rect" coords="36,203,606,295" href="#;" onclick="checkPayment();"/>
+				<? } else { ?>
+					<area shape="rect" coords="36,203,606,295" href="#;" onclick="alimLayer('alimLogin');"/>
+				<? } ?>
+			</map>
+		</div>
+
+	</div>
+
+	<div class="cont03">
+    <img src="<?=$img_url?>cont03.jpg" alt="" />
+    <img src="<?=$img_url?>cont03_01.jpg" alt="" />
+    <img src="<?=$img_url?>cont03_02.jpg" alt="" />
+    <img src="<?=$img_url?>cont03_03.jpg" alt="" />
+    <img src="<?=$img_url?>cont03_04.jpg" alt="" />
+    <img src="<?=$img_url?>cont03_05.jpg" alt="" />
+	</div>
+	<div class="cont04">
+		<div class="bxslider bx01">
+			<img src="<?=$img_url?>cont04_sd01.jpg" alt=""/>
+			<img src="<?=$img_url?>cont04_sd02.jpg" alt=""/>
+		</div>
+		<img src="<?=$img_url?>cont04_btn.jpg" alt="" usemap="#cont04"/>
+		<map name="cont04" map-autoresize>
+			<area shape="rect" coords="32,45,614,156" href="#;" onclick="move_scroll('cont02')"alt="">
+		</map>
+	</div>
+
+    <?include 'application/views/event/refund_guide.php'?>
+</div>

@@ -1,0 +1,29 @@
+<html>
+<head>
+	<script type="text/javascript">
+		var LGD_window_type = '<?=$payReqMap['CST_WINDOW_TYPE'] ?>';
+
+		function launchCrossPlatform(){
+			lgdwin = open_paymentwindow(document.getElementById('LGD_PAYINFO'), '<?= $payReqMap['CST_PLATFORM'] ?>', LGD_window_type);
+		}
+
+		function getFormObject() {
+			return document.getElementById("LGD_PAYINFO");
+		}
+		window.onload = function(){
+			launchCrossPlatform();
+		};
+	</script>
+</head>
+<body>
+<form method="post" name="LGD_PAYINFO" id="LGD_PAYINFO" action="payment/payment_lgu/payres">
+	<?
+	foreach ($payReqMap as $key => $value) {
+		echo "<input type='hidden' name='$key' id='$key' value='$value'>";
+	}
+	// var_dump($_SESSION);
+	?>
+</form>
+</body>
+<script language="javascript" src="https://xpay.uplus.co.kr/xpay/js/xpay_crossplatform.js" type="text/javascript"></script>
+</html>

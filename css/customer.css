@@ -1,0 +1,134 @@
+
+/***고객센터 공통****/
+ul li{list-style:none;}
+.cler:after{clear:both;content:"";display:block;}
+@media screen and (max-width:320px) {
+	#container{font-size:12px;}
+}
+.color.t1{color:#8f69b2;}
+.color.t2{color:#0097a3;}
+
+/*상단리스트*/
+.ul_list{position:relative; width:100%; height:42px;}
+.ul_list > ul{position:absolute; left:0; top:0; z-index:999; width:100%; background:#f3f4f6;}
+.ul_list > ul > li{float:left;width:25%;border-bottom:4px solid #ddd;text-align:center;}
+.ul_list > ul > li.t1{width:26%}
+.ul_list > ul > li.t2{width:20%;}
+.ul_list > ul > li.t3{width:22%;}
+.ul_list > ul > li.t4{width:32%;}
+.ul_list > ul > li > a {display:block;line-height:42px;font-weight:bold;}
+.ul_list > ul > li.on{border-color:#0097a3}
+.ul_list > ul > li.on > a{color:#0097a3;}
+
+/*공통박스*/
+.customer_wrap{}
+.customer_in{padding:6% 5%;border-bottom:5px solid #ddd;}
+.customer_in.v2{padding:6% 0 0;}
+.customer_in.v3{padding:5% 5% 0;border-bottom:1px solid #ddd;}
+
+
+/*버튼*/
+.btn_wrap{padding:5% 0;text-align:center;}
+.btn_wrap a{display:block;color:#fff;font-weight:bold;background:#0097a3;border-radius:10px;}
+.btn_wrap a.full{width:90%; margin:0 auto; line-height:40px; font-size:18px;}
+
+
+/*1대1 무료상담*/
+.customer_in .tit{padding-bottom:5%;border-bottom:1px solid #ddd;}
+.customer_in .tit h4{padding-left:40px;margin-bottom:3%; font-size:18px; background:url('https://gscdn.hackers.co.kr/haksa2080/images/customer/ico_headphone.png')no-repeat 0 0;background-size:contain;}
+.customer_in .tit h4 span{color:#0097a3;}
+.customer_in .tit.v2{border-bottom:0;padding-bottom:3%;}
+.customer_in .tit h5{padding-left:0;margin-bottom:0; font-size:18px; background:none;}
+.customer_in .tit.v3 h4{padding-left:45px;background:url('https://gscdn.hackers.co.kr/haksa2080/images/customer/ico_heart.png')no-repeat 0 0;background-size:contain;}
+
+.consult_in{position:relative;}
+.consult_in .ps_txt{position:absolute;top:0;right:0; color:#0097a3;}
+.consult_in ul li{margin-top:3%;}
+.consult_in ul li:frist-child{margin-top:0;}
+.consult_in ul li span{margin-right:1%;color:#0097a3;}
+.consult_in ul li label{display:block;margin-bottom:3%; font-size:12px; color:#565656;font-weight:bold;}
+.consult_in ul li input{border-color:#f6f7f9;background:#f6f7f9;}
+.consult_in ul li textarea.textarea{min-height:100px;overflow-y:auto;resize:none;border-color:#f6f7f9;background:#f6f7f9;}
+.consult_in ul li select{background:#f6f7f9;}
+
+.cs_box{}
+.cs_box h6{font-size:12px;font-weight:500;}
+.cs_box .cs_list{padding:5% 0;}
+.cs_box .cs_list.v1 ul li{float:left;width:23.5%;margin-left:2%;text-align:center;}
+.cs_box .cs_list.v1 ul li a{border-radius:40px;}
+.cs_box .cs_list.v2 ul li{float:left;width:48%;margin:0 0 2% 2%; text-align:center;}
+.cs_box .cs_list.v2 ul li a{border-radius:10px;}
+
+.cs_box .cs_list.v1 ul li:first-child{margin-left:0;}
+.cs_box .cs_list.v2 ul li:nth-cild(odd){margin-left:0;}
+
+.cs_box .cs_list ul li a{display:block;line-height:40px;border:1px solid #ddd;}
+.cs_box .cs_list ul li.on a{font-weight:bold;color:#fff;border-color:#0097a3; background:#0097a3;}
+.cs_box .cs_list.v2 ul li.on a{padding-left:20px;color:#0097a3;background:#fff url('https://gscdn.hackers.co.kr/haksa2080/images/customer/ico_chk_on.png')no-repeat 15% 50%;background-size:20px 20px;}
+
+.cs_box .cs_list ul li > label{position:relative;display:block;line-height:40px;}
+.cs_box .cs_list ul li > label input[type="checkbox"]{display:none;}
+.cs_box .cs_list ul li > label label{display:block;width:100%;border:1px solid #ddd;border-radius:40px;}
+.cs_box .cs_list ul li > label input[type="checkbox"]:checked + label{border-radius:40px;color:#fff;border:1px solid #0097a3;background:#0097a3;}
+
+.cs_box .cs_list.v2 ul li > label label{position:relative;border-radius:10px;}
+.cs_box .cs_list.v2 ul li > label label:after{content:'Γ';display:inline-block;position:absolute;top:10px;left:17px;width:18px;height:18px;line-height:20px;border:1px solid #c2c2c2;border-radius:50%;color:#c2c2c2;text-align: center;font-size:16px;transform:rotate(225deg);}
+.cs_box .cs_list.v2 ul li > label input[type="checkbox"]:checked + label{border-radius:10px;color:#0097a3;background:#fff;}
+.cs_box .cs_list.v2 ul li > label input[type="checkbox"]:checked + label:after{background:#0097a3;color:#fff;border-color:#0097a3;}
+
+.cs_box .input_box{padding-top:5%;}
+.cs_box select{border-color:#c8c8c9;background:#f6f7f9;}
+
+.cs_box.v2 input[type=checkbox], .cs_box.v2 input[type=radio] {display: none;}
+.cs_box.v2 .icon_v+ label:after{content:'Γ';display:inline-block;width:22px;height:22px;line-height:24px;border:1px solid #c2c2c2;border-radius:50%;color:#c2c2c2;text-align: center;font-size:16px;transform:rotate(225deg);}
+.cs_box.v2 .icon_v:checked + label:after{background:#0097a3;color:#fff;border-color:#0097a3;}
+.cs_box.v2 label.click_area{position:relative;display:block;width:100%;padding:0 5% 5%;box-sizing:border-box;}
+.cs_box.v2 label.click_area strong{display:inline-block;margin-left:5px;font-size:15px;line-height:30px;}
+
+.ico_down{position: absolute;top:0px;right:5%;width:30px;height:30px;line-height:30px;text-align:center;transform:rotate(90deg);font-size:30px;color:#aaa;z-index: 1;transition: 0.5s;}
+.ico_down.on{transform:rotate(270deg);}
+
+.cs_box .agree_box{padding:3% 5% 0;border-top:1px solid #ddd;color:#767677;background:#f6f7f9;}
+
+/*faq*/
+.qna_wrap{}
+.qna_wrap > ul{width:100%;overflow:hidden;overflow-x:auto;white-space:nowrap;border-bottom:1px solid #ddd;box-shadow: 0px 2px 11px #ddd;}
+.qna_wrap > ul > li{display:inline-block;width:25%;}
+.qna_wrap > ul > li > a{display:block;text-align:center;line-height:40px;color:#717171;}
+.qna_wrap > ul > li.on > a{color:#0097a3;font-weight:bold;}
+
+.qna_tab_box{display:none;}
+.qna_tab_box.on{display:block;}
+.qna_tab_box ul li{border-top:1px solid #ddd;}
+.qna_tab_box ul li:first-child{border-top:0;}
+.qna_tab_box ul li dl dt{position:relative;padding:4% 13% 4% 10%; font-size:12px; font-weight:bold;background:url('https://gscdn.hackers.co.kr/haksa2080/images/customer/ico_q.png')no-repeat 3% 50%;background-size:18px 18px;}
+.qna_tab_box ul li dl dd{display:none;padding:3% 10%;background:#f6f7f9 url('https://gscdn.hackers.co.kr/haksa2080/images/customer/ico_a.png')no-repeat 3% 14px;background-size:15px 15px;}
+.qna_tab_box ul li dl dt .ico_down{top:50%;margin-top:-15px;}
+
+/*공지사항*/
+.notice_list{}
+.notice_list ul li{padding:5%;border-bottom:1px solid #ddd;}
+.notice_list ul li a{display:block;font-size:12px; text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.notice_list ul li.noti a{padding-left:10%;font-weight:bold;background:url('https://gscdn.hackers.co.kr/haksa2080/images/customer/ico_notice.png')no-repeat 0 0;background-size:contain;}
+.notice_list ul li span{display:inline-block;}
+.notice_list ul li span.num{width:10%;padding-left:5px;color:#8b8b8b;}
+
+.notice_list .more_view_btn{padding:3% 0 5%;text-align:center;}
+.notice_list .more_view_btn a{display:inline-block;color:#8b8b8b;}
+.notice_list .more_view_btn a > span{display:block;transform:rotate(90deg);}
+
+
+/*공지사항 view*/
+.tit_wrap{padding-bottom:5%;border-bottom:1px solid #ddd;}
+.tit_wrap strong{display:block;margin-bottom:2%; font-size:13px;}
+.tit_wrap > ul li{position:relative;float:left;color:#8b8b8b;padding:0 3%;}
+.tit_wrap > ul li:first-child{padding-left:0;}
+.tit_wrap > ul li:first-child:after{display:none;}
+.tit_wrap > ul li:after{clear:both;content:"|";display:block;position:absolute;top:0;left:0; font-size:10px;}
+.tit_wrap > ul li b{display:inline-block;margin-left:8px;}
+
+.view_txt_box{padding:5% 0;}
+.view_txt_box .img_box{margin:2% 0;max-width:690px;width:100%;}
+
+
+.ipt-feedback{color:#0097a3;font-size:12px;}

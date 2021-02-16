@@ -1,0 +1,94 @@
+<div id="container">
+	<div id="snb">
+		<h2>아이디 찾기</h2>
+		<span class="snb_prev">
+			<a href="/login/main"><img src="<?=$images?>/common/btn_prev.png" alt="이전"/></a>
+		</span>
+	</div>
+	<div id="search_container">
+		<!-- gnb -->
+		<div id="gnb">
+			<h2 class="hide">주 메뉴</h2>
+			<ul class="col2"><!-- 활성시 active 추가 -->
+				<li class="active"><a href="/member/search?searchType=id&search=tel">휴대폰 번호 인증</a></li>
+				<li><a href="/member/search?searchType=id&search=email">이메일 주소 인증</a></li>
+			</ul>
+		</div>
+		
+		<div class="member-wrap">
+			<div class="content_con">
+				<ul class="find_form">
+					<li>
+						이름<br>
+						<input type="text" name="name" id="name" placeholder="한글 또는 영문으로 2자 이상 입력해주세요.">
+						<em class="ipt-feedback" id="name_feedback">한글 또는 영문으로 2글자 이상 입력해주세요.</em>
+					</li>
+					<li>
+						생년월일<br>
+						<input type="text" name="birth" id="birth" placeholder="8자리로 입력해주세요. (예 :  20191230)" maxlength="8">
+						<em class="ipt-feedback" id="birth_feedback">생년월일 혹은 휴대폰 번호를 정확히 입력해주세요.</em>
+					</li>
+					<li>
+						휴대폰 번호<br>
+						<input type="text" name="handphone_index" id="handphone_index" placeholder="(-) 없이 번호만 입력해주세요." maxlength="11">
+						<em class="ipt-feedback" id="handphone_feedback">(-) 없이 번호만 입력해주세요.</em>
+					</li>
+				</ul>
+				
+				<!--아이디 찾기 성공-->
+				<div class="result_box" id="searchSuccess">
+					<span class="f_point" id="searchName">김태건</span> 님의 아이디는<br>
+					<span class="f_point" id="searchId">rlaxorjs</span> 입니다.
+				</div>
+				
+				<!--아이디 찾기 실패-->
+				<div class="result_box fail" id="searchFail">
+					<i class="icon-fail"></i>
+					해당 아이디 정보가<br>
+					없습니다.
+				</div>
+			</div>
+			<div class="btn_area">
+				<a href="#;" onclick="searchMemberId('search_tel');" class="btn">확인</a>
+			</div>
+			
+			<div class="btn_area" id="searchBtnContent" style="display:none;">
+				<div class="tbl_row">
+					<div class="tbl_cell" id="searchCheck" style="width:50%;">
+						<a href="/member/search?searchType=id&search=tel" class="btn gray">재시도</a>
+					</div>
+					<div class="tbl_cell" style="width:50%;">
+						<a href="/login/main" class="btn">로그인</a>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<!--// container -->
+	
+	<!-- footer -->
+	<div id="footer">
+		<div class="foot_info_area">
+			<ul class="foot_menu">
+				<li><a href="#;">로그인</a></li>
+				<li><a href="#;">회원가입</a></li>
+				<li><a href="#;">고객센터</a></li>
+				<li><a href="#;">PC버전</a></li>
+				<li><a href="#;">무료1:1상담</a></li>
+			</ul>
+			<div class="foot_copy">
+				고객센터 : 1599-3081 (평일 : 08:30~19:00 / 토 일 공휴일 휴무)<br />
+				이메일 : 15993081@haksa2080.com<span>l</span> 팩스 : 02-3481-0600<br /><br />
+				
+				해커스 독학사(주) 위더스교육 대표이사 : 김승범<br />
+				사업자등록번호 : 305-86-18850 l<br />
+				통신판매번호 : 제 2012-서울서초-1191호<br /><br />
+				
+				원격평생교육시설번호 : 제 원-377호[호스팅 제공자 : (주)KT]<br />
+				주소 : 서울시 서초구 서초동 1317-31 세계빌딩 7층
+			</div>
+		</div>
+	</div>
+	<!--// footer -->
+</div>

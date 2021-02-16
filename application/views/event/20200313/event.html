@@ -1,0 +1,64 @@
+<?
+$img_url = '//gscdn.hackers.co.kr/haksa2080/images/event/202006/';
+
+//timer 이벤트 마감일 (매주 목요일)
+$endDay = '목';
+?>
+
+<div class="evt_wrap">
+
+    <?include 'application/views/event/timer.php'?>
+
+    <img src="<?=$img_url?>cont01.jpg" alt=""/>
+
+    <img src="<?=$img_url?>cont02.jpg" alt="" usemap="#cont02_map"/>
+    <map name="cont02_map" map-autoresize>
+        <area shape="rect" coords="452, 288, 621, 326" href="#event_guide"/>
+		<? if ($this->session->userdata('member_id') != '' && $this->session->userdata('member_no') != '') { ?>
+			<area shape="rect" coords="20, 739, 619, 904" href="#;" onclick="paymentApply('348');"/>
+			<area shape="rect" coords="20, 1316, 618, 1478" href="#;" onclick="paymentApply('368');"/>
+		<? } else { ?>
+			<area shape="rect" coords="20, 739, 619, 904" href="#;" onclick="alimLayer('alimLogin');"/>
+			<area shape="rect" coords="20, 1316, 618, 1478" href="#;" onclick="alimLayer('alimLogin');"/>
+		<? } ?>
+    </map>
+
+    <img src="<?=$img_url?>cont03.jpg" alt="" usemap="#cont03_map"/>
+    <map name="cont03_map" map-autoresize>
+        <area shape="rect" coords="453, 157, 620, 196" href="#event_guide"/>
+		<? if ($this->session->userdata('member_id') != '' && $this->session->userdata('member_no') != '') { ?>
+			<area shape="rect" coords="20, 606, 619, 769" href="#;" onclick="paymentApply('349');"/>
+			<area shape="rect" coords="19, 1186, 618, 1352" href="#;" onclick="paymentApply('369');"/>
+		<? } else { ?>
+			<area shape="rect" coords="20, 606, 619, 769" href="#;" onclick="alimLayer('alimLogin');"/>
+			<area shape="rect" coords="19, 1186, 618, 1352" href="#;" onclick="alimLayer('alimLogin');"/>
+		<? } ?>
+    </map>
+
+    <img src="<?=$img_url?>cont04.jpg" alt=""/>
+
+    <div class="cont05">
+        <img src="<?=$img_url?>cont05_tit.jpg" alt=""/>
+        <div class="bxslider bx01">
+            <img src="<?=$img_url?>cont05_sd1.jpg" alt=""/>
+            <img src="<?=$img_url?>cont05_sd2.jpg" alt=""/>
+            <img src="<?=$img_url?>cont05_sd3.jpg" alt=""/>
+        </div>
+    </div>
+
+    <img src="<?=$img_url?>cont06.jpg" alt=""/>
+
+    <div class="cont07">
+        <img src="<?=$img_url?>cont07_tit.jpg" alt=""/>
+        <div class="bxslider bx02">
+            <img src="<?=$img_url?>cont07_sd1.jpg" alt=""/>
+            <img src="<?=$img_url?>cont07_sd2.jpg" alt=""/>
+            <img src="<?=$img_url?>cont07_sd3.jpg" alt=""/>
+        </div>
+    </div>
+
+    <img src="<?=$img_url?>cont08.jpg" alt=""/>
+    <img src="<?=$img_url?>cont09.jpg" alt=""/>
+
+    <?include 'application/views/event/refund_guide.php'?>
+</div>

@@ -1,0 +1,37 @@
+<div id="container">
+	<div id="examCalender_container">
+		<div class="m_ex_area">
+			
+			<div id="snb" class="snb_bg">
+				<h2>시험일정</h2>
+				<span class="snb_prev">
+					<a href="#;" class="his_back"><img src="<?=$images?>/common/btn_prev.png" alt="이전"/></a>
+				</span>
+			</div>
+			
+			<div class="m_ex_list">
+				<ul>
+					<? foreach($exam_calender as $calender_key => $calender_item) { ?>
+						<li>
+							<dl>
+								<dt><?=$calender_item['name']?></dt>
+								<dd>
+									<a href="<?=(!empty($calender_item['link'])) ? $calender_item['link'] : $calender_item['link_2'] ?>" target="_blank">
+										<span>원서접수일</span>
+										<?=$calender_item['receive_sdate']?><?=$exam_calender_day['receive_sdate_day'][$calender_key]?> <?=$calender_item['receive_sdate_time']?> ~ <?=$calender_item['receive_edate']?><?=$exam_calender_day['receive_edate_day'][$calender_key]?> <?=$calender_item['receive_edate_time']?>
+									</a>
+								</dd>
+								<dd><span>시험일</span><?=$calender_item['exam_date_c']?><?=$exam_calender_day['exam_day'][$calender_key]?></dd>
+								<dd>
+									<span>발표일</span><?=$calender_item['issue_date_c']?><?=$exam_calender_day['issue_day'][$calender_key]?> <?=$calender_item['issue_date_time']?> <?=$calender_item['issue_date_tiem']?>
+									<a href="<?=(!empty($calender_item['link'])) ? $calender_item['link'] : $calender_item['link_2'] ?>" target="_blank" class="btn_ok exam_target">발표확인</a>
+								</dd>
+							</dl>
+						</li>
+					<? } ?>
+				</ul>
+			
+			</div>
+		</div>
+	</div>
+</div>
